@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DrawTemp : MonoBehaviour
 {
-    public Material redLineMaterial;
+    /*public Material redLineMaterial;
     public Material blueLineMaterial;
     public float lineWidth = 0.1f;
 
@@ -455,5 +455,5 @@ public class DrawTemp : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"Line collided with: {collision.gameObject.name}");
-    }
+    }*/
 }
