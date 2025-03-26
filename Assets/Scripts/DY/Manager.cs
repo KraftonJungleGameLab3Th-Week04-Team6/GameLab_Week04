@@ -10,12 +10,13 @@ public class Manager : MonoBehaviour
 
     #region 매니저
     public static GameManager Game { get { return Instance._game; } }
-    public static UIManager UI {  get { return Instance._ui; } }
+    public static CustomerManager Customer { get { return Instance._customer; } }
     public static KitchenManager Kitchen { get { return Instance._kitchen; } }
     
     private GameManager _game = new GameManager();
-    private UIManager _ui = new UIManager();
-    private KitchenManager _kitchen;
+    private KitchenManager _kitchen = new KitchenManager();
+    private CustomerManager _customer = new CustomerManager();
+    //private CustomerManager _customer;
     #endregion
 
     private void Awake()
@@ -24,15 +25,15 @@ public class Manager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            //Init();
+            Init();
         }
     }
 
     // Manager 초기화
     private void Init()
     {
-        UI.Init();
         Game.Init();
+        Customer.Init();
     }
 
     private void OnDestroy()

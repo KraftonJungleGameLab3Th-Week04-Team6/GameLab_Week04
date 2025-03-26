@@ -5,7 +5,7 @@ public enum EIngredients
     Cabbage, // 양배추
     Corn, // 옥수수
     GreenOnion, // 대파
-    Pepper, // 후추
+    Pepper, // 고추
     Pimento, // 피망
     Radish // 무
 }
@@ -20,9 +20,11 @@ public enum EFoods
 
 public enum EButton
 {
-    GameStart,
+    GameStart, 
     GameExit,
-    Answer
+    Answer,
+    SlicingStart,
+    SlicingEnd,
 }
 
 public enum EScenName
@@ -31,3 +33,4 @@ public enum EScenName
     JH_MainScene,
     JH_RestaurantScene,
 }
+

@@ -9,11 +9,11 @@ public class OrderDatabase : MonoBehaviour
 
     private void Awake()
     {
-        AddCustomerData(1, ""); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
-        AddCustomerData(2, ""); 
-        AddCustomerData(3, ""); 
-        AddCustomerData(4, ""); 
-        AddCustomerData(5, ""); 
+        AddCustomerData(201, "Order/Order1"); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
+        AddCustomerData(202, "Order/Order2"); 
+        AddCustomerData(203, "Order/Order3"); 
+        AddCustomerData(204, "Order/Order4"); 
+        AddCustomerData(205, "Order/Order5"); 
     }
 
     public static void AddCustomerData(int id, string path)
