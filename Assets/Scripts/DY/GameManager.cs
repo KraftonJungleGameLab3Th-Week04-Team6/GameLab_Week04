@@ -41,7 +41,7 @@ public class GameManager
 #else
                 Application.Quit(); // 빌드된 게임 종료
 #endif
-        Debug.LogWarning("게임 종료");
+        Debug.Log("게임 종료");
         Application.Quit();
     }
     

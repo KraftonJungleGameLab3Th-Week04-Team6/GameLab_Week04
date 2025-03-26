@@ -22,7 +22,7 @@ public enum EButton
 {
     GameStart,
     GameExit,
-
+    Answer
 }
 
 public enum EScenName
