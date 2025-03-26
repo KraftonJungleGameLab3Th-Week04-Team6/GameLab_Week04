@@ -5,7 +5,7 @@ public enum EIngredients
     Cabbage, // 양배추
     Corn, // 옥수수
     GreenOnion, // 대파
-    Pepper, // 후추
+    Pepper, // 고추
     Pimento, // 피망
     Radish // 무
 }

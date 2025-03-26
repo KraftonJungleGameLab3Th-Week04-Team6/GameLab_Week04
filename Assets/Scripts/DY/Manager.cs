@@ -11,9 +11,11 @@ public class Manager : MonoBehaviour
     #region 매니저
     public static GameManager Game { get { return Instance._game; } }
     public static UIManager UI {  get { return Instance._ui; } }
+    public static CustomerManager Customer { get { return Instance._customer; } }
     
     private GameManager _game = new GameManager();
     private UIManager _ui = new UIManager();
+    private CustomerManager _customer = new CustomerManager();
     #endregion
 
     private void Awake()
@@ -31,6 +33,7 @@ public class Manager : MonoBehaviour
     {
         UI.Init();
         Game.Init();
+        Customer.Init();
     }
 
     private void OnDestroy()
