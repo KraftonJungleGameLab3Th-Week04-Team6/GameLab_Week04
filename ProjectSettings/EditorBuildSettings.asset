@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JH_CustomerResultScene.unity
     guid: 0280f017cf8391b4ea16ec5b40d98073
+  - enabled: 1
+    path: Assets/Scenes/DH_OpeningScene.unity
+    guid: 25c9f1d8258607449aec72378a754fe4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

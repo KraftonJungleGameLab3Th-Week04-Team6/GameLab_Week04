@@ -48,12 +48,20 @@ public class GameManager
         _maxDay = 5;
         _todayCustomerCount = 0;
         _todayCustomerMaxCount = 3;
+        TotalMoney = 0;
+        TodayGetMoney = 0;
     }
 
     public void GameStart()
     {
         Debug.Log("게임 시작");
         SceneManager.LoadScene("DY_RestaurantScene");
+    }
+
+    public void GameOpeningStart()
+    {
+        Debug.Log("게임 오프닝");
+        SceneManager.LoadScene("DH_OpeningScene");
     }
 
     public void SetPause()
