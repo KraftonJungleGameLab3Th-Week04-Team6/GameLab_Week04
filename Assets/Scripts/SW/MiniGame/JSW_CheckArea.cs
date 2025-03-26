@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -67,12 +68,18 @@ public class JSW_CheckArea : MonoBehaviour
 
         int remainingHits = totalFoodHits - cutHits - moldHits;
         float remainingPercentage = totalFoodHits == 0 ? 0f : ((float)remainingHits / totalFoodHits) * 100f;
+        //곰팡이가 덮인 비율
+        float moldPercentage = totalFoodHits == 0 ? 0f : ((float)moldHits / remainingHits) * 100f;
 
         Debug.Log($"음식 전체 픽셀 수: {totalFoodHits}");
         Debug.Log($"잘라낸 픽셀 수: {cutHits}");
         Debug.Log($"곰팡이 덮인 픽셀 수: {moldHits}");
         Debug.Log($"곰팡이 덮인 갯수: {moldCount}");
         Debug.Log($"남은 음식 영역: {remainingPercentage:F2}%");
+        Debug.Log($"곰팡이가 덮인 비율: {moldPercentage:F2}%");
+
+        Manager.Kitchen.ResultRemainingPercentage += remainingPercentage;
+        Manager.Kitchen.MoldPercentage += moldPercentage;
     }
     // 영역 가시화를 위한 기즈모
     private void OnDrawGizmosSelected()
