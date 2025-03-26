@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
     [SerializeField] private float CorrectionDistance;
+    [SerializeField] private Color insideColor;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class DrawLine : MonoBehaviour
     {
         Draw();
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R)) // 디버깅용
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -34,11 +36,11 @@ public class DrawLine : MonoBehaviour
         if (Input.GetMouseButton(0) && !_isDrawing) //그리는 중이 아니라면 마우스를 눌렀을 때 시작
         {
             _isDrawing = true;
-            StartCoroutine(StartDraw(new GameObject("line")));
+            StartCoroutine(Drawing(new GameObject("line")));
         }
     }
 
-    private IEnumerator StartDraw(GameObject line)
+    private IEnumerator Drawing(GameObject line)
     {
         line.layer = LayerMask.NameToLayer("DrawingLine");
 
@@ -46,10 +48,11 @@ public class DrawLine : MonoBehaviour
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material.color = lineColor;
         lineRenderer.positionCount = 1;
+        lineRenderer.sortingOrder = 10;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
 
-        List<Vector2> v = new(); // line의 포지션 정보를 저장하기 위한 Vector2리스트
+        List<Vector2> pointsList = new(); // line의 포지션 정보를 저장하기 위한 Vector2리스트
         bool isShape = false; // 폐곡선 생성 여부
 
         Vector2 previousPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 과도한 LineRenderer 점 생성 방지를 위한 이전 위치와 현재 위치
@@ -77,8 +80,8 @@ public class DrawLine : MonoBehaviour
                 continue;
             }
 
-            v.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
-            edgeCollider2D.SetPoints(v); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
+            pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
+            edgeCollider2D.SetPoints(pointsList); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
 
             RaycastHit2D hit = Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 2)
                 , lineRenderer.GetPosition(lineRenderer.positionCount - 1) - lineRenderer.GetPosition(lineRenderer.positionCount - 2)
@@ -88,9 +91,6 @@ public class DrawLine : MonoBehaviour
             if (hit) // 기존 선과 충돌했다면 (폐곡선이 만들어졌다면)
             {
                 isShape = true;
-                Destroy(edgeCollider2D);
-
-                lineRenderer.SetPosition(lineRenderer.positionCount - 1, hit.point);
 
                 /*int index = 0; // 일직선 위의 점 찾기
 
@@ -119,47 +119,68 @@ public class DrawLine : MonoBehaviour
 
                 lineRenderer.SetPosition(index, hit.point);
 
-                v = new List<Vector2>(new Vector2[lineRenderer.positionCount - index]);
+                pointsList = new List<Vector2>(new Vector2[lineRenderer.positionCount - index - 1]); // 시작점과 끝점을 같게 만들면 메시폴리곤 생성이 이상해짐
 
-                for (int i = index; i < lineRenderer.positionCount; i++)
+                for (int i = index; i < lineRenderer.positionCount - 1; i++)
                 {
-                    v[i - index] = lineRenderer.GetPosition(i);
-                    lineRenderer.SetPosition(i - index, v[i - index]);
+                    pointsList[i - index] = lineRenderer.GetPosition(i);
                 }
 
-                lineRenderer.positionCount = lineRenderer.positionCount - index;
+                lineRenderer.positionCount = lineRenderer.positionCount - index - 1;
+                lineRenderer.SetPositions(pointsList.ConvertAll(elem => (Vector3)elem).ToArray());
 
-                PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
-                polygonCollider2D.SetPath(0, v);
+                PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>(); 
+                polygonCollider2D.SetPath(0, pointsList);
                 break;
             }
 
             yield return null;
         }
 
-        if (!isShape)
+        if (!isShape) // 선을 완전히 잇지 않아도 완성되도록 보정
         {
-            if(Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < CorrectionDistance
-                && Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 1)
+            edgeCollider2D.SetPoints(pointsList.GetRange(1, pointsList.Count - 1));
+
+            if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < CorrectionDistance
+                && !Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 1)
                 , lineRenderer.GetPosition(0) - lineRenderer.GetPosition(lineRenderer.positionCount - 1)
                 , Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1))
-                , 1 << LayerMask.NameToLayer("DrawingLine")))
+                , 1 << LayerMask.NameToLayer("DrawingLine"))) // 시작점과 끝점 사이에 다른 선이 없으면서 가깝다면 폐곡선으로 보정
             {
-                lineRenderer.positionCount++;
-                lineRenderer.SetPosition(lineRenderer.positionCount - 1, lineRenderer.GetPosition(0));
-                v.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+                pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 1));
 
                 PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
-                polygonCollider2D.SetPath(0, v);
+                polygonCollider2D.SetPath(0, pointsList);
+
+                isShape = true;
             }
-            else
-            {
-                Destroy(line);
-            }
-            
+
+            edgeCollider2D.SetPoints(pointsList);
         }
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
+        Destroy(edgeCollider2D);
+        Destroy(lineRenderer);
+
+        if (isShape) // 폐곡선이 완성되었다면 채우기
+        {
+            Mesh filledMesh = new()
+            {
+                vertices = pointsList.ConvertAll(elem => (Vector3)elem).ToArray(),
+                triangles = new Triangulator(pointsList.ToArray()).Triangulate()
+            };
+
+            MeshRenderer meshRenderer = line.AddComponent<MeshRenderer>();
+            MeshFilter meshFilter = line.AddComponent<MeshFilter>();
+
+            meshRenderer.material = new Material(Shader.Find("UI/Default"));
+            meshRenderer.material.color = insideColor;
+            meshFilter.mesh = filledMesh;
+        }
+        else // 폐곡선이 완성되지 않았다면 선 삭제
+        {
+            Destroy(line);
+        }
 
         while (Input.GetMouseButton(0)) // 마우스를 한 번 떼야 다시 그릴 수 있도록
         {
