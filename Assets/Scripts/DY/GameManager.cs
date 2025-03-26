@@ -6,14 +6,20 @@ public class GameManager
 {
     public bool IsGameStart => _isGameStart;
     public bool IsPause => _isPause;
-    public int CurrentDay => _currentDay;
-    public int MaxDay => _maxDay;
-    public int TodayCustomerCount => _todayCustomerCount;
+
+    public int CurrentDay { get { return _currentDay; } set { _currentDay = value; } }
+    public int TodayCustomerCount { get { return _todayCustomerCount; } set { _todayCustomerCount = value; } }
+
     public int TodayCustomerMaxCount => _todayCustomerMaxCount;
         
     public float LossRate { get { return _LossRate;} set{_LossRate = value;} }
     public float MoldRate { get { return _MoldRate;} set{_MoldRate = value;} }
-    
+
+    public int TodayGetMoney { get { return _todayGetMoney; } set { _todayGetMoney = value; } }
+    public int TotalMoney { get { return _totalMoney; } set { _totalMoney = value; } }
+
+
+
     #region 게임 흐름 관련
     private bool _isGameStart;
     private bool _isPause;
@@ -29,6 +35,11 @@ public class GameManager
     #region 주방 관련
     private float _LossRate;
     private float _MoldRate;
+    #endregion
+
+    #region 돈 관련
+    private int _todayGetMoney;
+    private int _totalMoney;
     #endregion
 
     public void Init()

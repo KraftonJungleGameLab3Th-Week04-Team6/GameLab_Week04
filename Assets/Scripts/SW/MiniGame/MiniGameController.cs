@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MiniGameController : MonoBehaviour
@@ -105,15 +106,25 @@ public class MiniGameController : MonoBehaviour
             float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / 3.0f;
             float moldPercentage = Manager.Kitchen.MoldPercentage / 3.0f;
             
+            _enddingCavas.SetActive(true);
+
+
             Manager.Game.LossRate = resultRemainingPercentage;
             Manager.Game.MoldRate = moldPercentage;
+
+            Manager.Game.TodayCustomerCount += 1;
+            Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * 100;
+
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "살린 재료 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
-            _enddingCavas.SetActive(true);
             return;
         }
     }
 
+    public void GoLobby()
+    {
+        SceneManager.LoadScene("DY_RestaurantScene");
+    }
 
     IEnumerator StartPlay_Coroutine()
     {      

@@ -36,4 +36,9 @@ public class UI_RestaurantCanvas : MonoBehaviour
         Manager.Kitchen.OrderKey = orderKey;
         Manager.Game.GoKitchen();
     }
+
+    private void OnDisable()
+    {
+        Manager.Restaurant.sendCustomer -= OnCustomerOrder;
+    }
 }
