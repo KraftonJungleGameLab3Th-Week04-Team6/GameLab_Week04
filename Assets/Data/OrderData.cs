@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "OrderData", menuName = "Order/OrderData")]
+[CreateAssetMenu(fileName = "OrderData", menuName = "Scriptable Objects/OrderData")]
 
 public class OrderData : ScriptableObject // 주문 정보 데이터
 {
