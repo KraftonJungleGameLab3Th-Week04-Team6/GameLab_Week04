@@ -730,7 +730,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_20
+      name: A_Heart
       rect:
         serializedVersion: 2
         x: 50
@@ -818,7 +818,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_24
+      name: A_star
       rect:
         serializedVersion: 2
         x: 49
@@ -1668,8 +1668,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       A_BigPanel: 21300054
+      A_Heart: 21300040
       A_MainTitle: 21300102
       A_SmallPanel: 21300022
+      A_star: 21300048
       GUI_0: 21300000
       GUI_1: 21300002
       GUI_10: 21300020
@@ -1682,11 +1684,9 @@ TextureImporter:
       GUI_18: 21300036
       GUI_19: 21300038
       GUI_2: 21300004
-      GUI_20: 21300040
       GUI_21: 21300042
       GUI_22: 21300044
       GUI_23: 21300046
-      GUI_24: 21300048
       GUI_25: 21300050
       GUI_26: 21300052
       GUI_28: 21300056
