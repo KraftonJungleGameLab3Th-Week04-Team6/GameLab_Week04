@@ -23,6 +23,12 @@ public class MiniGameController : MonoBehaviour
     private Button _endButton;
     private GameObject _enddingCavas;
     
+    private float _resultRemainingPercentage;
+    private float _moldPercentage;
+    
+    public float ResultRemainingPercentage { get{return _resultRemainingPercentage;} set{_resultRemainingPercentage = value;} }
+    public float MoldPercentage { get{return _moldPercentage;} set{_moldPercentage = value;} }
+    
     //주문 받은 메뉴
     private OrderData _orderData;
 
@@ -40,6 +46,9 @@ public class MiniGameController : MonoBehaviour
         {
             Foods.Add(IngredientsDatabase.ObjectData[_orderData.orderIngredients[i]].IngredientsPrefab);
         }
+        
+        Manager.Kitchen.ResultRemainingPercentage = 0;
+        Manager.Kitchen.MoldPercentage = 0;
     }
 
 
@@ -60,11 +69,6 @@ public class MiniGameController : MonoBehaviour
     
     public void OnStartButton()
     {
-        if (Foods.Count == 0)
-        {
-            _enddingCavas.SetActive(true);
-            return;
-        }
         OnSettingFood();
         StartCoroutine(StartPlay_Coroutine());
     }
@@ -95,6 +99,19 @@ public class MiniGameController : MonoBehaviour
         Destroy(_nowFood);
         sliceTime = 0;
         _playTimeText.text = sliceTime.ToString("F1");
+        
+        if (Foods.Count == 0)
+        {
+            float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / 3.0f;
+            float moldPercentage = Manager.Kitchen.MoldPercentage / 3.0f;
+            
+            Manager.Game.LossRate = resultRemainingPercentage;
+            Manager.Game.MoldRate = moldPercentage;
+            _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "살린 재료 : " + resultRemainingPercentage.ToString("F1") + "%";
+            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
+            _enddingCavas.SetActive(true);
+            return;
+        }
     }
 
 
