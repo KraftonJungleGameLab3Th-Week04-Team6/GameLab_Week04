@@ -45,7 +45,7 @@ public class CustomerManager
         //}
 
 
-        UIManager.Instance.SetCustomerUI(customerData.customerID);
+        // UIManager.Instance.SetCustomerUI(customerData.customerID);
     }
 
 }

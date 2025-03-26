@@ -25,6 +25,7 @@ public enum EButton
     Answer,
     SlicingStart,
     SlicingEnd,
+    
 }
 
 public enum EScenName
@@ -32,5 +33,8 @@ public enum EScenName
     JH_KitchenScene,
     JH_MainScene,
     JH_RestaurantScene,
+    DY_MainScene,
+    DY_KitchenScene,
+    DY_RestaurantScene,
 }
 
