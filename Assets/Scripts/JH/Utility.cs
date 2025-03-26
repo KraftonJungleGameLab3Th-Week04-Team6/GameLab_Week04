@@ -20,11 +20,9 @@ public enum EFoods
 
 public enum EButton
 {
-    GameStart, 
+    GameStart,
     GameExit,
-    Answer,
-    SlicingStart,
-    SlicingEnd,
+    Answer
 }
 
 public enum EScenName
@@ -33,4 +31,3 @@ public enum EScenName
     JH_MainScene,
     JH_RestaurantScene,
 }
-
