@@ -43,10 +43,10 @@ public class CustomerManager
 
         for (int i = 0; i < 3; i++)
         {
-            _indexToOrderId[i] = customerData.customerAnswerList[i].Item1;
+            // _indexToOrderId[i] = customerData.customerAnswerList[i].Item1;
         }
 
-        Manager.UI.SetCustomerUI(customerData.customerID);
+        // Manager.UI.SetCustomerUI(customerData.customerID);
     }
 
 }

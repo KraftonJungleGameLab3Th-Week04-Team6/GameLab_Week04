@@ -36,7 +36,7 @@ public class Manager : MonoBehaviour
     // Manager 초기화
     private void Init()
     {
-        UI.Init();
+        // UI.Init();
         Game.Init();
         Customer.Init();
     }
