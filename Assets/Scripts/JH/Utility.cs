@@ -36,3 +36,11 @@ public enum EScenName
     DY_KitchenScene,
     DY_RestaurantScene,
 }
+
+public enum ECustomerIcon
+{
+    Heart,
+    Good,
+    Bad,
+    Vomit,
+}
