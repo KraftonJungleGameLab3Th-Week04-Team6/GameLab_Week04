@@ -5,16 +5,19 @@ using UnityEngine.UI;
 
 public class TypingText : MonoBehaviour
 {
-    private Image openingDisplay;
-    private TextMeshProUGUI openingTextMesh;
-    private string originalText;
-    private WaitForSeconds delay = new WaitForSeconds(0.05f);
+    public bool IsDone { get { return _isDone; } }
+
+    private Image _openingDisplay;
+    private TextMeshProUGUI _openingTextMesh;
+    private string _originalText;
+    private WaitForSeconds _delay = new WaitForSeconds(0.05f);
+    private bool _isDone = false;
 
     private void Awake()
     {
-        openingDisplay = GetComponent<Image>();
-        openingTextMesh = GetComponentInChildren<TextMeshProUGUI>();
-        originalText = openingTextMesh.text;
+        _openingDisplay = GetComponent<Image>();
+        _openingTextMesh = GetComponentInChildren<TextMeshProUGUI>();
+        _originalText = _openingTextMesh.text;
     }
 
     private void OnEnable()
@@ -27,30 +30,32 @@ public class TypingText : MonoBehaviour
         float a = 0;
         string text = null;
 
-        char[] buffer = new char[originalText.Length];
+        char[] buffer = new char[_originalText.Length];
         System.Array.Fill(buffer, '\0');
 
-        openingTextMesh.text = text;
+        _openingTextMesh.text = text;
 
         while (a < 1)
         {
-            openingDisplay.color = new(1, 1, 1, a);
+            _openingDisplay.color = new(1, 1, 1, a);
             a += 0.005f;
             yield return null;
         }
 
         yield return new WaitForSeconds(0.2f);
 
-        buffer = new char[originalText.Length];
+        buffer = new char[_originalText.Length];
         System.Array.Fill(buffer, '\0');
 
-        for(int i = 0; i < originalText.Length; i++)
+        for(int i = 0; i < _originalText.Length; i++)
         {
-            buffer[i] = originalText[i];
-            openingTextMesh.SetCharArray(buffer);
+            buffer[i] = _originalText[i];
+            _openingTextMesh.SetCharArray(buffer);
 
-            yield return delay;
+            yield return _delay;
         }
+
+        _isDone = true;
 
         yield break;
     }

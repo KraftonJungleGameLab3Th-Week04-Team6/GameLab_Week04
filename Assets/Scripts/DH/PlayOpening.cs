@@ -4,46 +4,55 @@ using UnityEngine;
 
 public class PlayOpening : MonoBehaviour
 {
-    private Canvas canvas;
-    private GameObject[] openingObjects;
+    private Canvas _canvas;
+    private GameObject[] _openingObjects;
+    private TypingText _typingText;
 
     private void Awake()
     {
-        canvas = FindAnyObjectByType<Canvas>();
+        _canvas = FindAnyObjectByType<Canvas>();
 
-        openingObjects = new GameObject[canvas.transform.childCount];
-        for(int i=0;i< canvas.transform.childCount; i++)
+        _openingObjects = new GameObject[_canvas.transform.childCount];
+        for(int i=0;i< _canvas.transform.childCount; i++)
         {
-            openingObjects[i] = canvas.transform.GetChild(i).gameObject;
+            _openingObjects[i] = _canvas.transform.GetChild(i).gameObject;
         }
     }
 
     private void Start()
     {
-        foreach (GameObject openingObject in openingObjects) openingObject.SetActive(false);
+        foreach (GameObject openingObject in _openingObjects) openingObject.SetActive(false);
 
         StartCoroutine(StartOpening());
     }
 
     private IEnumerator StartOpening()
     {
-        openingObjects[0].SetActive(true);
+        _openingObjects[0].SetActive(true);
 
         yield return new WaitForSeconds(1f);
 
-        openingObjects[2].SetActive(true);
+        _openingObjects[2].SetActive(true);
 
-        yield return new WaitForSeconds(6.5f);
+        _typingText = _openingObjects[2].GetComponent<TypingText>();
 
-        openingObjects[0].SetActive(false);
-        openingObjects[2].SetActive(false);
-        openingObjects[1].SetActive(true);
+        while (!_typingText.IsDone) yield return null;
 
         yield return new WaitForSeconds(1f);
 
-        openingObjects[3].SetActive(true);
+        _openingObjects[0].SetActive(false);
+        _openingObjects[2].SetActive(false);
+        _openingObjects[1].SetActive(true);
 
-        yield return new WaitForSeconds(11f);
+        yield return new WaitForSeconds(1f);
+
+        _openingObjects[3].SetActive(true);
+
+        _typingText = _openingObjects[3].GetComponent<TypingText>();
+
+        while (!_typingText.IsDone) yield return null;
+
+        yield return new WaitForSeconds(1f);
 
         Manager.Game.GameStart();
     }
