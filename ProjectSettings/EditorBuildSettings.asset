@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/DH.unity
-    guid: c7c6114c92e9ab34d919703d15d73af1
+    path: Assets/Scenes/JH_KitchenScene.unity
+    guid: 0766b4eaa7ebe6e4582e115bf559340b
+  - enabled: 1
+    path: Assets/Scenes/JH_MainScene.unity
+    guid: 10faa0d80b6a57d468925aabe38061ac
+  - enabled: 1
+    path: Assets/Scenes/JH_RestaurantScene.unity
+    guid: 039f276c6c41b0c448ee76e457655915
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

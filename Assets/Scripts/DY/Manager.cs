@@ -12,8 +12,8 @@ public class Manager : MonoBehaviour
     public static GameManager Game { get { return Instance._game; } }
     public static UIManager UI {  get { return Instance._ui; } }
     
-    private GameManager _game;
-    private UIManager _ui;
+    private GameManager _game = new GameManager();
+    private UIManager _ui = new UIManager();
     #endregion
 
     private void Awake()
@@ -30,6 +30,7 @@ public class Manager : MonoBehaviour
     private void Init()
     {
         UI.Init();
+        Game.Init();
     }
 
     private void OnDestroy()

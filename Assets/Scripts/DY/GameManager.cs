@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -12,12 +14,12 @@ public class GameManager
 
     public void Init()
     {
-        GameStart();
     }
 
     public void GameStart()
     {
         Debug.Log("게임 시작");
+        SceneManager.LoadScene(EScenName.JH_RestaurantScene.ToString());
     }
 
     public void SetPause()
@@ -34,7 +36,12 @@ public class GameManager
 
     public void GameExit()
     {
-        Debug.LogWarning("게임 종료");
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false; // 유니티 에디터 종료
+#else
+                Application.Quit(); // 빌드된 게임 종료
+#endif
+        Debug.Log("게임 종료");
         Application.Quit();
     }
     
