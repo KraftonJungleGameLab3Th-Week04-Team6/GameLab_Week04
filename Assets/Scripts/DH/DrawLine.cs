@@ -48,7 +48,6 @@ public class DrawLine : MonoBehaviour
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material.color = lineColor;
         lineRenderer.positionCount = 1;
-        lineRenderer.sortingOrder = 10;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
 

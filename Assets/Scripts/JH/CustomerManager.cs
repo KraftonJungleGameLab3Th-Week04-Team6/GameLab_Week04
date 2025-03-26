@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerManager
@@ -39,13 +41,12 @@ public class CustomerManager
         CustomerData customerData;
         CustomerDatabase.ObjectData.TryGetValue(randInt, out customerData);
 
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    _indexToOrderId[i] = customerData.customerAnswerList[i].Item1;
-        //}
+        for (int i = 0; i < 3; i++)
+        {
+            _indexToOrderId[i] = customerData.customerAnswerList[i].Item1;
+        }
 
-
-        UIManager.Instance.SetCustomerUI(customerData.customerID);
+        Manager.UI.SetCustomerUI(customerData.customerID);
     }
 
 }

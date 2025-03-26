@@ -6,7 +6,7 @@ public class UI_Button : MonoBehaviour
 {
     Button _button;
     public EButton Type;
-    public int OrderId;
+    public int Index; // Answer 버튼의 순서
     void Start()
     {
         _button = GetComponent<Button>();
@@ -28,8 +28,7 @@ public class UI_Button : MonoBehaviour
 
             case EButton.Answer:
                 SceneManager.LoadScene(EScenName.JH_KitchenScene.ToString());
-                //Manager.Kitchen.Order(Manager.Customer.IndexToOrderId[Index]);
-                Manager.Kitchen.Order(OrderId);
+                Manager.Kitchen.Order(Manager.Customer.IndexToOrderId[Index]);
                 break;
         }
     }
