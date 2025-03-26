@@ -8,8 +8,10 @@ public class DrawLine : MonoBehaviour
 {
     private bool _isDrawing = false;
 
-    [SerializeField]
-    private float minDistance;
+    [Header("line option")]
+    [SerializeField] private float minDistance;
+    [SerializeField] private float lineWidth;
+    [SerializeField] private Color lineColor;
 
     private void Awake()
     {
@@ -38,8 +40,8 @@ public class DrawLine : MonoBehaviour
     private IEnumerator StartDraw(GameObject line)
     {
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>(); // 마우스를 따라 선을 그리기 위한 LineRenderer
-        lineRenderer.startWidth = 0.01f;
-        lineRenderer.material.color = Color.red;
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.material.color = lineColor;
         lineRenderer.positionCount = 1;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
