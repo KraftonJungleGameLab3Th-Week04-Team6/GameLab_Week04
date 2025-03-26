@@ -11,7 +11,7 @@ public class IngredientsDatabase : MonoBehaviour
     {
         AddCustomerData(1, "Ingredients/Broccoli"); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
         AddCustomerData(2, "Ingredients/Cabbage"); 
-        AddCustomerData(3, "Ingredients/Conor"); 
+        AddCustomerData(3, "Ingredients/Corn"); 
         AddCustomerData(4, "Ingredients/GreenOnion"); 
         AddCustomerData(5, "Ingredients/Pepper"); 
         AddCustomerData(6, "Ingredients/Pimento"); 
