@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -22,6 +23,7 @@ public class MiniGameController : MonoBehaviour
     private TMP_Text _playTimeText;
     private Button _endButton;
     private GameObject _enddingCavas;
+    private ChoppingBoard _choppingBoard;
     
     private float _resultRemainingPercentage;
     private float _moldPercentage;
@@ -39,7 +41,10 @@ public class MiniGameController : MonoBehaviour
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _endButton = FindAnyObjectByType<ButtonCanvas>().transform.GetComponentInChildren<EndButton>().GetComponent<Button>();
         _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject ;
+        _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
+
         _enddingCavas.SetActive(false);
+        _endButton.gameObject.SetActive(false);
 
         _orderData  = OrderDatabase.ObjectData[Manager.Kitchen.OrderKey];
         for (int i = 0; i < _orderData.orderIngredients.Count; i++)
@@ -49,9 +54,17 @@ public class MiniGameController : MonoBehaviour
         
         Manager.Kitchen.ResultRemainingPercentage = 0;
         Manager.Kitchen.MoldPercentage = 0;
+
+        _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
+        StartCoroutine(EnableButton_Coroutine());
     }
 
-
+    IEnumerator EnableButton_Coroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        _buttonCanvas.GetComponent<Canvas>().enabled = true;
+        _buttonCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+    }
 
     private void Update()
     {
@@ -129,6 +142,10 @@ public class MiniGameController : MonoBehaviour
 
         _isStart = true;
         sliceTime = 10;
+
+
+        yield return new WaitForSeconds(0.8f);
+        _endButton.gameObject.SetActive(true);
     }
     IEnumerator CalculateScore()
     {
