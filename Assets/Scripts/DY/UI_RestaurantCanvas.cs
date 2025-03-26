@@ -11,7 +11,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
     
     private CustomerData _customerData;
 
-    private void Start()
+    private void Awake()
     {
         Manager.Restaurant.sendCustomer += OnCustomerOrder;
         transform.GetChild(3).GetComponent<TMP_Text>().text = Manager.Game.CurrentDay + " DAY";

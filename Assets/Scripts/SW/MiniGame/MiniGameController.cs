@@ -128,7 +128,7 @@ public class MiniGameController : MonoBehaviour
             Manager.Game.TodayCustomerCount += 1;
             Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * 100;
 
-            _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "살린 재료 : " + resultRemainingPercentage.ToString("F1") + "%";
+            _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
             return;
         }
