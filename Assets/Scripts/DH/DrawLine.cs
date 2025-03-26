@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class DrawLine : MonoBehaviour
 {
     private bool _isDrawing = false;
-    private IEnumerator _drawingCoroutine = null;
 
     [Header("line option")]
     [SerializeField] private float minDistance;
