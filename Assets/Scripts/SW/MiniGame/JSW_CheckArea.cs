@@ -23,7 +23,7 @@ public class JSW_CheckArea : MonoBehaviour
     {
         if (foodCollider == null || cutColliders == null || cutColliders.Count == 0)
         {
-            Debug.LogError("콜라이더를 반드시 할당해주세요!");
+            //Debug.LogError("콜라이더를 반드시 할당해주세요!");
             return;
         }
 
