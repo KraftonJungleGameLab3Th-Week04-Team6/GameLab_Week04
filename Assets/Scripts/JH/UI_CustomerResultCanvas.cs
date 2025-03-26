@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_CustomerResultCanvas : MonoBehaviour
@@ -13,10 +14,11 @@ public class UI_CustomerResultCanvas : MonoBehaviour
     public Sprite[] _iconSprites;
 
     private bool _isDone = false;
+    private bool _isGameOver = false;
 
     private void Start()
     {
-        SetCustomerResult(3);
+        SetCustomerResult(Manager.Restaurant.CurrentCustomNum);
     }
 
     private void Update()
@@ -25,10 +27,17 @@ public class UI_CustomerResultCanvas : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            _fadeOut.enabled = false;
-            _iconImage.enabled = false;
-            _clickUIText.enabled = false;
-            Manager.Game.GameStart();
+            if (!_isGameOver)
+            {
+                _fadeOut.enabled = false;
+                _iconImage.enabled = false;
+                _clickUIText.enabled = false;
+                Manager.Game.GameStart();
+            }
+            else
+            {
+                SceneManager.LoadScene("DYTestScene");
+            }
         }
     }
     public void SetCustomerResult(int customerKey)
@@ -41,6 +50,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         if (Manager.Kitchen.MoldPercentage > 0.01 || score < 20)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Vomit));
+            _isGameOver = true;
         }
         else if (score < 60)
         {

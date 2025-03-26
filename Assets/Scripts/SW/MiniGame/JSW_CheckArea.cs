@@ -68,8 +68,16 @@ public class JSW_CheckArea : MonoBehaviour
 
         int remainingHits = totalFoodHits - cutHits - moldHits;
         float remainingPercentage = totalFoodHits == 0 ? 0f : ((float)remainingHits / totalFoodHits) * 100f;
+        float moldPercentage;
         //곰팡이가 덮인 비율
-        float moldPercentage = totalFoodHits == 0 ? 0f : ((float)moldHits / (totalFoodHits - cutHits)) * 100f;
+        if (totalFoodHits - cutHits <= 0)
+        {
+            moldPercentage = 0;
+        }
+        else
+        {
+            moldPercentage = totalFoodHits == 0 ? 0f : ((float)moldHits / (totalFoodHits - cutHits)) * 100f;
+        }
 
         Debug.Log($"음식 전체 픽셀 수: {totalFoodHits}");
         Debug.Log($"잘라낸 픽셀 수: {cutHits}");

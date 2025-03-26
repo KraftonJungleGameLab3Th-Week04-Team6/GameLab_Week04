@@ -44,9 +44,9 @@ public class GameManager
 
     public void Init()
     {
-        _currentDay = 0;
+        _currentDay = 1;
         _maxDay = 5;
-        _todayCustomerCount = 3;
+        _todayCustomerCount = 0;
         _todayCustomerMaxCount = 3;
     }
 
@@ -82,7 +82,6 @@ public class GameManager
 
     public void GoKitchen()
     {
-        _todayCustomerCount++;
         Debug.Log("주방으로 이동");
         SceneManager.LoadScene("DY_KitchenScene");
     }
@@ -95,10 +94,10 @@ public class GameManager
     
     public void NextDay()
     {
-        _currentDay++;
-        _todayCustomerCount = 0;
-        _todayCustomerMaxCount = 3;
-        Debug.Log("다음 날로 이동");
-        SceneManager.LoadScene("DY_RestaurantScene");
+        //_currentDay++;
+        //_todayCustomerCount = 0;
+        //_todayCustomerMaxCount = 3;
+        //Debug.Log("다음 날로 이동");
+        //SceneManager.LoadScene("DY_RestaurantScene");
     }
 }
