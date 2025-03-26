@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: Chulsu
   m_EditorClassIdentifier: 
   customerID: 1
-  customerName: "\uAE40\uCCA0"
+  customerName: "\uAE40\uB3D9\uD604"
   customerSprite: {fileID: 0}
-  customerOrder: 205
+  customerOrder: "\uC2E0\uC120\uD55C \uCC44\uC18C\uB85C \uB9CC\uB4E0 \uC694\uB9AC
+    \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694."
+  customerAnswerMenuList: ca000000c9000000cb000000
+  customerAnswerList:
+  - "\uC2E0\uC120\uD55C \uCC44\uC18C \uC0D0\uB7EC\uB4DC \uB4DC\uB9B4\uAE4C\uC694?"
+  - "\uB9E4\uCF64\uD55C \uCC44\uC18C \uBCF6\uC74C \uC5B4\uB5A0\uC138\uC694?"
+  - "\uC219\uC131 \uCC44\uC18C\uB3C4 \uB9DB\uC788\uC5B4\uC694."
