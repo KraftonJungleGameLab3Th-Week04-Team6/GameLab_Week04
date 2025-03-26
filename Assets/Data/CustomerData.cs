@@ -13,6 +13,8 @@ public class CustomerData : ScriptableObject
     public Sprite customerSprite;
     [Tooltip("주문 대화")]
     public String customerOrder;
-    [Tooltip("대답 목록")]
-    public List<(int, string)> customerAnswerList;
+    [Tooltip("메뉴 ID 리스트")]
+    public int[] customerAnswerMenuList;
+    [Tooltip("대답 리스트")]
+    public String[] customerAnswerList;
 }

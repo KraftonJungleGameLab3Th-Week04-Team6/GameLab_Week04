@@ -2,18 +2,28 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class UIManager
+public class UIManager : MonoBehaviour
 {
-    private Canvas _inGameUI;
-    private Canvas _titleUI;
-    private Canvas _timerUI;
-    private Canvas _keyGuideUI;
+    UI_Customer _customer;
+    
+    private void Start()
+    {
+        _customer = FindAnyObjectByType<UI_Customer>();
 
-    private float _playTime;
+
+    }
 
     public void Init()
     {
+    }
 
-        
+    public void SetCustomerUI(int customerId)
+    {
+        CustomerData customerData = CustomerDatabase.ObjectData[customerId];
+        _customer.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = customerData.customerName + "/n" + customerData.customerOrder;
+        for (int i = 0; i < 3; i++)
+        {
+            _customer.transform.GetChild(i+1).GetComponentInChildren<TextMeshProUGUI>().text = customerData.customerAnswerList[i].Item2;
+        }
     }
 }
