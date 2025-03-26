@@ -25,11 +25,6 @@ public class DrawLine : MonoBehaviour
     private void Update()
     {
         Draw();
-
-        if (Input.GetKeyDown(KeyCode.R)) // 디버깅용
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
 
     private void Draw()
@@ -180,6 +175,9 @@ public class DrawLine : MonoBehaviour
         {
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
+
+            Debug.Log(pointsList.Count);
+            Debug.Log(polygonCollider2D.pathCount);
 
             Mesh filledMesh = new()
             {
