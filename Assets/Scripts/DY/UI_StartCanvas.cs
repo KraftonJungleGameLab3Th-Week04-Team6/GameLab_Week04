@@ -11,9 +11,9 @@ public class UI_StartCanvas : MonoBehaviour
 
     private void Start()
     {
-        _startButton = transform.GetChild(0).GetChild(0).GetComponent<Button>();
-        _settingsButton = transform.GetChild(0).GetChild(1).GetComponent<Button>();
-        _exitButton = transform.GetChild(0).GetChild(2).GetComponent<Button>();
+        _startButton = transform.GetChild(1).GetChild(0).GetComponent<Button>();
+        _settingsButton = transform.GetChild(1).GetChild(1).GetComponent<Button>();
+        _exitButton = transform.GetChild(1).GetChild(2).GetComponent<Button>();
         
         _startButton.onClick.AddListener(OnStartClick);
         _settingsButton.onClick.AddListener(OnSettingsClick);
