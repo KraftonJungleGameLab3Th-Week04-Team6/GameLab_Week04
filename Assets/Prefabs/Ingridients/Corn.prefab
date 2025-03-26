@@ -209,10 +209,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moldPrefab: {fileID: 6138068461951490334, guid: 7038c0602f993944786b440c1675168c, type: 3}
   maxMoldCount: 1000
-  spawnIntervalTime: 0.2
-  spreadRadius: 0.1
-  minDistanceBetweenMolds: 0.05
-  startPoint: 0
+  spawnIntervalTime: 0.3
+  spreadRadius: 0.25
+  minDistanceBetweenMolds: 0.15
+  startPoint: 2
 --- !u!1 &1615684507521270456
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &231277806061232720
 Transform:
   m_ObjectHideFlags: 0
