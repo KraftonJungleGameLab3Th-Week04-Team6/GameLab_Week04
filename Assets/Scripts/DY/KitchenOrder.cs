@@ -5,7 +5,7 @@ public class KitchenOrder : MonoBehaviour
     
     private void Start()
     {
-        Manager.Kitchen.order += Order;
+        //Manager.Kitchen.order += Order;
     }
 
     // 주문 받기
