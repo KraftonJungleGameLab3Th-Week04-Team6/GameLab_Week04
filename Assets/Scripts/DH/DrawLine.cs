@@ -146,11 +146,10 @@ public class DrawLine : MonoBehaviour
         {
             while (correctionIndex > 0)
             {
-                Debug.Log("!");
                 if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex))
                     < Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex - 1))) break;
 
-                correctionIndex--;Debug.Log("?");
+                correctionIndex--;
             }
 
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
