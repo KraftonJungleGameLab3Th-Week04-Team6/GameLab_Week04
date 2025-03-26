@@ -9,6 +9,7 @@ public class MoldSpawner : MonoBehaviour
     public float spawnIntervalTime = 0.1f;
     public float spreadRadius = 0.3f; // 퍼지는 범위
     public float minDistanceBetweenMolds = 0.2f;
+    public int startPoint;
 
     private PolygonCollider2D _vegCollider;
     private List<Transform> _moldCenters = new List<Transform>(); // 기존 곰팡이 위치들
@@ -18,13 +19,16 @@ public class MoldSpawner : MonoBehaviour
     {
         _vegCollider = GetComponent<PolygonCollider2D>();
 
+        print(gameObject);
+
         if (_vegCollider == null)
         {
-            Debug.LogError("PolygonCollider2D가 필요해요!");
             return;
         }
-
-        StartCoroutine(SpreadMold());
+        for (int i =0;i < startPoint;i++)
+        {
+            StartCoroutine(SpreadMold());
+        }
     }
 
     IEnumerator SpreadMold()
@@ -91,8 +95,6 @@ public class MoldSpawner : MonoBehaviour
                 return true;
         }
         return false;
-
-
     }
 
     bool IsOverlappingOtherCollider(Vector2 pos)
