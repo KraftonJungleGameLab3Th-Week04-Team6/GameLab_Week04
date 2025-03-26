@@ -12,7 +12,7 @@ public class MiniGameController : MonoBehaviour
 
     public Action OnSliceEndEvent;
 
-    public List<GameObject> Foods = new List<GameObject>();
+    public List<GameObject> Foods;
     public float sliceTime;
 
     private JSW_CheckArea _checkArea;
@@ -22,6 +22,9 @@ public class MiniGameController : MonoBehaviour
     private TMP_Text _playTimeText;
     private Button _endButton;
     private GameObject _enddingCavas;
+    
+    //주문 받은 메뉴
+    private OrderData _orderData;
 
     private void Start()
     {
@@ -31,6 +34,12 @@ public class MiniGameController : MonoBehaviour
         _endButton = FindAnyObjectByType<ButtonCanvas>().transform.GetComponentInChildren<EndButton>().GetComponent<Button>();
         _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject ;
         _enddingCavas.SetActive(false);
+
+        _orderData  = OrderDatabase.ObjectData[Manager.Kitchen.OrderKey];
+        for (int i = 0; i < _orderData.orderIngredients.Count; i++)
+        {
+            Foods.Add(IngredientsDatabase.ObjectData[_orderData.orderIngredients[i]].IngredientsPrefab);
+        }
     }
 
 
