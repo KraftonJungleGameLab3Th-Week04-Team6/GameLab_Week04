@@ -9,15 +9,23 @@ public class RestaurantGame : MonoBehaviour
     
     private void Start()
     {
-        Init();
+        if (Manager.Game.TodayCustomerCount < Manager.Game.TodayCustomerMaxCount)
+        {
+            SetCustomerUI();
+        }
+        else
+        {
+            SetResultUI();
+        }
     }
 
-    private void Init()
+    private void SetCustomerUI()
     {
         Debug.Log("RestaurantGame Init");
         // 1~10번 손님 중 랜덤
         _uiRestaurantCanvas = FindAnyObjectByType<UI_RestaurantCanvas>();
         _customerNum = Random.Range(1, 11);
+        Manager.Restaurant.CurrentCustomNum = Random.Range(1, 11);
         SetCustomer();
     }
     
@@ -25,7 +33,10 @@ public class RestaurantGame : MonoBehaviour
     {
         Manager.Restaurant.SendCustomer(_customerNum);
     }
-    
-    
-    
+
+    private void SetResultUI()
+    {
+        Debug.Log("Today's result");
+        // 일일 정산 UI
+    }
 }

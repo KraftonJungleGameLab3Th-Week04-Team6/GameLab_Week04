@@ -6,8 +6,10 @@ public class GameManager
 {
     public bool IsGameStart => _isGameStart;
     public bool IsPause => _isPause;
+
     public int CurrentDay { get { return _currentDay; } set { _currentDay = value; } }
     public int TodayCustomerCount { get { return _todayCustomerCount; } set { _todayCustomerCount = value; } }
+
     public int TodayCustomerMaxCount => _todayCustomerMaxCount;
         
     public float LossRate { get { return _LossRate;} set{_LossRate = value;} }
@@ -25,6 +27,7 @@ public class GameManager
 
     #region 레스토랑 관련
     private int _currentDay;
+    private int _maxDay;
     private int _todayCustomerCount;
     private int _todayCustomerMaxCount;
     #endregion
@@ -41,8 +44,9 @@ public class GameManager
 
     public void Init()
     {
-        _currentDay = 1;
-        _todayCustomerCount = 0;
+        _currentDay = 0;
+        _maxDay = 5;
+        _todayCustomerCount = 3;
         _todayCustomerMaxCount = 3;
     }
 
@@ -78,8 +82,15 @@ public class GameManager
 
     public void GoKitchen()
     {
+        _todayCustomerCount++;
         Debug.Log("주방으로 이동");
         SceneManager.LoadScene("DY_KitchenScene");
+    }
+
+    public void GoResult()
+    {
+        Debug.Log("결과창으로 이동");
+        SceneManager.LoadScene("JH_CustomerResultScene");
     }
     
     public void NextDay()
@@ -90,5 +101,4 @@ public class GameManager
         Debug.Log("다음 날로 이동");
         SceneManager.LoadScene("DY_RestaurantScene");
     }
-    
 }
