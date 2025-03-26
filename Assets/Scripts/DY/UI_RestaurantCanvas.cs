@@ -14,6 +14,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
     private void Start()
     {
         Manager.Restaurant.sendCustomer += OnCustomerOrder;
+        transform.GetChild(3).GetComponent<TMP_Text>().text = Manager.Game.CurrentDay + " DAY";
     }
 
     private void OnCustomerOrder(int key)

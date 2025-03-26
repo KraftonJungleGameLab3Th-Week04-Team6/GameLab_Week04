@@ -136,7 +136,7 @@ public class MiniGameController : MonoBehaviour
 
     public void GoLobby()
     {
-        SceneManager.LoadScene("DY_RestaurantScene");
+        SceneManager.LoadScene("JH_CustomerResultScene");
     }
 
     IEnumerator StartPlay_Coroutine()

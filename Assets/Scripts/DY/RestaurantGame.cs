@@ -25,7 +25,7 @@ public class RestaurantGame : MonoBehaviour
         // 1~10번 손님 중 랜덤
         _uiRestaurantCanvas = FindAnyObjectByType<UI_RestaurantCanvas>();
         _customerNum = Random.Range(1, 11);
-        Manager.Restaurant.CurrentCustomNum = Random.Range(1, 11);
+        Manager.Restaurant.CurrentCustomNum = _customerNum;
         SetCustomer();
     }
     
