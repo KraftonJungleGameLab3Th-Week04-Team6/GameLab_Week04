@@ -55,7 +55,7 @@ public class DrawLine : MonoBehaviour
 
         List<Vector2> pointsList = new(); // line의 포지션 정보를 저장하기 위한 Vector2리스트
 
-        int correctionIndex = 0; // 미완성 곡선의 보정 체크를 할 lineRenderer 포지션 인덱스
+        int correctionIndex = -1; // 미완성 곡선의 보정 체크를 할 lineRenderer 포지션 인덱스
 
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, previousPosition); // 마우스 위치를 선의 처음 위치로 설정
@@ -137,9 +137,9 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount>3) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
+        if (!isShape && lineRenderer.positionCount > 3 && correctionIndex > 1) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
         {
-            while (correctionIndex > 0)
+            while (correctionIndex > 2)
             {
                 if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex))
                     < Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex - 1))) break;
@@ -175,9 +175,6 @@ public class DrawLine : MonoBehaviour
         {
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
-
-            Debug.Log(pointsList.Count);
-            Debug.Log(polygonCollider2D.pathCount);
 
             Mesh filledMesh = new()
             {
