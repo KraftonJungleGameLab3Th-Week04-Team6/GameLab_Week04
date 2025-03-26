@@ -105,11 +105,13 @@ public class MiniGameController : MonoBehaviour
             float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / 3.0f;
             float moldPercentage = Manager.Kitchen.MoldPercentage / 3.0f;
             
+            _enddingCavas.SetActive(true);
+
+
             Manager.Game.LossRate = resultRemainingPercentage;
             Manager.Game.MoldRate = moldPercentage;
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "살린 재료 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
-            _enddingCavas.SetActive(true);
             return;
         }
     }

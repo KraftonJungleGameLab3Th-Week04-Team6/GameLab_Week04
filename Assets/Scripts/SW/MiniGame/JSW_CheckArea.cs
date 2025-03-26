@@ -22,11 +22,11 @@ public class JSW_CheckArea : MonoBehaviour
     [ContextMenu("Calculate Area Percentage")]
     public void CalculateAreaPercentage()
     {
-        if (foodCollider == null || cutColliders == null || cutColliders.Count == 0)
-        {
-            //Debug.LogError("콜라이더를 반드시 할당해주세요!");
-            return;
-        }
+        //if (foodCollider == null || cutColliders == null || cutColliders.Count == 0)
+        //{
+        //    //Debug.LogError("콜라이더를 반드시 할당해주세요!");
+        //    return;
+        //}
 
         stepSizeX = areaSize.x / resolution;
         stepSizeY = areaSize.y / resolution;
@@ -69,7 +69,7 @@ public class JSW_CheckArea : MonoBehaviour
         int remainingHits = totalFoodHits - cutHits - moldHits;
         float remainingPercentage = totalFoodHits == 0 ? 0f : ((float)remainingHits / totalFoodHits) * 100f;
         //곰팡이가 덮인 비율
-        float moldPercentage = totalFoodHits == 0 ? 0f : ((float)moldHits / remainingHits) * 100f;
+        float moldPercentage = totalFoodHits == 0 ? 0f : ((float)moldHits / (totalFoodHits - cutHits)) * 100f;
 
         Debug.Log($"음식 전체 픽셀 수: {totalFoodHits}");
         Debug.Log($"잘라낸 픽셀 수: {cutHits}");
