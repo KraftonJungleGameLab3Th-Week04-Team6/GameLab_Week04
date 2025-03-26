@@ -9,16 +9,16 @@ public class CustomerDatabase : MonoBehaviour
 
     private void Awake()
     {
-        AddCustomerData(1, ""); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
-        AddCustomerData(2, ""); 
-        AddCustomerData(3, ""); 
-        AddCustomerData(4, ""); 
-        AddCustomerData(5, ""); 
-        AddCustomerData(6, ""); 
-        AddCustomerData(7, ""); 
-        AddCustomerData(8, ""); 
-        AddCustomerData(9, "");
-        AddCustomerData(10, "");  
+        AddCustomerData(1, "Customer/Customer1"); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
+        AddCustomerData(2, "Customer/Customer2"); 
+        AddCustomerData(3, "Customer/Customer3"); 
+        AddCustomerData(4, "Customer/Customer4"); 
+        AddCustomerData(5, "Customer/Customer5"); 
+        AddCustomerData(6, "Customer/Customer6"); 
+        AddCustomerData(7, "Customer/Customer7"); 
+        AddCustomerData(8, "Customer/Customer8"); 
+        AddCustomerData(9, "Customer/Customer9");
+        AddCustomerData(10, "Customer/Customer10");  
     }
 
     public static void AddCustomerData(int id, string path)

@@ -1,4 +1,5 @@
 using System;
+using System.Resources;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -13,10 +14,12 @@ public class Manager : MonoBehaviour
     public static UIManager UI {  get { return Instance._ui; } }
     public static CustomerManager Customer { get { return Instance._customer; } }
     public static KitchenManager Kitchen { get { return Instance._kitchen; } }
+    public static RestaurantManager Restaurant { get { return Instance._restaurant; } }
     
     private GameManager _game = new GameManager();
     private UIManager _ui = new UIManager();
     private CustomerManager _customer = new CustomerManager();
+    private RestaurantManager _restaurant = new RestaurantManager();
     private KitchenManager _kitchen = new KitchenManager();
     #endregion
 
@@ -33,7 +36,7 @@ public class Manager : MonoBehaviour
     // Manager 초기화
     private void Init()
     {
-        UI.Init();
+        // UI.Init();
         Game.Init();
         Customer.Init();
     }

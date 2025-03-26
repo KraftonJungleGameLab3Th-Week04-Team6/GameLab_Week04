@@ -17,6 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JH_RestaurantScene.unity
     guid: 039f276c6c41b0c448ee76e457655915
+  - enabled: 1
+    path: Assets/Scenes/DY_MainScene.unity
+    guid: 2e8575d3e6cfc614e92cc104be3e94d4
+  - enabled: 1
+    path: Assets/Scenes/DY_RestaurantScene.unity
+    guid: 7fed142ab47234a40b7f3e3846d4a11e
+  - enabled: 1
+    path: Assets/Scenes/DY_KitchenScene.unity
+    guid: 26c363fb63656364390c362070d3b1cf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

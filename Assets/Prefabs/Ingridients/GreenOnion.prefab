@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: -2548606558487222155, guid: caee56f0be5ab3c4982bd9b27e966372, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -254,11 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moldPrefab: {fileID: 6138068461951490334, guid: 7038c0602f993944786b440c1675168c, type: 3}
-  maxMoldCount: 1000
-  spawnIntervalTime: 0.2
-  spreadRadius: 0.1
-  minDistanceBetweenMolds: 0.05
-  startPoint: 0
 --- !u!1 &2683015916233828424
 GameObject:
   m_ObjectHideFlags: 0
