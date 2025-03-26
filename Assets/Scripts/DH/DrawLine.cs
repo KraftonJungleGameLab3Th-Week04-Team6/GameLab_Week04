@@ -12,6 +12,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
+    [SerializeField] private float CorrectionDistance;
 
     private void Awake()
     {
@@ -39,6 +40,8 @@ public class DrawLine : MonoBehaviour
 
     private IEnumerator StartDraw(GameObject line)
     {
+        line.layer = LayerMask.NameToLayer("DrawingLine");
+
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>(); // 마우스를 따라 선을 그리기 위한 LineRenderer
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material.color = lineColor;
@@ -77,10 +80,10 @@ public class DrawLine : MonoBehaviour
             v.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
             edgeCollider2D.SetPoints(v); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
 
-            RaycastHit2D hit = Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 2),
-                lineRenderer.GetPosition(lineRenderer.positionCount - 1) - lineRenderer.GetPosition(lineRenderer.positionCount - 2),
-                Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), lineRenderer.GetPosition(lineRenderer.positionCount - 2)),
-                ~(1 << LayerMask.NameToLayer("SlicedArea"))); // 마지막으로 생성한 선에서 충돌 판정, 기존 폐곡선 영역과는 충돌하지 않도록 마스크 설정
+            RaycastHit2D hit = Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 2)
+                , lineRenderer.GetPosition(lineRenderer.positionCount - 1) - lineRenderer.GetPosition(lineRenderer.positionCount - 2)
+                , Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), lineRenderer.GetPosition(lineRenderer.positionCount - 2))
+                , 1 << LayerMask.NameToLayer("DrawingLine")); // 마지막으로 생성한 선에서 충돌 판정, 그리는 선하고만 충돌하도록 마스크 설정
 
             if (hit) // 기존 선과 충돌했다면 (폐곡선이 만들어졌다면)
             {
@@ -134,7 +137,27 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape) Destroy(line); // 폐곡선이 아니라면 line 삭제
+        if (!isShape)
+        {
+            if(Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < CorrectionDistance
+                && Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 1)
+                , lineRenderer.GetPosition(0) - lineRenderer.GetPosition(lineRenderer.positionCount - 1)
+                , Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1))
+                , 1 << LayerMask.NameToLayer("DrawingLine")))
+            {
+                lineRenderer.positionCount++;
+                lineRenderer.SetPosition(lineRenderer.positionCount - 1, lineRenderer.GetPosition(0));
+                v.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+
+                PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
+                polygonCollider2D.SetPath(0, v);
+            }
+            else
+            {
+                Destroy(line);
+            }
+            
+        }
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
 

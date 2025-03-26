@@ -288,6 +288,7 @@ MonoBehaviour:
   minDistance: 0.1
   lineWidth: 0.02
   lineColor: {r: 1, g: 0, b: 0, a: 0}
+  CorrectionDistance: 1
 --- !u!4 &1046318068
 Transform:
   m_ObjectHideFlags: 0

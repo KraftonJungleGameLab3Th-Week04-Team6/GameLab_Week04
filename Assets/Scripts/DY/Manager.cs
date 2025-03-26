@@ -15,8 +15,6 @@ public class Manager : MonoBehaviour
     
     private GameManager _game = new GameManager();
     private UIManager _ui = new UIManager();
-    private GameManager _game;
-    private UIManager _ui;
     private KitchenManager _kitchen;
     #endregion
 
