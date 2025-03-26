@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         _customer.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>().text = customerData.customerName + "/n" + customerData.customerOrder;
         for (int i = 0; i < 3; i++)
         {
-            _customer.transform.GetChild(i+1).GetComponentInChildren<TextMeshProUGUI>().text = customerData.customerAnswerList[i].Item2;
+            //_customer.transform.GetChild(i+1).GetComponentInChildren<TextMeshProUGUI>().text = customerData.customerAnswerList[i].Item2;
         }
     }
 }
