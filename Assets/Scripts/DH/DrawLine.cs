@@ -137,7 +137,7 @@ public class DrawLine : MonoBehaviour
         {
             if(lineRenderer.positionCount == 3) // 선 2개일 때
             {
-                if(Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) > 0.1f
+                if(Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) > 0.02f
                     && Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) < CorrectionDistance) // 시작점과 끝점이 적당히 가깝다면 폐곡선으로 보정
                 {
                     pointsList.Add(lineRenderer.GetPosition(1));
