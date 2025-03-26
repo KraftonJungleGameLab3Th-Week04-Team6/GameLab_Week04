@@ -1,11 +1,9 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DrawLine : MonoBehaviour
+public class JSW_DrawLine : MonoBehaviour
 {
     private bool _isDrawing = false;
 
@@ -16,9 +14,13 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private float CorrectionDistance;
     [SerializeField] private Color insideColor;
 
-    private void Awake()
+    private MiniGameController _minigameController;
+    private JSW_CheckArea _checkArea;
+
+    private void Start()
     {
-        
+        _minigameController = FindAnyObjectByType<MiniGameController>();
+        _checkArea = FindAnyObjectByType<JSW_CheckArea>();
     }
 
     private void Update()
@@ -48,6 +50,7 @@ public class DrawLine : MonoBehaviour
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material.color = lineColor;
         lineRenderer.positionCount = 1;
+        lineRenderer.sortingOrder = 10;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
 
@@ -67,12 +70,12 @@ public class DrawLine : MonoBehaviour
                 yield return null;
                 continue;
             }
-            
+
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentPosition); // 새로운 위치로 선 그리기
             previousPosition = currentPosition;
-            
-            if(lineRenderer.positionCount < 3) //
+
+            if (lineRenderer.positionCount < 3) //
             {
                 yield return null;
                 continue;
@@ -108,7 +111,7 @@ public class DrawLine : MonoBehaviour
                 float minDist = Mathf.Infinity; // 가장 가까운 점 찾기
                 int index = 0;
 
-                for(int i = 0; i < lineRenderer.positionCount - 2; i++)
+                for (int i = 0; i < lineRenderer.positionCount - 2; i++)
                 {
                     if (Vector2.Distance(lineRenderer.GetPosition(i), hit.point) < minDist)
                     {
@@ -134,9 +137,9 @@ public class DrawLine : MonoBehaviour
 
         if (!isShape) // 선을 완전히 잇지 않아도 완성되도록 보정
         {
-            if(lineRenderer.positionCount == 3) // 선 2개일 때
+            if (lineRenderer.positionCount == 3) // 선 2개일 때
             {
-                if(Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) > 0.02f
+                if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) > 0.02f
                     && Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(2)) < CorrectionDistance) // 시작점과 끝점이 적당히 가깝다면 폐곡선으로 보정
                 {
                     pointsList.Add(lineRenderer.GetPosition(1));
@@ -184,6 +187,7 @@ public class DrawLine : MonoBehaviour
             meshRenderer.material = new Material(Shader.Find("UI/Default"));
             meshRenderer.material.color = insideColor;
             meshFilter.mesh = filledMesh;
+            _checkArea.cutColliders.Add(polygonCollider2D);
         }
         else // 폐곡선이 완성되지 않았다면 선 삭제
         {

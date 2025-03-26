@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MoldSpawner : MonoBehaviour
 {
+
+    [Header("Spawner option")]
     public GameObject moldPrefab;
-    public int maxMoldCount = 100;
-    public float spawnIntervalTime = 0.1f;
-    public float spreadRadius = 0.3f; // 퍼지는 범위
-    public float minDistanceBetweenMolds = 0.2f;
-    public int startPoint;
+
+    private int _maxMoldCount = 100;
+    private float _spawnIntervalTime = 0.1f;
+    private float _spreadRadius = 0.3f; // 퍼지는 범위
+    private float _minDistanceBetweenMolds = 0.2f;
+    private int _startPoint;
+   
 
     private PolygonCollider2D _vegCollider;
     private List<Transform> _moldCenters = new List<Transform>(); // 기존 곰팡이 위치들
-    private int _currentCount = 0;
+    private int _currentMoldCount = 0;
+    private MiniGameController _miniGameController;
+
+
 
     void Start()
     {
@@ -25,10 +33,33 @@ public class MoldSpawner : MonoBehaviour
         {
             return;
         }
-        for (int i =0;i < startPoint;i++)
+
+        //StartMold();
+
+        _miniGameController = FindAnyObjectByType<MiniGameController>();
+        _miniGameController.OnSliceEndEvent += StopSpawn;
+    }
+
+    public void SettingMoldCount(int maxMoldCount, float spawnIntervalTime, float spreadRadius, float minDistanceBetweenMolds, int startPoint)
+    {
+        _maxMoldCount = maxMoldCount;
+        _spawnIntervalTime = spawnIntervalTime;
+        _spreadRadius = spreadRadius;
+        _minDistanceBetweenMolds = minDistanceBetweenMolds;
+        _startPoint = startPoint;
+    }
+
+    public void StartMold()
+    {
+        for (int i = 0; i < _startPoint; i++)
         {
             StartCoroutine(SpreadMold());
         }
+    }
+
+    public void StopSpawn()
+    {
+        StopAllCoroutines();
     }
 
     IEnumerator SpreadMold()
@@ -37,36 +68,37 @@ public class MoldSpawner : MonoBehaviour
         Vector2 startPos = GetRandomPointInside();
         GameObject firstMold = Instantiate(moldPrefab, startPos, Quaternion.identity, transform);
         _moldCenters.Add(firstMold.transform);
-        _currentCount++;
+        _currentMoldCount++;
 
-        yield return new WaitForSeconds(spawnIntervalTime);
+        yield return new WaitForSeconds(_spawnIntervalTime);
 
         // 2. 계속 주변으로 퍼지기
-        while (_currentCount < maxMoldCount)
+        while (_currentMoldCount < _maxMoldCount)
         {
             List<Transform> newMolds = new List<Transform>();
 
             foreach (var center in _moldCenters)
             {
-                Vector2 randomOffset = Random.insideUnitCircle * spreadRadius;
+                if (center == null) continue;
+                Vector2 randomOffset = Random.insideUnitCircle * _spreadRadius;
                 Vector2 spawnPos = (Vector2)center.position + randomOffset;
 
                 if (_vegCollider.OverlapPoint(spawnPos) && !IsTooCloseToExistingMold(spawnPos) && !IsOverlappingOtherCollider(spawnPos))
                 {
                     GameObject mold = Instantiate(moldPrefab, spawnPos, Quaternion.identity, transform);
                     newMolds.Add(mold.transform);
-                    _currentCount++;
+                    _currentMoldCount++;
 
-                    if (_currentCount >= maxMoldCount)
+                    if (_currentMoldCount >= _maxMoldCount)
                         break;
 
                 }
             }
-            print(_currentCount);
+            print(_currentMoldCount);
             // 새로 생긴 곰팡이들을 중심 리스트에 추가
             _moldCenters.AddRange(newMolds);
 
-            yield return new WaitForSeconds(spawnIntervalTime);
+            yield return new WaitForSeconds(_spawnIntervalTime);
         }
     }
 
@@ -91,7 +123,8 @@ public class MoldSpawner : MonoBehaviour
     {
         foreach (Transform mold in _moldCenters)
         {
-            if (Vector2.Distance(pos, mold.position) < minDistanceBetweenMolds)
+            if (mold == null) continue;
+            if (Vector2.Distance(pos, mold.position) < _minDistanceBetweenMolds)
                 return true;
         }
         return false;
@@ -110,5 +143,10 @@ public class MoldSpawner : MonoBehaviour
             }
         }
         return false; // 겹치는 거 없음
+    }
+
+    private void OnDestroy()
+    {
+        _miniGameController.OnSliceEndEvent -= StopSpawn;
     }
 }
