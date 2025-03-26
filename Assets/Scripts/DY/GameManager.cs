@@ -32,7 +32,7 @@ public class GameManager
     {
         _isPause = false;
         Time.timeScale = 1f;
-        
+
     }
 
     public void GameExit()
