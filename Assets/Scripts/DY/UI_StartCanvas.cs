@@ -23,7 +23,7 @@ public class UI_StartCanvas : MonoBehaviour
     private void OnStartClick()
     {
         Debug.Log("Start");
-        Manager.Game.GameOpeningStart();
+        Manager.Game.GameStart();
     }
     
     private void OnSettingsClick()

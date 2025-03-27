@@ -7,6 +7,8 @@ public class GameManager
     public bool IsGameStart => _isGameStart;
     public bool IsPause => _isPause;
 
+    public int EndingType { get { return _endingType; } set { _endingType = value; } }
+
     public int CurrentDay { get { return _currentDay; } set { _currentDay = value; } }
     public int TodayCustomerCount { get { return _todayCustomerCount; } set { _todayCustomerCount = value; } }
 
@@ -24,6 +26,8 @@ public class GameManager
     private bool _isGameStart;
     private bool _isPause;
     #endregion
+
+    private int _endingType;
 
     #region 레스토랑 관련
     private int _currentDay;
@@ -44,24 +48,16 @@ public class GameManager
 
     public void Init()
     {
-        _currentDay = 1;
+        _currentDay = 0;
         _maxDay = 5;
-        _todayCustomerCount = 0;
+        _todayCustomerCount = 3;
         _todayCustomerMaxCount = 3;
-        TotalMoney = 0;
-        TodayGetMoney = 0;
     }
 
     public void GameStart()
     {
         Debug.Log("게임 시작");
         SceneManager.LoadScene("DY_RestaurantScene");
-    }
-
-    public void GameOpeningStart()
-    {
-        Debug.Log("게임 오프닝");
-        SceneManager.LoadScene("DH_OpeningScene");
     }
 
     public void SetPause()
@@ -90,6 +86,7 @@ public class GameManager
 
     public void GoKitchen()
     {
+        _todayCustomerCount++;
         Debug.Log("주방으로 이동");
         SceneManager.LoadScene("DY_KitchenScene");
     }
@@ -102,10 +99,17 @@ public class GameManager
     
     public void NextDay()
     {
-        //_currentDay++;
-        //_todayCustomerCount = 0;
-        //_todayCustomerMaxCount = 3;
-        //Debug.Log("다음 날로 이동");
-        //SceneManager.LoadScene("DY_RestaurantScene");
+        _currentDay++;
+        _todayCustomerCount = 0;
+        _todayCustomerMaxCount = 3;
+        Debug.Log("다음 날로 이동");
+        SceneManager.LoadScene("DY_RestaurantScene");
+    }
+
+    public void GoEnding(int endingType)
+    {
+        _endingType = endingType;
+        Debug.Log("엔딩창으로 이동");
+        SceneManager.LoadScene("DH_EndingScene");
     }
 }
