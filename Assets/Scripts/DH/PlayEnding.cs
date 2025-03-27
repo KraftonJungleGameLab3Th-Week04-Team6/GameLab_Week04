@@ -21,7 +21,7 @@ public class PlayEnding : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject openingObject in _endingObjects) openingObject.SetActive(false);
+        foreach (GameObject endingObject in _endingObjects) endingObject.SetActive(false);
 
         StartCoroutine(StartEnding());
     }
@@ -71,7 +71,7 @@ public class PlayEnding : MonoBehaviour
                 break;
         }
 
-        Manager.Game.GoMain();
+        _endingObjects[6].SetActive(true);
 
         yield break;
     }
