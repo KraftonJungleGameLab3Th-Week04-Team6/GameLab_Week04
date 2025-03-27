@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 0.2
-  lineWidth: 0.02
+  lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   CorrectionDistance: 0.5
   insideColor: {r: 1, g: 1, b: 1, a: 1}

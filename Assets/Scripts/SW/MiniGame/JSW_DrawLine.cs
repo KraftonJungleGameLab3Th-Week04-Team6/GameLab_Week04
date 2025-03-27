@@ -44,7 +44,7 @@ public class JSW_DrawLine : MonoBehaviour
 
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>(); // 마우스를 따라 선을 그리기 위한 LineRenderer
         lineRenderer.startWidth = lineWidth;
-        lineRenderer.material.color = lineColor;
+        lineRenderer.material = MakeMaterial(lineColor);
         lineRenderer.sortingOrder = 1;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
@@ -237,8 +237,7 @@ public class JSW_DrawLine : MonoBehaviour
             MeshRenderer meshRenderer = line.AddComponent<MeshRenderer>();
             MeshFilter meshFilter = line.AddComponent<MeshFilter>();
 
-            meshRenderer.material = new Material(Shader.Find("UI/Default"));
-            meshRenderer.material.color = insideColor;
+            meshRenderer.material = MakeMaterial(insideColor);
             meshFilter.mesh = filledMesh;
 
             _checkArea.cutColliders.Add(polygonCollider2D);
@@ -256,6 +255,14 @@ public class JSW_DrawLine : MonoBehaviour
         _isDrawing = false;
 
         yield break;
+    }
+
+    private Material MakeMaterial(Color color)
+    {
+        Material newMaterial = new Material(Shader.Find("UI/Default"));
+        newMaterial.color = color;
+
+        return newMaterial;
     }
 
     private int CCW(Vector2 p1, Vector2 p2, Vector2 p3)
