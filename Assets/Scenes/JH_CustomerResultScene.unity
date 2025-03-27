@@ -227,6 +227,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528958716080274693, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5910020962508411017, guid: 10510ae072640204b8dc742c639f4540, type: 3}
       propertyPath: m_Name
       value: UI_CustomerResultCanvas 1
