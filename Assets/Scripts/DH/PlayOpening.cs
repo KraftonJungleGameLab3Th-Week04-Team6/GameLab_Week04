@@ -6,7 +6,7 @@ public class PlayOpening : MonoBehaviour
 {
     private Canvas _canvas;
     private GameObject[] _openingObjects;
-    private TypingText _typingText;
+    private DisplayText _typingText;
     private WaitForSecondsRealtime _delay;
 
     private void Awake()
@@ -35,7 +35,7 @@ public class PlayOpening : MonoBehaviour
 
         _openingObjects[2].SetActive(true);
 
-        _typingText = _openingObjects[2].GetComponent<TypingText>();
+        _typingText = _openingObjects[2].GetComponent<DisplayText>();
 
         while (!_typingText.IsDone) yield return null;
 
@@ -47,7 +47,7 @@ public class PlayOpening : MonoBehaviour
 
         _openingObjects[3].SetActive(true);
 
-        _typingText = _openingObjects[3].GetComponent<TypingText>();
+        _typingText = _openingObjects[3].GetComponent<DisplayText>();
 
         while (!_typingText.IsDone) yield return null;
 

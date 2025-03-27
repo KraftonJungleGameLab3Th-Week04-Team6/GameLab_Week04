@@ -3,23 +3,25 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TypingText : MonoBehaviour
+public class DisplayText : MonoBehaviour
 {
     public bool IsDone { get { return _isDone; } }
 
     private IEnumerator _coroutine;
+    private Button _button;
     private Image _textDisplay;
     private TextMeshProUGUI _textMesh;
     private string _originalText;
-    private WaitForSecondsRealtime _delay;
     private bool _isDone = false;
 
     private void Awake()
     {
+        _button = GetComponent<Button>();
         _textDisplay = GetComponent<Image>();
         _textMesh = GetComponentInChildren<TextMeshProUGUI>();
         _originalText = _textMesh.text;
-        _delay = new WaitForSecondsRealtime(0.05f);
+
+        _button.onClick.AddListener(SkipText);
     }
 
     private void OnEnable()
@@ -30,26 +32,26 @@ public class TypingText : MonoBehaviour
 
     private IEnumerator StartText()
     {
+        WaitForSecondsRealtime _delay;
+
         float a = 0;
         string text = null;
 
-        char[] buffer = new char[_originalText.Length];
-        System.Array.Fill(buffer, '\0');
-
         _textMesh.text = text;
+
+        _delay = new WaitForSecondsRealtime(0.001f);
 
         while (a < 1)
         {
             _textDisplay.color = new(1, 1, 1, a);
-            a += 0.05f;
-            yield return null;
+            a += 0.01f;
+            yield return _delay;
         }
         _textDisplay.color = new(1, 1, 1, 1);
 
-        yield return new WaitForSecondsRealtime(0.2f);
-
-        buffer = new char[_originalText.Length];
+        char[] buffer = new char[_originalText.Length];
         System.Array.Fill(buffer, '\0');
+        _delay = new WaitForSecondsRealtime(0.02f);
 
         for (int i = 0; i < _originalText.Length; i++)
         {
@@ -59,24 +61,23 @@ public class TypingText : MonoBehaviour
             yield return _delay;
         }
 
-        yield return new WaitForSecondsRealtime(1f);
-
-        _isDone = true;
+        Invoke(nameof(EndText), 0.5f);
 
         yield break;
     }
 
-    public IEnumerator SkipText()
+    public void SkipText()
     {
         StopCoroutine(_coroutine);
 
         _textDisplay.color = new(1, 1, 1, 1);
         _textMesh.text = _originalText;
 
-        yield return new WaitForSecondsRealtime(1f);
+        Invoke(nameof(EndText), 0.5f);
+    }
 
-        _isDone = true;
-
-        yield break;
+    public void EndText()
+    {
+        _button.onClick.AddListener(() => { _isDone = true; });
     }
 }
