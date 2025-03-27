@@ -22,8 +22,8 @@ public class TodayEndController : MonoBehaviour
 
             TodayEndCanvas.SetActive(true);
             _todayGetMoney.text = "일 수입 : " + Manager.Game.TodayGetMoney.ToString();
-            _todayPayMoney.text = "일 고정비 : " + "-5000";
-            Manager.Game.TotalMoney -= 5000;
+            _todayPayMoney.text = "일 고정비 : " + "-15000";
+            Manager.Game.TotalMoney -= 15000;
             Manager.Game.TotalMoney += Manager.Game.TodayGetMoney;
             Manager.Game.TodayGetMoney = 0;
             _totalMoney.text = "합산 : " + Manager.Game.TotalMoney.ToString();
@@ -49,9 +49,12 @@ public class TodayEndController : MonoBehaviour
             print("GameOver");
             Manager.Game.GoEnding(2);
         }
-        Manager.Game.CurrentDay += 1;
-        Manager.Game.TodayCustomerCount = 0;
-        SceneManager.LoadScene("DY_RestaurantScene");
+        else
+        {
+            Manager.Game.CurrentDay += 1;
+            Manager.Game.TodayCustomerCount = 0;
+            SceneManager.LoadScene("DY_RestaurantScene");
+        }
     }
 
 }

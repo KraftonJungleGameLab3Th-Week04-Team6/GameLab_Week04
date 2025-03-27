@@ -9,12 +9,6 @@ public class CustomerManager
     public int[] IndexToOrderId { get {return _indexToOrderId;} set { _indexToOrderId = value; } }
     private int[] _indexToOrderId = new int[3];
 
-
-    public void Init()
-    {
-
-    }
-
     private void StartDay()
     {
         LeftCustomers = 5;

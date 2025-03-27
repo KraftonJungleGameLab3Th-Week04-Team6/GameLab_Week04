@@ -38,7 +38,6 @@ public class Manager : MonoBehaviour
     {
         // UI.Init();
         Game.Init();
-        Customer.Init();
     }
 
     private void OnDestroy()

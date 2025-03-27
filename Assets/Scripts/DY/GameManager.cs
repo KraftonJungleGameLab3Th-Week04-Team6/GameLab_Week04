@@ -114,6 +114,7 @@ public class GameManager
     public void GoMain()
     {
         Debug.Log("메인화면으로 이동");
+        Init();
         SceneManager.LoadScene("DY_MainScene");
     }
 
