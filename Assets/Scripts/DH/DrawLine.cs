@@ -17,11 +17,6 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private float CorrectionDistance;
     [SerializeField] private Color insideColor;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Update()
     {
         Draw();
@@ -101,8 +96,6 @@ public class DrawLine : MonoBehaviour
                 {
                     float ccw = CCW(lineRenderer.GetPosition(i), hit.point, lineRenderer.GetPosition(i + 1));
 
-                    Debug.Log(i + "번째 ccw is " + ccw);
-
                     if (ccw > -0.01f && ccw < 0.01f)
                     {
                         index = i;
@@ -139,13 +132,13 @@ public class DrawLine : MonoBehaviour
 
         if (!isShape && lineRenderer.positionCount > 3 && correctionIndex > 1) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
         {
-            while (correctionIndex > 2)
+            /*while (correctionIndex > 2)
             {
                 if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex))
                     < Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex - 1))) break;
 
                 correctionIndex--;
-            }
+            }*/
 
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
@@ -162,6 +155,61 @@ public class DrawLine : MonoBehaviour
                 for (int i = 0; i < correctionIndex; i++)
                 {
                     pointsList[i] = lineRenderer.GetPosition(i + 1);
+                }
+
+                bool isConvex = true; // 볼록 다각형 여부 bool변수
+
+                int convexCheck = CCW(pointsList[0], pointsList[1], pointsList[2]); // 볼록 다각형인지 확인
+
+                for (int i = 1; i < pointsList.Count - 2; i++)
+                {
+                    if (CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) != convexCheck)
+                    {
+                        isConvex = false;
+                        break;
+                    }
+                }
+
+                if (isConvex) // 볼록 다각형이라면 컨벡스 보정
+                {
+                    if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[pointsList.Count - 1]) > 0) // 1이면 처음에서 보정
+                    {
+                        correctionIndex = pointsList.Count - 1;
+
+                        while (correctionIndex > 1)
+                        {
+                            if (CCW(pointsList[0], pointsList[correctionIndex], pointsList[correctionIndex - 1]) != convexCheck) break;
+
+                            correctionIndex--;
+                        }
+
+                        pointsList = new(pointsList.GetRange(0, correctionIndex + 1));
+                    }
+                    else // -1이면 마지막에서 보정
+                    {
+                        correctionIndex = 0;
+
+                        while (correctionIndex < pointsList.Count - 2)
+                        {
+                            if (CCW(pointsList[pointsList.Count - 1], pointsList[correctionIndex], pointsList[correctionIndex + 1]) == convexCheck) break;
+
+                            correctionIndex++;
+                        }
+
+                        pointsList = new(pointsList.GetRange(correctionIndex, pointsList.Count - correctionIndex));
+                    }
+                }
+                else // 아니라면 가장 가까운 점으로 보정
+                {
+                    while (correctionIndex > 2)
+                    {
+                        if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex))
+                            < Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex - 1))) break;
+
+                        correctionIndex--;
+                    }
+
+                    pointsList = new(pointsList.GetRange(0, correctionIndex));
                 }
             }
         }
@@ -204,8 +252,12 @@ public class DrawLine : MonoBehaviour
         yield break;
     }
 
-    private float CCW(Vector2 p1, Vector2 p2, Vector2 p3)
+    private int CCW(Vector2 p1, Vector2 p2, Vector2 p3)
     {
-        return (p2.x - p1.y) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y);
+        float cross = (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y);
+
+        if (cross > 0) return 1;
+        else if(cross < 0) return -1;
+        else return 0;
     }
 }
