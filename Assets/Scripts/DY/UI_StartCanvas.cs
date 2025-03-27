@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_StartCanvas : MonoBehaviour
@@ -16,7 +17,7 @@ public class UI_StartCanvas : MonoBehaviour
         _exitButton = transform.GetChild(1).GetChild(2).GetComponent<Button>();
         
         _startButton.onClick.AddListener(OnStartClick);
-        _settingsButton.onClick.AddListener(OnSettingsClick);
+        _settingsButton.onClick.AddListener(OnTutorialClick);
         _exitButton.onClick.AddListener(OnEndClick);
     }
     
@@ -26,9 +27,11 @@ public class UI_StartCanvas : MonoBehaviour
         Manager.Game.GameOpeningStart();
     }
     
-    private void OnSettingsClick()
+    private void OnTutorialClick()
     {
-        Debug.Log("Settings");
+        Debug.Log("Tutorial");
+        SceneManager.LoadScene("JH_Tutorial");
+
     }
     
     private void OnEndClick()
