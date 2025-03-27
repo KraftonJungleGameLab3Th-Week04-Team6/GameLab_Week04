@@ -285,10 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd95a34988a4ea94982b5f10a8cc3e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 0.2
+  minDistance: 0.1
   lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  CorrectionDistance: 0.5
+  correctionDistance: 0.7
   insideColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1046318068
 Transform:

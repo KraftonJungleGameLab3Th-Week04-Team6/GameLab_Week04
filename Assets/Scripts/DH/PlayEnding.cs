@@ -5,7 +5,7 @@ public class PlayEnding : MonoBehaviour
 {
     private Canvas _canvas;
     private GameObject[] _endingObjects;
-    private TypingText _typingText;
+    private DisplayText _typingText;
     private WaitForSecondsRealtime _delay;
 
     private void Awake()
@@ -37,7 +37,7 @@ public class PlayEnding : MonoBehaviour
 
                 _endingObjects[3].SetActive(true);
 
-                _typingText = _endingObjects[3].GetComponent<TypingText>();
+                _typingText = _endingObjects[3].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
@@ -49,7 +49,7 @@ public class PlayEnding : MonoBehaviour
 
                 _endingObjects[4].SetActive(true);
 
-                _typingText = _endingObjects[4].GetComponent<TypingText>();
+                _typingText = _endingObjects[4].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
@@ -61,7 +61,7 @@ public class PlayEnding : MonoBehaviour
 
                 _endingObjects[5].SetActive(true);
 
-                _typingText = _endingObjects[5].GetComponent<TypingText>();
+                _typingText = _endingObjects[5].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
