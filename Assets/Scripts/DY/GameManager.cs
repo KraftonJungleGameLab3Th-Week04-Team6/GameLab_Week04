@@ -48,16 +48,22 @@ public class GameManager
 
     public void Init()
     {
-        _currentDay = 0;
+        _currentDay = 1;
         _maxDay = 5;
-        _todayCustomerCount = 3;
+        _todayCustomerCount = 0;
         _todayCustomerMaxCount = 3;
     }
 
     public void GameStart()
     {
         Debug.Log("게임 시작");
+        Init();
         SceneManager.LoadScene("DY_RestaurantScene");
+    }
+
+    public void GameOpeningStart()
+    {
+        SceneManager.LoadScene("DH_OpeningScene");
     }
 
     public void SetPause()
