@@ -33,12 +33,14 @@ public class TodayEndController : MonoBehaviour
         print("하루 방문자" + Manager.Game.TodayCustomerCount);
         print("가격" + Manager.Game.TodayGetMoney);
         print("하루날짜" + Manager.Game.CurrentDay);
+
+        print("ddd");
     }
 
     public void NextDay()
     {
         print("NextDay");
-        if (Manager.Game.TodayCustomerCount >= 5 && Manager.Game.TotalMoney >= 0)
+        if (Manager.Game.CurrentDay >= 5 && Manager.Game.TotalMoney >= 0)
         {
             Manager.Game.GoEnding(1);
         }
