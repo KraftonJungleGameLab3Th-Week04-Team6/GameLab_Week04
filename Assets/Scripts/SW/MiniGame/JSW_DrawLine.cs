@@ -45,7 +45,7 @@ public class JSW_DrawLine : MonoBehaviour
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>(); // 마우스를 따라 선을 그리기 위한 LineRenderer
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material.color = lineColor;
-        //lineRenderer.positionCount = 2;
+        lineRenderer.sortingOrder = 1;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
 
