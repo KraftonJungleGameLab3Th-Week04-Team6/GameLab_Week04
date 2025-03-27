@@ -112,6 +112,12 @@ public class GameManager
         SceneManager.LoadScene("DY_RestaurantScene");
     }
 
+    public void GoMain()
+    {
+        Debug.Log("메인화면으로 이동");
+        SceneManager.LoadScene("DY_MainScene");
+    }
+
     public void GoEnding(int endingType)
     {
         _endingType = endingType;

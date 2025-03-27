@@ -71,6 +71,8 @@ public class PlayEnding : MonoBehaviour
                 break;
         }
 
+        Manager.Game.GoMain();
+
         yield break;
     }
 }
