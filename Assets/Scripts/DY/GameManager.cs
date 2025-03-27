@@ -7,6 +7,8 @@ public class GameManager
     public bool IsGameStart => _isGameStart;
     public bool IsPause => _isPause;
 
+    public int EndingType { get { return _endingType; } set { _endingType = value; } }
+
     public int CurrentDay { get { return _currentDay; } set { _currentDay = value; } }
     public int TodayCustomerCount { get { return _todayCustomerCount; } set { _todayCustomerCount = value; } }
 
@@ -24,6 +26,8 @@ public class GameManager
     private bool _isGameStart;
     private bool _isPause;
     #endregion
+
+    private int _endingType;
 
     #region 레스토랑 관련
     private int _currentDay;
@@ -100,5 +104,10 @@ public class GameManager
         _todayCustomerMaxCount = 3;
         Debug.Log("다음 날로 이동");
         SceneManager.LoadScene("DY_RestaurantScene");
+    }
+
+    public void GoEnding(int endingType)
+    {
+        _endingType = endingType;
     }
 }

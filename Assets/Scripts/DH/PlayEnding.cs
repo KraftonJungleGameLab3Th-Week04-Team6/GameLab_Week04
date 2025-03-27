@@ -3,14 +3,10 @@ using UnityEngine;
 
 public class PlayEnding : MonoBehaviour
 {
-    public int EndingType { set { _endingType = value; } }
-
     private Canvas _canvas;
     private GameObject[] _openingObjects;
     private TypingText _typingText;
     private WaitForSeconds _delay;
-
-    private int _endingType = 0;
 
     private void Awake()
     {
@@ -32,45 +28,47 @@ public class PlayEnding : MonoBehaviour
 
     private IEnumerator StartEnding()
     {
-        if (_endingType == 1) // 해피엔딩
+        switch (Manager.Game.EndingType)
         {
-            _openingObjects[0].SetActive(true);
+            case 1: // 해피엔딩
+                _openingObjects[0].SetActive(true);
 
-            yield return _delay;
+                yield return _delay;
 
-            _openingObjects[3].SetActive(true);
+                _openingObjects[3].SetActive(true);
 
-            _typingText = _openingObjects[3].GetComponent<TypingText>();
+                _typingText = _openingObjects[3].GetComponent<TypingText>();
 
-            while (!_typingText.IsDone) yield return null;
-        }
-        else if (_endingType == 2) // 파산엔딩
-        {
-            _openingObjects[1].SetActive(true);
+                while (!_typingText.IsDone) yield return null;
 
-            yield return _delay;
+                break;
+            case 2: // 파산엔딩
+                _openingObjects[1].SetActive(true);
 
-            _openingObjects[4].SetActive(true);
+                yield return _delay;
 
-            _typingText = _openingObjects[3].GetComponent<TypingText>();
+                _openingObjects[4].SetActive(true);
 
-            while (!_typingText.IsDone) yield return null;
-        }
-        else if (_endingType == 3) // 식중독엔딩
-        {
-            _openingObjects[2].SetActive(true);
+                _typingText = _openingObjects[3].GetComponent<TypingText>();
 
-            yield return _delay;
+                while (!_typingText.IsDone) yield return null;
 
-            _openingObjects[3].SetActive(true);
+                break;
+            case 3: // 식중독엔딩
+                _openingObjects[2].SetActive(true);
 
-            _typingText = _openingObjects[5].GetComponent<TypingText>();
+                yield return _delay;
 
-            while (!_typingText.IsDone) yield return null;
-        }
-        else
-        {
-            // unbehavior
+                _openingObjects[3].SetActive(true);
+
+                _typingText = _openingObjects[5].GetComponent<TypingText>();
+
+                while (!_typingText.IsDone) yield return null;
+
+                break;
+            default:
+                //unbehavior
+                break;
         }
 
         yield break;
