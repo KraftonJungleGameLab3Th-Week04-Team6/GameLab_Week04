@@ -11,7 +11,7 @@ public class TypingText : MonoBehaviour
     private Image _textDisplay;
     private TextMeshProUGUI _textMesh;
     private string _originalText;
-    private WaitForSeconds _delay;
+    private WaitForSecondsRealtime _delay;
     private bool _isDone = false;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class TypingText : MonoBehaviour
         _textDisplay = GetComponent<Image>();
         _textMesh = GetComponentInChildren<TextMeshProUGUI>();
         _originalText = _textMesh.text;
-        _delay = new WaitForSeconds(2 * Time.deltaTime);
+        _delay = new WaitForSecondsRealtime(0.05f);
     }
 
     private void OnEnable()
@@ -41,16 +41,17 @@ public class TypingText : MonoBehaviour
         while (a < 1)
         {
             _textDisplay.color = new(1, 1, 1, a);
-            a += 0.005f;
+            a += 0.05f;
             yield return null;
         }
+        _textDisplay.color = new(1, 1, 1, 1);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         buffer = new char[_originalText.Length];
         System.Array.Fill(buffer, '\0');
 
-        for(int i = 0; i < _originalText.Length; i++)
+        for (int i = 0; i < _originalText.Length; i++)
         {
             buffer[i] = _originalText[i];
             _textMesh.SetCharArray(buffer);
@@ -58,7 +59,7 @@ public class TypingText : MonoBehaviour
             yield return _delay;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
 
         _isDone = true;
 
@@ -69,9 +70,10 @@ public class TypingText : MonoBehaviour
     {
         StopCoroutine(_coroutine);
 
+        _textDisplay.color = new(1, 1, 1, 1);
         _textMesh.text = _originalText;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
 
         _isDone = true;
 

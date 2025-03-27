@@ -6,7 +6,7 @@ public class PlayEnding : MonoBehaviour
     private Canvas _canvas;
     private GameObject[] _endingObjects;
     private TypingText _typingText;
-    private WaitForSeconds _delay;
+    private WaitForSecondsRealtime _delay;
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class PlayEnding : MonoBehaviour
         {
             _endingObjects[i] = _canvas.transform.GetChild(i).gameObject;
         }
-        _delay = new WaitForSeconds(50 * Time.deltaTime);
+        _delay = new WaitForSecondsRealtime(1f);
     }
 
     private void Start()
@@ -49,7 +49,7 @@ public class PlayEnding : MonoBehaviour
 
                 _endingObjects[4].SetActive(true);
 
-                _typingText = _endingObjects[3].GetComponent<TypingText>();
+                _typingText = _endingObjects[4].GetComponent<TypingText>();
 
                 while (!_typingText.IsDone) yield return null;
 

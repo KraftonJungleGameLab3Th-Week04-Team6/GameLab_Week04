@@ -7,7 +7,7 @@ public class PlayOpening : MonoBehaviour
     private Canvas _canvas;
     private GameObject[] _openingObjects;
     private TypingText _typingText;
-    private WaitForSeconds _delay;
+    private WaitForSecondsRealtime _delay;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class PlayOpening : MonoBehaviour
         {
             _openingObjects[i] = _canvas.transform.GetChild(i).gameObject;
         }
-        _delay = new WaitForSeconds(50 * Time.deltaTime);
+        _delay = new WaitForSecondsRealtime(1f);
     }
 
     private void Start()
