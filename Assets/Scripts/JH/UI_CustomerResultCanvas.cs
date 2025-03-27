@@ -48,7 +48,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         //float score = Manager.Kitchen.ResultRemainingPercentage - Manager.Kitchen.MoldPercentage;
         float score = Manager.Kitchen.ResultRemainingPercentage/3;
         print("score" + score);
-        if (Manager.Kitchen.MoldPercentage > 0.01 || score < 20)
+        if (Manager.Kitchen.MoldPercentage > 0.01)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Vomit));
             _isGameOver = true;
