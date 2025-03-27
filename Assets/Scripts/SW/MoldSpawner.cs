@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class MoldSpawner : MonoBehaviour
 {
@@ -70,6 +71,8 @@ public class MoldSpawner : MonoBehaviour
         _moldCenters.Add(firstMold.transform);
         _currentMoldCount++;
 
+        StartCoroutine(CheckingMoldCount());
+
         yield return new WaitForSeconds(_spawnIntervalTime);
 
         // 2. 계속 주변으로 퍼지기
@@ -91,14 +94,35 @@ public class MoldSpawner : MonoBehaviour
 
                     if (_currentMoldCount >= _maxMoldCount)
                         break;
-
                 }
             }
-            print(_currentMoldCount);
             // 새로 생긴 곰팡이들을 중심 리스트에 추가
             _moldCenters.AddRange(newMolds);
 
+
+
             yield return new WaitForSeconds(_spawnIntervalTime);
+        }
+    }
+
+    IEnumerator CheckingMoldCount()
+    {
+        while (true)
+        {
+            bool isEndding = true;
+            foreach (var center in _moldCenters)
+            {
+                if (center != null)
+                {
+                    isEndding = false;
+                }
+            }
+            if (isEndding)
+            {
+                _miniGameController.OnEndButton();
+                break;
+            }
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

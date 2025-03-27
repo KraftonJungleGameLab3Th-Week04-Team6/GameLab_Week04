@@ -22,7 +22,6 @@ public class MiniGameController : MonoBehaviour
     private GameObject _nowFood;
     private ButtonCanvas _buttonCanvas;
     private TMP_Text _playTimeText;
-    private Button _endButton;
     private GameObject _enddingCavas;
     private ChoppingBoard _choppingBoard;
     
@@ -40,12 +39,9 @@ public class MiniGameController : MonoBehaviour
         _checkArea = FindAnyObjectByType<JSW_CheckArea>();
         _buttonCanvas = FindAnyObjectByType<ButtonCanvas>();
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
-        _endButton = FindAnyObjectByType<ButtonCanvas>().transform.GetComponentInChildren<EndButton>().GetComponent<Button>();
         _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject ;
         _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
-
         _enddingCavas.SetActive(false);
-        _endButton.gameObject.SetActive(false);
 
         _orderData  = OrderDatabase.ObjectData[Manager.Kitchen.OrderKey];
         for (int i = 0; i < _orderData.orderIngredients.Count; i++)
@@ -57,15 +53,9 @@ public class MiniGameController : MonoBehaviour
         Manager.Kitchen.MoldPercentage = 0;
 
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
-        StartCoroutine(EnableButton_Coroutine());
+        OnStartButton();
     }
 
-    IEnumerator EnableButton_Coroutine()
-    {
-        yield return new WaitForSeconds(1f);
-        _buttonCanvas.GetComponent<Canvas>().enabled = true;
-        _buttonCanvas.GetComponent<GraphicRaycaster>().enabled = true;
-    }
 
     private void Update()
     {
@@ -75,7 +65,6 @@ public class MiniGameController : MonoBehaviour
             if (sliceTime <= 0)
             {
                 OnEndButton();
-                _endButton.onClick.Invoke();
             }
             _playTimeText.text = sliceTime.ToString("F1");
         }
@@ -84,7 +73,7 @@ public class MiniGameController : MonoBehaviour
     public void OnStartButton()
     {
         OnSettingFood();
-        StartCoroutine(StartPlay_Coroutine());
+        //StartCoroutine(StartPlay_Coroutine());
     }
 
     public void OnEndButton()
@@ -95,19 +84,31 @@ public class MiniGameController : MonoBehaviour
         StartCoroutine("CalculateScore", 1);
     }
 
+
     public void OnSettingFood()
     {
         if (Foods.Count == 0)
         {
             return;
         }
+        StartCoroutine(Co_OnSettingFood());
+    }
+
+    IEnumerator Co_OnSettingFood()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(StartPlay_Coroutine());
+        
         GameObject nowFood = Foods[0].transform.GetChild(0).gameObject;
         _nowFood = Instantiate(nowFood);
         _nowFood.transform.position = transform.position;
     }
 
     public void OnSumitFood()
-    { 
+    {
+        _choppingBoard.transform.DOLocalMove(new Vector3(2000, 0, 0), 0.5f);
         _checkArea.ResetCheckArea();
         Foods.RemoveAt(0);
         Destroy(_nowFood);
@@ -131,9 +132,9 @@ public class MiniGameController : MonoBehaviour
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * 100 + "원";
 
-            print("fdasaasdasdsdsads");
             return;
         }
+        OnStartButton();
     }
 
     public void GoLobby()
@@ -142,8 +143,9 @@ public class MiniGameController : MonoBehaviour
     }
 
     IEnumerator StartPlay_Coroutine()
-    {      
-        yield return new WaitForSeconds(0.2f);
+    {
+        _buttonCanvas.GetComponent<Canvas>().enabled = true;
+        yield return new WaitForSeconds(0.7f);
         _checkArea.ResetCheckArea();
         //Foods.RemoveAt(0);
         MoldSpawner moldSpawner = _nowFood.GetComponent<MoldSpawner>();
@@ -154,13 +156,11 @@ public class MiniGameController : MonoBehaviour
         isStart = true;
         sliceTime = 10;
 
-
-        yield return new WaitForSeconds(0.8f);
-        _endButton.gameObject.SetActive(true);
     }
     IEnumerator CalculateScore()
     {
         _checkArea.CalculateAreaPercentage();
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
+        OnSumitFood();
     }
 }
