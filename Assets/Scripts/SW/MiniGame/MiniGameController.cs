@@ -146,7 +146,7 @@ public class MiniGameController : MonoBehaviour
         _checkArea.ResetCheckArea();
         //Foods.RemoveAt(0);
         MoldSpawner moldSpawner = _nowFood.GetComponent<MoldSpawner>();
-        moldSpawner.SettingMoldCount(230, 0.4f, 0.25f, 0.15f, 2);
+        moldSpawner.SettingMoldCount(230, 0.4f + Manager.Game.CurrentDay * 0.1f, 0.25f, 0.15f, Manager.Game.CurrentDay);
         moldSpawner.StartMold();
         _checkArea.SetFoodCollider(_nowFood.GetComponent<Collider2D>());
 
