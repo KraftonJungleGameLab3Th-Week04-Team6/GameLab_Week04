@@ -35,7 +35,7 @@ public class JSW_DrawLine : MonoBehaviour
 
     private void Draw()
     {
-        if (Input.GetMouseButton(0) && !_isDrawing) //그리는 중이 아니라면 마우스를 눌렀을 때 시작
+        if (Input.GetMouseButton(0) && !_isDrawing && _minigameController.isStart) //그리는 중이 아니라면 마우스를 눌렀을 때 시작
         {
             _isDrawing = true;
             StartCoroutine(Drawing(new GameObject("line")));

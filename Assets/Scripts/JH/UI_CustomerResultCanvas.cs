@@ -46,7 +46,8 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         _customerImage.sprite = _customerData.customerSprite;
 
         //float score = Manager.Kitchen.ResultRemainingPercentage - Manager.Kitchen.MoldPercentage;
-        float score = Manager.Kitchen.ResultRemainingPercentage;
+        float score = Manager.Kitchen.ResultRemainingPercentage/3;
+        print("score" + score);
         if (Manager.Kitchen.MoldPercentage > 0.01 || score < 20)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Vomit));
