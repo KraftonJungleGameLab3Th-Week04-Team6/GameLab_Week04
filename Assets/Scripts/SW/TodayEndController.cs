@@ -16,17 +16,17 @@ public class TodayEndController : MonoBehaviour
         {
             //TodayEndCanvas;
             //TodayEndCanvas = FindAnyObjectByType<TodayEndCanvas>().gameObject;
-             _todayGetMoney = TodayEndCanvas.transform.GetChild(1).GetComponent<TMP_Text>();
-             _todayPayMoney = TodayEndCanvas.transform.GetChild(2).GetComponent<TMP_Text>();
-             _totalMoney = TodayEndCanvas.transform.GetChild(3).GetComponent<TMP_Text>();
+             _todayGetMoney = TodayEndCanvas.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+             _todayPayMoney = TodayEndCanvas.transform.GetChild(1).GetChild(1).GetComponent<TMP_Text>();
+             _totalMoney = TodayEndCanvas.transform.GetChild(1).GetChild(3).GetComponent<TMP_Text>();
 
             TodayEndCanvas.SetActive(true);
-            _todayGetMoney.text = "하루 수익 : " + Manager.Game.TodayGetMoney.ToString();
-            _todayPayMoney.text = "하루 지출 : " + "-5000";
+            _todayGetMoney.text = "일 수입 : " + Manager.Game.TodayGetMoney.ToString();
+            _todayPayMoney.text = "일 고정비 : " + "-5000";
             Manager.Game.TotalMoney -= 5000;
             Manager.Game.TotalMoney += Manager.Game.TodayGetMoney;
             Manager.Game.TodayGetMoney = 0;
-            _totalMoney.text = "총 금액 : " + Manager.Game.TotalMoney.ToString();
+            _totalMoney.text = "합산 : " + Manager.Game.TotalMoney.ToString();
 
            
         }
