@@ -16,8 +16,8 @@ MonoBehaviour:
   customerName: "\uD669\uB3D9\uC6B1"
   customerSprite: {fileID: 21300000, guid: fc62d5429fd5be14f986474bd4d0ded7, type: 3}
   customerOrder: "\uB300\uD30C\u2026 \uB300\uD30C\u2026"
-  customerAnswerMenuList: c9000000ca000000ce000000
+  customerAnswerMenuList: cf000000cf000000cf000000
   customerAnswerList:
-  - "\uB124, \uC2E0\uC120\uD55C \uB300\uD30C \uC788\uC5B4\uC694."
-  - "\uBE7C\uB4DC\uB9B4\uAE4C\uC694? \uBE0C\uB85C\uCF5C\uB9AC\uB294 \uC5B4\uB54C\uC694?"
-  - "\uBB34 \uD30C\uC2A4\uD0C0 \uB4DC\uB9B4\uAE4C\uC694?"
+  - "\uB300\uD30C \uBCF6\uC74C \uB4DC\uB9B4\uAE4C\uC694?"
+  - "\uB300 \uD30C \uC88B \uC544"
+  - "\uB300\uD30C! \uB300\uD30C!"

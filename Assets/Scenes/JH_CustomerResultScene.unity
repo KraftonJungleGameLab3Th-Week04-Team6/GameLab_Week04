@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_CustomerResultCanvas 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6781343133415669246, guid: 10510ae072640204b8dc742c639f4540, type: 3}
+      propertyPath: '_iconSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1270783390650592850, guid: 83ce8b55616ba744a8084890038503da, type: 3}
     - target: {fileID: 7032223595270278548, guid: 10510ae072640204b8dc742c639f4540, type: 3}
       propertyPath: m_Enabled
       value: 0
