@@ -1,16 +1,78 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayEnding : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int EndingType { set { _endingType = value; } }
+
+    private Canvas _canvas;
+    private GameObject[] _openingObjects;
+    private TypingText _typingText;
+    private WaitForSeconds _delay;
+
+    private int _endingType = 0;
+
+    private void Awake()
     {
-        
+        _canvas = FindAnyObjectByType<Canvas>();
+        _openingObjects = new GameObject[_canvas.transform.childCount];
+        for (int i = 0; i < _canvas.transform.childCount; i++)
+        {
+            _openingObjects[i] = _canvas.transform.GetChild(i).gameObject;
+        }
+        _delay = new WaitForSeconds(50 * Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        foreach (GameObject openingObject in _openingObjects) openingObject.SetActive(false);
+
+        StartCoroutine(StartEnding());
+    }
+
+    private IEnumerator StartEnding()
+    {
+        if (_endingType == 1) // 해피엔딩
+        {
+            _openingObjects[0].SetActive(true);
+
+            yield return _delay;
+
+            _openingObjects[3].SetActive(true);
+
+            _typingText = _openingObjects[3].GetComponent<TypingText>();
+
+            while (!_typingText.IsDone) yield return null;
+        }
+        else if (_endingType == 2) // 파산엔딩
+        {
+            _openingObjects[1].SetActive(true);
+
+            yield return _delay;
+
+            _openingObjects[4].SetActive(true);
+
+            _typingText = _openingObjects[3].GetComponent<TypingText>();
+
+            while (!_typingText.IsDone) yield return null;
+        }
+        else if (_endingType == 3) // 식중독엔딩
+        {
+            _openingObjects[2].SetActive(true);
+
+            yield return _delay;
+
+            _openingObjects[3].SetActive(true);
+
+            _typingText = _openingObjects[5].GetComponent<TypingText>();
+
+            while (!_typingText.IsDone) yield return null;
+        }
+        else
+        {
+            // unbehavior
+        }
+
+        yield break;
     }
 }

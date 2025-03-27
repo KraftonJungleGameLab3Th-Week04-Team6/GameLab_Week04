@@ -10,7 +10,7 @@ public class TypingText : MonoBehaviour
     private Image _openingDisplay;
     private TextMeshProUGUI _openingTextMesh;
     private string _originalText;
-    private WaitForSeconds _delay = new WaitForSeconds(0.05f);
+    private WaitForSeconds _delay;
     private bool _isDone = false;
 
     private void Awake()
@@ -18,6 +18,7 @@ public class TypingText : MonoBehaviour
         _openingDisplay = GetComponent<Image>();
         _openingTextMesh = GetComponentInChildren<TextMeshProUGUI>();
         _originalText = _openingTextMesh.text;
+        _delay = new WaitForSeconds(2 * Time.deltaTime);
     }
 
     private void OnEnable()
@@ -54,6 +55,8 @@ public class TypingText : MonoBehaviour
 
             yield return _delay;
         }
+
+        yield return new WaitForSeconds(1f);
 
         _isDone = true;
 

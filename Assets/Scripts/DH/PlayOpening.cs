@@ -7,17 +7,17 @@ public class PlayOpening : MonoBehaviour
     private Canvas _canvas;
     private GameObject[] _openingObjects;
     private TypingText _typingText;
-    private WaitForSeconds _delay = new WaitForSeconds(1f);
+    private WaitForSeconds _delay;
 
     private void Awake()
     {
         _canvas = FindAnyObjectByType<Canvas>();
-
         _openingObjects = new GameObject[_canvas.transform.childCount];
         for(int i=0;i< _canvas.transform.childCount; i++)
         {
             _openingObjects[i] = _canvas.transform.GetChild(i).gameObject;
         }
+        _delay = new WaitForSeconds(50 * Time.deltaTime);
     }
 
     private void Start()
@@ -39,8 +39,6 @@ public class PlayOpening : MonoBehaviour
 
         while (!_typingText.IsDone) yield return null;
 
-        yield return _delay;
-
         _openingObjects[0].SetActive(false);
         _openingObjects[2].SetActive(false);
         _openingObjects[1].SetActive(true);
@@ -52,8 +50,6 @@ public class PlayOpening : MonoBehaviour
         _typingText = _openingObjects[3].GetComponent<TypingText>();
 
         while (!_typingText.IsDone) yield return null;
-
-        yield return _delay;
 
         Manager.Game.GameStart();
     }
