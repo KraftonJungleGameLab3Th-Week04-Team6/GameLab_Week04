@@ -57,7 +57,6 @@ public class GameManager
     public void GameStart()
     {
         Debug.Log("게임 시작");
-        Init();
         SceneManager.LoadScene("DY_RestaurantScene");
     }
 
