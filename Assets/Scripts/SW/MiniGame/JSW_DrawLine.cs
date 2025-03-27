@@ -163,7 +163,7 @@ public class JSW_DrawLine : MonoBehaviour
 
                 bool isConvex = true; // 볼록 다각형 여부 bool변수
 
-                int convexCheck = CCW(pointsList[0], pointsList[1], pointsList[2]); // 볼록 다각형인지 확인
+                int convexCheck = pointsList.Count >= 3 ? CCW(pointsList[0], pointsList[1], pointsList[2]) : -100; // 볼록 다각형인지 확인
 
                 for (int i = 1; i < pointsList.Count - 2; i++)
                 {

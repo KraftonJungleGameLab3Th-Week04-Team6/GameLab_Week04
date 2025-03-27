@@ -157,16 +157,16 @@ public class DrawLine : MonoBehaviour
 
                 bool isConvex = true; // 볼록 다각형 여부 bool변수
 
-                int convexCheck = CCW(pointsList[0], pointsList[1], pointsList[2]); // 볼록 다각형인지 확인
+                int convexCheck = pointsList.Count >= 3 ? CCW(pointsList[0], pointsList[1], pointsList[2]) : -100; // 볼록 다각형인지 확인
 
-                for (int i = 1; i < pointsList.Count - 2; i++)
-                {
-                    if (CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) != convexCheck)
+                    for (int i = 1; i < pointsList.Count - 2; i++)
                     {
-                        isConvex = false;
-                        break;
+                        if (CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) != convexCheck)
+                        {
+                            isConvex = false;
+                            break;
+                        }
                     }
-                }
 
                 if (isConvex) // 볼록 다각형이라면 컨벡스 보정
                 {
