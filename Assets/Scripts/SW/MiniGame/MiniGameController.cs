@@ -16,10 +16,10 @@ public class MiniGameController : MonoBehaviour
 
     public List<GameObject> Foods;
     public float sliceTime;
+    public bool isStart;
 
     private JSW_CheckArea _checkArea;
     private GameObject _nowFood;
-    private bool _isStart;
     private ButtonCanvas _buttonCanvas;
     private TMP_Text _playTimeText;
     private Button _endButton;
@@ -34,7 +34,7 @@ public class MiniGameController : MonoBehaviour
     
     //주문 받은 메뉴
     private OrderData _orderData;
-
+    
     private void Start()
     {
         _checkArea = FindAnyObjectByType<JSW_CheckArea>();
@@ -69,7 +69,7 @@ public class MiniGameController : MonoBehaviour
 
     private void Update()
     {
-        if (_isStart)
+        if (isStart)
         {
             sliceTime -= Time.deltaTime;
             if (sliceTime <= 0)
@@ -89,8 +89,8 @@ public class MiniGameController : MonoBehaviour
 
     public void OnEndButton()
     {
-        if (!_isStart) return;
-        _isStart = false;
+        if (!isStart) return;
+        isStart = false;
         OnSliceEndEvent?.Invoke();
         StartCoroutine("CalculateScore", 1);
     }
@@ -121,15 +121,16 @@ public class MiniGameController : MonoBehaviour
             
             _enddingCavas.SetActive(true);
 
-
-            Manager.Game.LossRate = resultRemainingPercentage;
-            Manager.Game.MoldRate = moldPercentage;
+            //Manager.Game.LossRate = resultRemainingPercentage;
+            //Manager.Game.MoldRate = moldPercentage;
 
             Manager.Game.TodayCustomerCount += 1;
             Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * 100;
 
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
+            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * 100 + "원";
+
             return;
         }
     }
@@ -149,7 +150,7 @@ public class MiniGameController : MonoBehaviour
         moldSpawner.StartMold();
         _checkArea.SetFoodCollider(_nowFood.GetComponent<Collider2D>());
 
-        _isStart = true;
+        isStart = true;
         sliceTime = 10;
 
 
