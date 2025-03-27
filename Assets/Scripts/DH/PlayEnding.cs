@@ -59,7 +59,7 @@ public class PlayEnding : MonoBehaviour
 
                 yield return _delay;
 
-                _endingObjects[3].SetActive(true);
+                _endingObjects[5].SetActive(true);
 
                 _typingText = _endingObjects[5].GetComponent<TypingText>();
 
