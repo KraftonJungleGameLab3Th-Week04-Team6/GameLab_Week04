@@ -94,9 +94,7 @@ public class DrawLine : MonoBehaviour
 
                 for(int i = 0; i < lineRenderer.positionCount - 2; i++)
                 {
-                    float ccw = CCW(lineRenderer.GetPosition(i), hit.point, lineRenderer.GetPosition(i + 1));
-
-                    if (ccw > -0.01f && ccw < 0.01f)
+                    if(CCW(lineRenderer.GetPosition(i), hit.point, lineRenderer.GetPosition(i + 1))==0){
                     {
                         index = i;
                         break;
