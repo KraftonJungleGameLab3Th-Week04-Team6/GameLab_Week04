@@ -288,7 +288,7 @@ MonoBehaviour:
   minDistance: 0.1
   lineWidth: 0.05
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  CorrectionDistance: 0.7
+  correctionDistance: 0.7
   insideColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1046318068
 Transform:

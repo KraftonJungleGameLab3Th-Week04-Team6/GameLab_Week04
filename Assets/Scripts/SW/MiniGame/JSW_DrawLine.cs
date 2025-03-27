@@ -11,7 +11,7 @@ public class JSW_DrawLine : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
-    [SerializeField] private float CorrectionDistance;
+    [SerializeField] private float correctionDistance;
     [SerializeField] private Color insideColor;
 
     private MiniGameController _minigameController;
@@ -82,7 +82,7 @@ public class JSW_DrawLine : MonoBehaviour
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
             edgeCollider2D.SetPoints(pointsList); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
 
-            if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < CorrectionDistance)
+            if (lineRenderer.positionCount > 5 && Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < correctionDistance) // 첫 점과 마지막 점의 거리
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
@@ -134,16 +134,8 @@ public class JSW_DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount > 3 && correctionIndex > 1) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
+        if (!isShape && lineRenderer.positionCount >= 4 && correctionIndex >= 3) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
         {
-            /*while (correctionIndex > 2)
-            {
-                if (Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex))
-                    < Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(correctionIndex - 1))) break;
-
-                correctionIndex--;
-            }*/
-
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
 
@@ -161,21 +153,22 @@ public class JSW_DrawLine : MonoBehaviour
                     pointsList[i] = lineRenderer.GetPosition(i + 1);
                 }
 
-                bool isConvex = true; // 볼록 다각형 여부 bool변수
+                int[] ccwCount = new int[2];
 
-                int convexCheck = pointsList.Count >= 3 ? CCW(pointsList[0], pointsList[1], pointsList[2]) : -100; // 볼록 다각형인지 확인
+                int convexCheck = 0; // 볼록 다각형인지 확인하는 변수, 0은 아님 1은 반시계 -1은 시계
 
                 for (int i = 1; i < pointsList.Count - 2; i++)
                 {
-                    if (CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) != convexCheck)
-                    {
-                        isConvex = false;
-                        break;
-                    }
+                    if (CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) > 0) ccwCount[0]++; // 반시계
+                    else if ((CCW(pointsList[i], pointsList[i + 1], pointsList[i + 2]) < 0)) ccwCount[1]++; // 시계
                 }
 
-                if (isConvex) // 볼록 다각형이라면 컨벡스 보정
+                if (ccwCount[0] > 5 * ccwCount[1]) convexCheck = 1;
+                else if (ccwCount[1] > 5 * ccwCount[0]) convexCheck = -1;
+
+                if (convexCheck != 0) // 볼록 다각형이라면 컨벡스 보정
                 {
+
                     if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[pointsList.Count - 1]) > 0) // 1이면 처음에서 보정
                     {
                         correctionIndex = pointsList.Count - 1;

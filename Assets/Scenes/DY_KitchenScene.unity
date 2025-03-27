@@ -1863,10 +1863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a554cf4d3210c3048961182b58ddb205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 0.2
+  minDistance: 0.1
   lineWidth: 0.05
   lineColor: {r: 0.8980392, g: 0.18039216, b: 0.18039216, a: 0.8}
-  CorrectionDistance: 0.5
+  correctionDistance: 0.7
   insideColor: {r: 0.7568628, g: 0.43921572, b: 0.14901961, a: 1}
 --- !u!4 &1476872759
 Transform:
