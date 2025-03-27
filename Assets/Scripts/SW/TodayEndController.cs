@@ -40,12 +40,12 @@ public class TodayEndController : MonoBehaviour
         print("NextDay");
         if (Manager.Game.TodayCustomerCount >= 5 && Manager.Game.TotalMoney >= 0)
         {
-            SceneManager.LoadScene("SW_TestScene");
+            Manager.Game.GoEnding(1);
         }
         else if (Manager.Game.TotalMoney <= 0)
         {
             print("GameOver");
-            SceneManager.LoadScene("DYTestScene");
+            Manager.Game.GoEnding(2);
         }
         Manager.Game.CurrentDay += 1;
         Manager.Game.TodayCustomerCount = 0;

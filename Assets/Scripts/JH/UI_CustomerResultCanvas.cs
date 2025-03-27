@@ -36,7 +36,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("DYTestScene");
+                Manager.Game.GoEnding(3);
             }
         }
     }
