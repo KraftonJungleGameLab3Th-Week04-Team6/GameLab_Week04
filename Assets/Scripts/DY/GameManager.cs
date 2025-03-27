@@ -52,6 +52,8 @@ public class GameManager
         _maxDay = 5;
         _todayCustomerCount = 0;
         _todayCustomerMaxCount = 3;
+        TodayGetMoney = 0;
+        TotalMoney = 0;
     }
 
     public void GameStart()
