@@ -23,13 +23,15 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
     private void OnCustomerOrder(int key)
     {
+        // 손님 데이터 가져오기
         _customerData = CustomerDatabase.ObjectData[key];
+
         //손님 주문 대사 목록 받아오기
         _customerOrderData = _customerData.customerOrderDataList;
-        
+
         //손님 주문 대사 랜덤으로 선택
-        int randomIntOrder = Random.Range(0, _customerOrderData.Length);
-        _currentOrderData = _customerOrderData[randomIntOrder];
+        int intOrder = Manager.Game.CurrentDay <= 3 ? 0 : 1;
+        _currentOrderData = _customerOrderData[intOrder];
         //매니저에 동기화
         Manager.Restaurant.CurrentCustomerOrderData = _currentOrderData;
         
