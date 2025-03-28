@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6758689c6de1b741ad685eab8ab9f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaSize: {x: 5, y: 5}
+  areaSize: {x: 9, y: 9}
   resolution: 100
   foodCollider: {fileID: 0}
   cutColliders: []

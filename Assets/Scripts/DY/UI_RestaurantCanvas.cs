@@ -59,10 +59,10 @@ public class UI_RestaurantCanvas : MonoBehaviour
         
     }
 
-    void ButtonClick(int orderKey)
+    void ButtonClick(int menuKey)
     {
-        Debug.Log("ButtonClick" + orderKey);
-        Manager.Kitchen.OrderKey = orderKey;
+        Debug.Log("ButtonClick" + menuKey);
+        Manager.Kitchen.MenuKey = menuKey;
         Manager.Game.GoKitchen();
     }
 

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class KitchenManager
 {
-    private int _orderKey;
-    public int OrderKey { get{return _orderKey;} set{_orderKey = value;} }
+    private int _menuKey;
+    public int MenuKey { get{return _menuKey; } set{ _menuKey = value;} }
 
     // 게임 결과
     //남은 음식 영역
