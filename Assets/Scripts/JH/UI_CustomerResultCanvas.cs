@@ -50,6 +50,16 @@ public class UI_CustomerResultCanvas : MonoBehaviour
             {
                 _fadeOut.enabled = false;
                 _iconImage.enabled = false;
+                
+                //결과창
+                _fadeOut.enabled = false;
+                _topText.enabled = false;
+                _menuPriceText.enabled = false;
+                _resultRemainingPercentageText.enabled = false;
+                _resultBar.enabled = false;
+                _finalResultPlusText.enabled = false;
+                _finalResultText.enabled = false;
+                
                 _clickUIText.enabled = false;
                 Manager.Game.GameStart();
             }
