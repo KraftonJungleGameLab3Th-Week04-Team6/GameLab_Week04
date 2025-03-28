@@ -8,7 +8,7 @@ public class CustomerOrderData : ScriptableObject
     [Tooltip("대사 ID")]
     public int customerOrderID;
     [Tooltip("손님 기분")]
-    public int Mood;
+    public int mood;
     [Tooltip("주문 대화")]
     public String customerOrder;
     [Tooltip("메뉴 ID 리스트")]

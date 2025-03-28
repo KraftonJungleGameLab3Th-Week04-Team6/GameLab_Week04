@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerID: 10
   customerName: "\uD55C\uC18C\uB77C"
-  customerGoodSprite: {fileID: 21300000, guid: ea47daf0afbf41d41a7bfa00cf721248, type: 3}
-  customerBadSprite: {fileID: 0}
+  customerGoodSprite: {fileID: 21300000, guid: 8b098a4600f499642853dc4f2096c867, type: 3}
+  customerBadSprite: {fileID: 21300000, guid: 8e1d8acb5987af348bd9963667736b79, type: 3}
   favoriteFood: {fileID: 0}
   customerOrderDataList:
   - {fileID: 11400000, guid: 952f454fc0c2feb49a605a33739e56b1, type: 2}
