@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class JSW_DrawLine : MonoBehaviour
 {
+    public GameObject sliceEffect;
+
     private bool _isDrawing = false;
 
     [Header("line option")]
@@ -16,11 +18,13 @@ public class JSW_DrawLine : MonoBehaviour
 
     private MiniGameController _minigameController;
     private JSW_CheckArea _checkArea;
+    private KitchenCamera _kitchenCamera;
 
     private void Start()
     {
         _minigameController = FindAnyObjectByType<MiniGameController>();
         _checkArea = FindAnyObjectByType<JSW_CheckArea>();
+        _kitchenCamera = FindAnyObjectByType<KitchenCamera>();
     }
 
     private void Update()
@@ -234,6 +238,11 @@ public class JSW_DrawLine : MonoBehaviour
             meshFilter.mesh = filledMesh;
 
             _checkArea.cutColliders.Add(polygonCollider2D);
+            _kitchenCamera.SliceMoving();
+            if (polygonCollider2D != null)
+            {
+                Instantiate(sliceEffect, polygonCollider2D.bounds.center, Quaternion.identity);
+            }
         }
         else // 폐곡선이 완성되지 않았다면 선 삭제
         {
