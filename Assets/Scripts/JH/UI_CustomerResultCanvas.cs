@@ -51,19 +51,23 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         if (Manager.Kitchen.MoldPercentage > 0.01)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Vomit));
+            _customerImage.sprite = _customerData.customerBadSprite;
             _isGameOver = true;
         }
         else if (score < 60)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Bad));
+            _customerImage.sprite = _customerData.customerBadSprite;
         }
         else if (score < 80)
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Good));
+            _customerImage.sprite = _customerData.customerGoodSprite;
         }
         else 
         {
             StartCoroutine(CoShowCustomerResult(ECustomerIcon.Heart));
+            _customerImage.sprite = _customerData.customerGoodSprite;
         }
     }
 
