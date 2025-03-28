@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d31ed42b14a479143acae4e75e83c1e5, type: 3}
-  m_Name: Customer6_Order1
+  m_Name: Customer6_Order1 1
   m_EditorClassIdentifier: 
   customerOrderID: 6
   Mood: -1
