@@ -16,6 +16,7 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private Color lineColor;
     [SerializeField] private float correctionDistance;
     [SerializeField] private Color insideColor;
+    public CutFood cutFood;
 
     private void Update()
     {
@@ -215,7 +216,9 @@ public class DrawLine : MonoBehaviour
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
 
-            Mesh filledMesh = new()
+            cutFood.Cut(ref polygonCollider2D);
+
+            /*Mesh filledMesh = new()
             {
                 vertices = pointsList.ConvertAll(elem => (Vector3)elem).ToArray(),
                 triangles = new Triangulator(pointsList.ToArray()).Triangulate()
@@ -226,6 +229,8 @@ public class DrawLine : MonoBehaviour
 
             meshRenderer.material = MakeMaterial(insideColor);
             meshFilter.mesh = filledMesh;
+
+            filledMesh.RecalculateNormals();*/
         }
         else // 폐곡선이 완성되지 않았다면 선 삭제
         {
