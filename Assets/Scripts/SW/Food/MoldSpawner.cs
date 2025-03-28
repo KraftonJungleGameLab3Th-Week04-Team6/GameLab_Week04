@@ -115,8 +115,6 @@ public class MoldSpawner : MonoBehaviour
             // 새로 생긴 곰팡이들을 중심 리스트에 추가
             _moldCenters.AddRange(newMolds);
 
-
-
             yield return new WaitForSeconds(_spawnIntervalTime);
         }
     }
