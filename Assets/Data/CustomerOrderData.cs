@@ -17,4 +17,6 @@ public class CustomerOrderData : ScriptableObject
     public String[] customerAnswerList;
     [Tooltip("선호도")]
     public int[] preferenceList;
+    [Tooltip("선택지 반응")]
+    public String[] answerReaction;
 }

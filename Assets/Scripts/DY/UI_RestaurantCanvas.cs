@@ -30,6 +30,8 @@ public class UI_RestaurantCanvas : MonoBehaviour
         //손님 주문 대사 랜덤으로 선택
         int randomIntOrder = Random.Range(0, _customerOrderData.Length);
         _currentOrderData = _customerOrderData[randomIntOrder];
+        //매니저에 동기화
+        Manager.Restaurant.CurrentCustomerOrderData = _currentOrderData;
         
         _customerText.GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerName + '\n' +_currentOrderData.customerOrder;
         for (int i = 0; i < _buttons.Count; i++)

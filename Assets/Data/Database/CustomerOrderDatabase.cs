@@ -18,7 +18,7 @@ public class CustomerOrderDatabase : MonoBehaviour
         AddCustomerOrderData(7, "CustomerOrder/Customer7_Order1"); 
         AddCustomerOrderData(8, "CustomerOrder/Customer8_Order1"); 
         AddCustomerOrderData(9, "CustomerOrder/Customer9_Order1");
-        AddCustomerOrderData(10, "CustomerOrder/Customer10_Order1");  
+        AddCustomerOrderData(10, "CustomerOrder/Customer10_Order1");
     }
 
     public static void AddCustomerOrderData(int id, string path)
