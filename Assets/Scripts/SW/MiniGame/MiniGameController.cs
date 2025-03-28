@@ -165,8 +165,7 @@ public class MiniGameController : MonoBehaviour
 
         _resultFood.transform.DOLocalMove(Vector3.zero, 0.8f);
         // 이미지 주기
-        //_resultFood.sprite = "이미지"
-        // ex) : _resultFood.sprite = _previewPanel.transform.GetChild(0).GetComponent<Image>().sprite;
+        _resultFood.sprite = _menuData.menuImage;
         yield return new WaitForSeconds(1.1f);
 
         _resultFood.transform.DOScale(Vector3.one * 1.2f, 1);
