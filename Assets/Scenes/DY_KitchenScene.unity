@@ -160,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 176123415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.52, y: -0.06, z: -0.002146901}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1198,7 +1198,7 @@ GameObject:
   - component: {fileID: 1476872759}
   - component: {fileID: 1476872758}
   m_Layer: 0
-  m_Name: lineControl
+  m_Name: LineControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1218,6 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliceEffect: {fileID: 2708598583397607911, guid: a9188a70ce0d79c4890df6a9dcf48488, type: 3}
   sliceTrail: {fileID: 8406112623771217094, guid: 375d8a9c3048fd748840329f427e19dc, type: 3}
+  _nowIngredient: {fileID: 0}
   minDistance: 0.1
   lineWidth: 0.05
   lineColor: {r: 0.8980392, g: 0.18039216, b: 0.18039216, a: 0.8}

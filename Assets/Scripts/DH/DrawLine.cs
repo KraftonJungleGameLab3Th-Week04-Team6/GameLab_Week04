@@ -1,14 +1,13 @@
-using NUnit.Framework;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DrawLine : MonoBehaviour
 {
+    public GameObject NowIngredient { set { _nowIngredient = value; } }
+
     private bool _isDrawing = false;
+    public GameObject _nowIngredient;
 
     [Header("line option")]
     [SerializeField] private float minDistance;
@@ -16,7 +15,6 @@ public class DrawLine : MonoBehaviour
     [SerializeField] private Color lineColor;
     [SerializeField] private float correctionDistance;
     [SerializeField] private Color insideColor;
-    public CutFood cutFood;
 
     private void Update()
     {
@@ -29,7 +27,7 @@ public class DrawLine : MonoBehaviour
         {
             _isDrawing = true;
 
-            StartCoroutine(Drawing(new GameObject("line")));
+            StartCoroutine(Drawing(new GameObject("cutting")));
         }
     }
 
@@ -207,18 +205,17 @@ public class DrawLine : MonoBehaviour
         }
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
-        line.name = "area";
         Destroy(edgeCollider2D);
         Destroy(lineRenderer);
 
-        if (isShape) // 폐곡선이 완성되었다면 폴리곤과 매시 생성
+        if (isShape) // 폐곡선이 완성되었다면 폴리곤 생성하고 자르기
         {
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
 
-            cutFood.Cut(ref polygonCollider2D);
+            _nowIngredient.GetComponent<CutIngridient>().Cut(ref polygonCollider2D);
 
-            /*Mesh filledMesh = new()
+            /*Mesh filledMesh = new() // 구버전 (잘린 부분 매시 생성)
             {
                 vertices = pointsList.ConvertAll(elem => (Vector3)elem).ToArray(),
                 triangles = new Triangulator(pointsList.ToArray()).Triangulate()

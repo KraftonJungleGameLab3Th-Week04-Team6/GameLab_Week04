@@ -24,6 +24,7 @@ public class MiniGameController : MonoBehaviour
     private TMP_Text _playTimeText;
     private GameObject _enddingCavas;
     private ChoppingBoard _choppingBoard;
+    private JSW_DrawLine _drawLine;
 
     private float _resultRemainingPercentage;
     private float _moldPercentage;
@@ -45,6 +46,7 @@ public class MiniGameController : MonoBehaviour
         _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
         _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
         _resultFood = FindAnyObjectByType<ResultFood>().GetComponent<Image>();
+        _drawLine = FindAnyObjectByType<JSW_DrawLine>();
 
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas.SetActive(false);
@@ -119,6 +121,8 @@ public class MiniGameController : MonoBehaviour
         GameObject nowFood = Foods[0].transform.gameObject;
         _nowFood = Instantiate(nowFood);
         _nowFood.transform.position = transform.position;
+        _nowFood.GetComponent<CutIngridient>().Init();
+        _drawLine.NowIngredient = _nowFood;
     }
 
     public void OnSumitFood()
