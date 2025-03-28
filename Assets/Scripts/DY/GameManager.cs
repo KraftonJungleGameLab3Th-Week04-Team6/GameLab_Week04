@@ -20,6 +20,7 @@ public class GameManager
     public int TodayGetMoney { get { return _todayGetMoney; } set { _todayGetMoney = value; } }
     public int TotalMoney { get { return _totalMoney; } set { _totalMoney = value; } }
 
+    public int Popularity { get { return _popularity; } set { _popularity = value; } }
 
 
     #region 게임 흐름 관련
@@ -44,6 +45,10 @@ public class GameManager
     #region 돈 관련
     private int _todayGetMoney;
     private int _totalMoney;
+    #endregion
+
+    #region 인기도 관련
+    private int _popularity;
     #endregion
 
     public void Init()

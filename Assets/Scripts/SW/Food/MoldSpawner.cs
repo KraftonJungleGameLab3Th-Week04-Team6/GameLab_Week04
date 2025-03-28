@@ -10,12 +10,11 @@ public class MoldSpawner : MonoBehaviour
     [Header("Spawner option")]
     public GameObject moldPrefab;
 
-    private int _maxMoldCount = 100;
+    private int _maxMoldCount = 230;
     private float _spawnIntervalTime = 0.1f;
     private float _spreadRadius = 0.3f; // 퍼지는 범위
     private float _minDistanceBetweenMolds = 0.2f;
     private int _startPoint;
-
 
     private PolygonCollider2D _vegCollider;
     private List<Transform> _moldCenters = new List<Transform>(); // 기존 곰팡이 위치들
@@ -41,13 +40,29 @@ public class MoldSpawner : MonoBehaviour
         _miniGameController.OnSliceEndEvent += StopSpawn;
     }
 
-    public void SettingMoldCount(int maxMoldCount, float spawnIntervalTime, float spreadRadius, float minDistanceBetweenMolds, int startPoint)
+    public void SettingMoldCount(int maxMoldCount, float spawnIntervalTime, float spreadRadius, float minDistanceBetweenMolds, int startPoint, float scale)
     {
         _maxMoldCount = maxMoldCount;
         _spawnIntervalTime = spawnIntervalTime;
         _spreadRadius = spreadRadius;
         _minDistanceBetweenMolds = minDistanceBetweenMolds;
         _startPoint = startPoint;
+        StartCoroutine(ScaleUp(scale));
+    }
+
+    IEnumerator ScaleUp(float scale)
+    {
+        Vector3 targetScale = Vector3.one * scale;
+        while (true)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 30);
+            if (Vector3.Distance(transform.localScale, targetScale)  < 0.01f)
+            {
+                transform.localScale = targetScale;
+                break;
+            }
+            yield return null;
+        }
     }
 
     public void StartMold()
@@ -98,8 +113,6 @@ public class MoldSpawner : MonoBehaviour
             }
             // 새로 생긴 곰팡이들을 중심 리스트에 추가
             _moldCenters.AddRange(newMolds);
-
-
 
             yield return new WaitForSeconds(_spawnIntervalTime);
         }

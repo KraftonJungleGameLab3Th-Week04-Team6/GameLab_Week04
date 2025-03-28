@@ -6,11 +6,17 @@ public class RestaurantGame : MonoBehaviour
 {
     private int _customerNum;
     private UI_RestaurantCanvas _uiRestaurantCanvas; 
+    private int _customerIndex;
     
     private void Start()
     {
         if (Manager.Game.TodayCustomerCount < Manager.Game.TodayCustomerMaxCount)
         {
+            if (Manager.Game.CurrentDay == 1 && Manager.Game.TodayCustomerCount == 0)
+            {
+                Manager.Restaurant.Init();
+
+            }
             SetCustomerUI();
         }
         else
@@ -22,9 +28,12 @@ public class RestaurantGame : MonoBehaviour
     private void SetCustomerUI()
     {
         Debug.Log("RestaurantGame Init");
-        // 1~10번 손님 중 랜덤
         _uiRestaurantCanvas = FindAnyObjectByType<UI_RestaurantCanvas>();
-        _customerNum = Random.Range(1, 11);
+
+        // 전체 15명의 손님 중 몇번째 손님인지 계산
+        _customerIndex = (Manager.Game.CurrentDay - 1) * 3 + Manager.Game.TodayCustomerCount;
+        // 0번째 손님 불러오기
+        _customerNum = Manager.Restaurant.CustomerList[_customerIndex];
         Manager.Restaurant.CurrentCustomNum = _customerNum;
         SetCustomer();
     }
