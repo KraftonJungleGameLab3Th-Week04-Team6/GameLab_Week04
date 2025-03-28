@@ -27,6 +27,7 @@ public class MiniGameController : MonoBehaviour
     
     private float _resultRemainingPercentage;
     private float _moldPercentage;
+    private GameObject _previewPanel;
     
     public float ResultRemainingPercentage { get{return _resultRemainingPercentage;} set{_resultRemainingPercentage = value;} }
     public float MoldPercentage { get{return _moldPercentage;} set{_moldPercentage = value;} }
@@ -42,6 +43,7 @@ public class MiniGameController : MonoBehaviour
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject ;
         _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
+        _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
         _enddingCavas.SetActive(false);
 
         _menuData  = MenuDatabase.ObjectData[Manager.Kitchen.OrderKey];
@@ -56,6 +58,15 @@ public class MiniGameController : MonoBehaviour
         Manager.Kitchen.MoldPercentage = 0;
 
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
+
+
+        // 프리뷰에 음식 등록
+        for (int i =0;i < Foods.Count;i++)
+        {
+            _previewPanel.transform.GetChild(i).gameObject.SetActive(true);
+            _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        }
+
         OnStartButton();
     }
 
@@ -129,11 +140,11 @@ public class MiniGameController : MonoBehaviour
             //Manager.Game.MoldRate = moldPercentage;
 
             //Manager.Game.TodayCustomerCount += 1;
-            Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * 100;
+            Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * _menuData.menuPrice/100;
 
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
-            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * 100 + "원";
+            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * _menuData.menuPrice / 100 + "원";
 
             Manager.Kitchen.ResultRemainingPercentage = resultRemainingPercentage;
             Manager.Kitchen.MoldPercentage = moldPercentage;

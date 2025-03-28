@@ -22,8 +22,8 @@ public class TodayEndController : MonoBehaviour
 
             TodayEndCanvas.SetActive(true);
             _todayGetMoney.text = "일 수입 : " + Manager.Game.TodayGetMoney.ToString();
-            _todayPayMoney.text = "일 고정비 : " + "-15000";
-            Manager.Game.TotalMoney -= 15000;
+            _todayPayMoney.text = "일 고정비 : " + "-6000";
+            Manager.Game.TotalMoney -= 6000;
             Manager.Game.TotalMoney += Manager.Game.TodayGetMoney;
             Manager.Game.TodayGetMoney = 0;
             _totalMoney.text = "합산 : " + Manager.Game.TotalMoney.ToString();
