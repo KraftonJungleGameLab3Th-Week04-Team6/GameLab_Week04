@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Customer6_Order1
   m_EditorClassIdentifier: 
   customerOrderID: 6
-  Mood: -1
+  mood: -1
   customerOrder: "\uB2E4\uC74C \uC57D\uC18D\uC5D0 \uBE68\uB9AC \uAC00\uC57C\uD574\uC11C\uC694.
     \uBE68\uB9AC \uB098\uC624\uB294 \uC694\uB9AC \uD574\uC8FC\uC138\uC694."
   customerAnswerMenuList: c9000000cc000000cb000000

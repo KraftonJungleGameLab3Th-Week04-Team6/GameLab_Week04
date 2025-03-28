@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Customer8_Order1
   m_EditorClassIdentifier: 
   customerOrderID: 8
-  Mood: 1
-  customerOrder: "\uB300\uD30C\u2026 \uB300\uD30C\u2026"
+  mood: 1
+  customerOrder: "\uB300\uD30C\uB85C \uC8FC\uAC8C!"
   customerAnswerMenuList: cf000000cf000000cf000000
   customerAnswerList:
   - "\uB300\uD30C \uBCF6\uC74C \uB4DC\uB9B4\uAE4C\uC694?"
