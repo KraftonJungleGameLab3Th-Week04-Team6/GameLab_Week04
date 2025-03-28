@@ -16,3 +16,4 @@ MonoBehaviour:
   menuName: "\uC591\uBC30\uCD94 \uC218\uD504"
   menuIngredients: 0200000003000000
   menuPrice: 4500
+  menuImage: {fileID: 21300000, guid: b9e7cd88543dc1b4eb42abad9fb6b22a, type: 3}
