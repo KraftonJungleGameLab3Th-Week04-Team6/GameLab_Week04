@@ -38,7 +38,24 @@ public class UI_RestaurantCanvas : MonoBehaviour
             int menuIndex = _currentOrderData.customerAnswerMenuList[i];
             _buttons[i].gameObject.GetComponent<Button>().onClick.AddListener(() => ButtonClick(menuIndex));
         }
-        _customerImage.sprite = _customerData.customerGoodSprite;
+        
+        //손님 이미지 설정
+        // 기분 좋을때
+        if (_currentOrderData.mood > 0)
+        {
+            _customerImage.sprite = _customerData.customerGoodSprite;
+        }
+        // 기분 나쁠때
+        if (_currentOrderData.mood < 0)
+        {
+            _customerImage.sprite = _customerData.customerBadSprite;
+        }
+        // null 방지
+        if (_customerImage.sprite == null)
+        {
+            _customerImage.sprite = _customerData.customerGoodSprite;
+        }
+
         
     }
 
