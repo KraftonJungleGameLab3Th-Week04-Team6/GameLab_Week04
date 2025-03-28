@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca40ed80df382b499ccad7f414b7c5b, type: 3}
   m_Name: Menu2
   m_EditorClassIdentifier: 
-  orderID: 202
-  orderName: "\uC2E0\uC120\uD55C \uCC44\uC18C \uC0D0\uB7EC\uB4DC"
-  orderIngredients: 010000000200000003000000
-  orderPrice: 5000
+  menuID: 202
+  menuName: "\uC2E0\uC120\uD55C \uCC44\uC18C \uC0D0\uB7EC\uB4DC"
+  menuIngredients: 010000000200000003000000
+  menuPrice: 6000
