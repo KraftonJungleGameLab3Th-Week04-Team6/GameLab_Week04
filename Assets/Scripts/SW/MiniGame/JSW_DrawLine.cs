@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class JSW_DrawLine : MonoBehaviour
 {
     public GameObject sliceEffect;
+    public GameObject sliceTrail;
 
     private bool _isDrawing = false;
 
@@ -241,6 +243,7 @@ public class JSW_DrawLine : MonoBehaviour
             _kitchenCamera.SliceMoving();
             if (polygonCollider2D != null)
             {
+                StartCoroutine(SliceTrailMove(pointsList));
                 Instantiate(sliceEffect, polygonCollider2D.bounds.center, Quaternion.identity);
             }
         }
@@ -274,5 +277,35 @@ public class JSW_DrawLine : MonoBehaviour
         if (cross > 0) return 1;
         else if (cross < 0) return -1;
         else return 0;
+    }
+
+    int _moveSpeed = 50;
+
+    IEnumerator SliceTrailMove(List<Vector2> pathPoints)
+    {
+        GameObject _sliceTrail = Instantiate(sliceTrail, pathPoints[0], quaternion.identity);
+        for (int i = 0; i < pathPoints.Count; i++)
+        {
+            Vector3 target = pathPoints[i];
+            while (Vector3.Distance(_sliceTrail.transform.position, target) > 0.01f)
+            {
+                _sliceTrail.transform.position = Vector3.MoveTowards(_sliceTrail.transform.position, target, _moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+            // 정확히 타겟 포인트에 맞춰주기
+            _sliceTrail.transform.position = target;
+        }
+
+        // 마지막에서 시작점으로 복귀
+        Vector3 first = pathPoints[0];
+        while (Vector3.Distance(_sliceTrail.transform.position, first) > 0.01f)
+        {
+            _sliceTrail.transform.position = Vector3.MoveTowards(_sliceTrail.transform.position, first, _moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        _sliceTrail.transform.position = first;
+        
+        Destroy(_sliceTrail);
+        Debug.Log("한 바퀴 완료!");
     }
 }
