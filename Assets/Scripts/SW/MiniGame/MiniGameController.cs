@@ -24,29 +24,32 @@ public class MiniGameController : MonoBehaviour
     private TMP_Text _playTimeText;
     private GameObject _enddingCavas;
     private ChoppingBoard _choppingBoard;
-    
+
     private float _resultRemainingPercentage;
     private float _moldPercentage;
     private GameObject _previewPanel;
-    
-    public float ResultRemainingPercentage { get{return _resultRemainingPercentage;} set{_resultRemainingPercentage = value;} }
-    public float MoldPercentage { get{return _moldPercentage;} set{_moldPercentage = value;} }
-    
+    private Image _resultFood;
+
+    public float ResultRemainingPercentage { get { return _resultRemainingPercentage; } set { _resultRemainingPercentage = value; } }
+    public float MoldPercentage { get { return _moldPercentage; } set { _moldPercentage = value; } }
+
     //주문 받은 메뉴
     private MenuData _menuData;
     private int _totalFoodNum;
-    
+
     private void Start()
     {
         _checkArea = FindAnyObjectByType<JSW_CheckArea>();
         _buttonCanvas = FindAnyObjectByType<ButtonCanvas>();
-        _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
-        _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject ;
+        _enddingCavas = FindAnyObjectByType<PlayEnddingCanvas>().gameObject;
         _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
         _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
+        _resultFood = FindAnyObjectByType<ResultFood>().GetComponent<Image>();
+
+        _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas.SetActive(false);
 
-        _menuData  = MenuDatabase.ObjectData[Manager.Kitchen.MenuKey];
+        _menuData = MenuDatabase.ObjectData[Manager.Kitchen.MenuKey];
         for (int i = 0; i < _menuData.menuIngredients.Count; i++)
         {
             Foods.Add(IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]].IngredientsPrefab);
@@ -59,9 +62,8 @@ public class MiniGameController : MonoBehaviour
 
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
 
-
         // 프리뷰에 음식 등록
-        for (int i =0;i < Foods.Count;i++)
+        for (int i = 0; i < Foods.Count; i++)
         {
             _previewPanel.transform.GetChild(i).gameObject.SetActive(true);
             _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
@@ -83,11 +85,10 @@ public class MiniGameController : MonoBehaviour
             _playTimeText.text = sliceTime.ToString("F1");
         }
     }
-    
+
     public void OnStartButton()
     {
         OnSettingFood();
-        //StartCoroutine(StartPlay_Coroutine());
     }
 
     public void OnEndButton()
@@ -114,7 +115,7 @@ public class MiniGameController : MonoBehaviour
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.5f);
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(StartPlay_Coroutine());
-        
+
         GameObject nowFood = Foods[0].transform.GetChild(0).gameObject;
         _nowFood = Instantiate(nowFood);
         _nowFood.transform.position = transform.position;
@@ -125,40 +126,50 @@ public class MiniGameController : MonoBehaviour
         _choppingBoard.transform.DOLocalMove(new Vector3(2000, 0, 0), 0.5f);
         _checkArea.ResetCheckArea();
 
-        // 알파 값 조절
+        // 오른쪽 위 알파 값 조절
         Image img = _previewPanel.transform.GetChild(_totalFoodNum - Foods.Count).GetComponent<Image>();
         Color c = img.color;
-        c.a = 60f / 255f; // 알파값을 30으로 (0~1 범위로)
+        c.a = 60f / 255f;
         img.color = c;
 
         Foods.RemoveAt(0);
         Destroy(_nowFood);
         sliceTime = 0;
         _playTimeText.text = sliceTime.ToString("F1");
-        
+
         if (Foods.Count == 0)
         {
             float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / _totalFoodNum;
             float moldPercentage = Manager.Kitchen.MoldPercentage / _totalFoodNum;
-            
-            _enddingCavas.SetActive(true);
 
-            //Manager.Game.LossRate = resultRemainingPercentage;
-            //Manager.Game.MoldRate = moldPercentage;
+            Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * _menuData.menuPrice / 100;
 
-            //Manager.Game.TodayCustomerCount += 1;
-            Manager.Game.TodayGetMoney += (int)resultRemainingPercentage * _menuData.menuPrice/100;
-
-            _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
-            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
-            _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * _menuData.menuPrice / 100 + "원";
+            //_enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text = "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
+            //_enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
+            //_enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * _menuData.menuPrice / 100 + "원";
 
             Manager.Kitchen.ResultRemainingPercentage = resultRemainingPercentage;
             Manager.Kitchen.MoldPercentage = moldPercentage;
-
+            StartCoroutine(EndMiniGame_Co());
             return;
         }
         OnStartButton();
+    }
+
+    IEnumerator EndMiniGame_Co()
+    {
+        yield return new WaitForSeconds(1f);
+        _previewPanel.SetActive(false);
+        _enddingCavas.SetActive(true);
+        _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.8f);
+
+        _resultFood.transform.DOLocalMove(Vector3.zero, 0.8f);
+        // 이미지 주기
+        //_resultFood.sprite = "이미지"
+        // ex) : _resultFood.sprite = _previewPanel.transform.GetChild(0).GetComponent<Image>().sprite;
+        yield return new WaitForSeconds(1.1f);
+
+        _resultFood.transform.DOScale(Vector3.one * 1.2f, 1);
     }
 
     public void GoLobby()
@@ -171,9 +182,8 @@ public class MiniGameController : MonoBehaviour
         _buttonCanvas.GetComponent<Canvas>().enabled = true;
         yield return new WaitForSeconds(0.7f);
         _checkArea.ResetCheckArea();
-        //Foods.RemoveAt(0);
         MoldSpawner moldSpawner = _nowFood.GetComponent<MoldSpawner>();
-        moldSpawner.SettingMoldCount(230, 0.4f + Manager.Game.CurrentDay * 0.1f, 0.25f, 0.15f, Manager.Game.CurrentDay);
+        moldSpawner.SettingMoldCount(230, 0.4f - ((Manager.Game.CurrentDay - 1) / 2) * 0.05f, 0.35f, 0.25f, 1 + Manager.Game.CurrentDay / 2, 1.3f);
         moldSpawner.StartMold();
         _checkArea.SetFoodCollider(_nowFood.GetComponent<Collider2D>());
 
