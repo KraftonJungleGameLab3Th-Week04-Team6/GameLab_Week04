@@ -183,7 +183,7 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         _checkArea.ResetCheckArea();
         MoldSpawner moldSpawner = _nowFood.GetComponent<MoldSpawner>();
-        moldSpawner.SettingMoldCount(230, 0.4f - ((Manager.Game.CurrentDay - 1) / 2) * 0.05f, 0.35f, 0.25f, 1 + Manager.Game.CurrentDay / 2, 1.3f);
+        moldSpawner.SettingMoldCount(230, 0.5f - ((Manager.Game.CurrentDay-1) / 2) * 0.05f, 0.35f, 0.25f, 1 + Manager.Game.CurrentDay / 2, 1.6f);
         moldSpawner.StartMold();
         _checkArea.SetFoodCollider(_nowFood.GetComponent<Collider2D>());
 
