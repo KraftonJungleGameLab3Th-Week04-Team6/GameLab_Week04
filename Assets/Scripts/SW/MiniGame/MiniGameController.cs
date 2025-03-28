@@ -46,7 +46,7 @@ public class MiniGameController : MonoBehaviour
         _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
         _enddingCavas.SetActive(false);
 
-        _menuData  = MenuDatabase.ObjectData[Manager.Kitchen.OrderKey];
+        _menuData  = MenuDatabase.ObjectData[Manager.Kitchen.MenuKey];
         for (int i = 0; i < _menuData.menuIngredients.Count; i++)
         {
             Foods.Add(IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]].IngredientsPrefab);
