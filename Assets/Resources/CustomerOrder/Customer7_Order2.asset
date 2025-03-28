@@ -24,3 +24,7 @@ MonoBehaviour:
   - "\uB124? \uBB34\uC2A8 \uADF8\uB7F0\u2026 \uB300\uD30C \uBCF6\uC74C\uC774\uB098
     \uB4DC\uC138\uC694."
   preferenceList: 0100000000000000ffffffff
+  answerReaction:
+  - "\uC88B\uC544\uC694!"
+  - "\uAD1C\uCC2E\uB124\uC694."
+  - "\uC2EB\uC5B4\uC694.."

@@ -23,3 +23,7 @@ MonoBehaviour:
     \uC625\uC218\uC218 \uCC1C \uB4DC\uB9B4\uAE4C\uC694?"
   - "\uC18D\uC774 \uC548 \uC88B\uC740\uAC8C \uC800\uB791 \uBB34\uC2A8 \uC0C1\uAD00\uC774\uC8E0?"
   preferenceList: 0100000000000000ffffffff
+  answerReaction:
+  - "\uC88B\uC544\uC694!"
+  - "\uAD1C\uCC2E\uB124\uC694."
+  - "\uC2EB\uC5B4\uC694"
