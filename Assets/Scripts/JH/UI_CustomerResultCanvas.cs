@@ -43,7 +43,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
     public void SetCustomerResult(int customerKey)
     {
         CustomerData _customerData = CustomerDatabase.ObjectData[customerKey];
-        _customerImage.sprite = _customerData.customerSprite;
+        _customerImage.sprite = _customerData.customerGoodSprite;
 
         //float score = Manager.Kitchen.ResultRemainingPercentage - Manager.Kitchen.MoldPercentage;
         float score = Manager.Kitchen.ResultRemainingPercentage/3;

@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca40ed80df382b499ccad7f414b7c5b, type: 3}
-  m_Name: Order5
+  m_Script: {fileID: 11500000, guid: d31ed42b14a479143acae4e75e83c1e5, type: 3}
+  m_Name: Customer6_Order1
   m_EditorClassIdentifier: 
-  orderID: 205
-  orderName: "\uC591\uBC30\uCD94 \uACE0\uCD94 \uC808\uC784"
-  orderIngredients: 020000000500000006000000
-  orderPrice: 3500
+  customerOrderID: 6
+  Mood: 0
+  customerOrder: 
+  customerAnswerMenuList: 
+  customerAnswerList: []
+  preferenceList: 

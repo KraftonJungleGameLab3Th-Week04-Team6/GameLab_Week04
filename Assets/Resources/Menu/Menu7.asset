@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ca40ed80df382b499ccad7f414b7c5b, type: 3}
-  m_Name: Order4
+  m_Name: Menu7
   m_EditorClassIdentifier: 
-  orderID: 204
-  orderName: "\uBE0C\uB85C\uCF5C\uB9AC \uC625\uC218\uC218 \uCC1C"
-  orderIngredients: 010000000300000004000000
-  orderPrice: 5500
+  orderID: 207
+  orderName: "\uB300\uD30C \uBCF6\uC74C"
+  orderIngredients: 040000000400000004000000
+  orderPrice: 4000

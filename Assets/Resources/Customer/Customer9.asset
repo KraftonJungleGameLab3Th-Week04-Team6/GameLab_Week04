@@ -14,12 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerID: 9
   customerName: "\uC724\uC11C\uC900"
-  customerSprite: {fileID: 21300000, guid: 27be3bd19cf115945bb042297ddae667, type: 3}
-  customerOrder: "\uACE0\uCD94\uAC00 \uB9CE\uC774 \uB9E4\uC6B4\uAC00\uC694?"
-  customerAnswerMenuList: c9000000cd000000ce000000
-  customerAnswerList:
-  - "\uC544\uC8FC \uB9E4\uCF64\uD574\uC694! \uB9E4\uCF64\uD55C \uACE0\uCD94\uAC00
-    \uB4E4\uC5B4\uAC04 \uCC44\uC18C \uBCF6\uC74C \uC5B4\uB5A4\uAC00\uC694?"
-  - "\uB35C \uB9E4\uC6B4 \uC591\uBC30\uCD94 \uACE0\uCD94 \uC808\uC784\uC73C\uB85C
-    \uB4DC\uB9B4\uAC8C\uC694."
-  - "\uC548 \uB9E4\uC6B4 \uBB34 \uD30C\uC2A4\uD0C0\uB294 \uC5B4\uB5A4\uAC00\uC694?"
+  customerGoodSprite: {fileID: 21300000, guid: 27be3bd19cf115945bb042297ddae667, type: 3}
+  customerBadSprite: {fileID: 0}
+  favoriteFood: {fileID: 0}
+  customerOrderDataList:
+  - {fileID: 11400000, guid: 0b2bd473e44e21949a037621da85a569, type: 2}

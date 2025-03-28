@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KitchenOrder : MonoBehaviour
 {
-    private OrderData _orderData;
+    private MenuData _menuData;
     private IngredientsData _ingredientsData;
     [SerializeField] private GameObject _ingredientsSpawnPoint;
     private void Start()
@@ -15,11 +15,11 @@ public class KitchenOrder : MonoBehaviour
     private void Order(int key)
     {
         // 해당 주문에 대한 재료 목록 가져오기
-        _orderData = OrderDatabase.ObjectData[key];
+        _menuData = MenuDatabase.ObjectData[key];
         // 해당 주문에 대한 재료 데이터 가져오기
-        for (int i = 0; i < _orderData.orderIngredients.Count; i++)
+        for (int i = 0; i < _menuData.menuIngredients.Count; i++)
         {
-            _ingredientsData = IngredientsDatabase.ObjectData[_orderData.orderIngredients[i]];
+            _ingredientsData = IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]];
             IngredientsSetting();
         }
     }

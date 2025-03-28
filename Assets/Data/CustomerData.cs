@@ -9,12 +9,12 @@ public class CustomerData : ScriptableObject
     public int customerID;
     [Tooltip("손님 이름")]
     public string customerName;
-    [Tooltip("손님 이미지")]
-    public Sprite customerSprite;
-    [Tooltip("주문 대화")]
-    public String customerOrder;
-    [Tooltip("메뉴 ID 리스트")]
-    public int[] customerAnswerMenuList;
+    [Tooltip("손님 긍정 이미지")]
+    public Sprite customerGoodSprite;
+    [Tooltip("주문 부정 이미지")]
+    public Sprite customerBadSprite;
+    [Tooltip("좋아하는 음식 이미지")]
+    public Sprite favoriteFood;
     [Tooltip("대답 리스트")]
-    public String[] customerAnswerList;
+    public CustomerOrderData[] customerOrderDataList;
 }
