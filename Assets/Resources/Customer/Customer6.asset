@@ -19,3 +19,4 @@ MonoBehaviour:
   favoriteFood: {fileID: 0}
   customerOrderDataList:
   - {fileID: 11400000, guid: 3bee57a625dc0c546a536a0e09a412d0, type: 2}
+  - {fileID: 11400000, guid: 0481758289fc73c4e98e6fe5d72dca9a, type: 2}

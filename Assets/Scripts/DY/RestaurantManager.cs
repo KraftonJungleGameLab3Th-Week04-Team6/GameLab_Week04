@@ -35,14 +35,14 @@ public class RestaurantManager
         randomNumbers = MakeRandomNumbers(0, 9, UnityEngine.Random.Range(0, 999999999));
         for (int i = 0; i < 6; i++)
         {
-            CustomerList[9+i] = CustomerList[randomNumbers[i]] + 10;
+            CustomerList[9 + i] = CustomerList[randomNumbers[i]];
         }
 
         // 손님 순서 출력
-        //for (int i = 0; i < 15; i++)
-        //{
-        //    Debug.Log(CustomerList[i]);
-        //}
+        for (int i = 0; i < 15; i++)
+        {
+            Debug.Log(CustomerList[i]);
+        }
     }
 
     public static int[] MakeRandomNumbers(int minValue, int maxValue, int randomSeed = 0)

@@ -19,6 +19,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
     public TextMeshProUGUI _resultRemainingPercentageText;
     public Image _resultBar;
     public TextMeshProUGUI _finalResultText;
+    public TextMeshProUGUI _finalResultPlusText;
 
     private bool _isDone = false;
     private bool _isGameOver = false;
@@ -49,6 +50,16 @@ public class UI_CustomerResultCanvas : MonoBehaviour
             {
                 _fadeOut.enabled = false;
                 _iconImage.enabled = false;
+                
+                //결과창
+                _fadeOut.enabled = false;
+                _topText.enabled = false;
+                _menuPriceText.enabled = false;
+                _resultRemainingPercentageText.enabled = false;
+                _resultBar.enabled = false;
+                _finalResultPlusText.enabled = false;
+                _finalResultText.enabled = false;
+                
                 _clickUIText.enabled = false;
                 Manager.Game.GameStart();
             }
@@ -132,9 +143,9 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         // 결과창 현재 메뉴 가격
         _menuPriceText.text = MenuDatabase.ObjectData[key].menuPrice + "원";
         // 결과창 남은 재료 양
-        _resultRemainingPercentageText.text = Manager.Kitchen.ResultRemainingPercentage.ToString("F1");
+        _resultRemainingPercentageText.text = Manager.Kitchen.ResultRemainingPercentage.ToString("F1") + "%";
         // 결과창 최종 가격
-        _finalResultText.text = ((Manager.Kitchen.ResultRemainingPercentage * MenuDatabase.ObjectData[key].menuPrice) / 100) + "원";
+        _finalResultText.text = ((Manager.Kitchen.ResultRemainingPercentage * MenuDatabase.ObjectData[key].menuPrice) / 100).ToString("F1") + "원";
 
         StartCoroutine(CoShowCustomerResult(scoreIcon));
     }
@@ -160,6 +171,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _resultBar.enabled = true;
         yield return new WaitForSeconds(0.2f);
+        _finalResultPlusText.enabled = true;
         _finalResultText.enabled = true;
         yield return new WaitForSeconds(1.5f);
         _clickUIText.enabled = true;
