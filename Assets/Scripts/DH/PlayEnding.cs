@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayEnding : MonoBehaviour
@@ -28,6 +29,9 @@ public class PlayEnding : MonoBehaviour
 
     private IEnumerator StartEnding()
     {
+        _endingObjects[6].SetActive(true);
+        _endingObjects[6].GetComponent<TextMeshProUGUI>().text = "당신이 번 골드: " + Manager.Game.TotalMoney;
+
         switch (Manager.Game.EndingType)
         {
             case 1: // 해피엔딩
@@ -71,7 +75,7 @@ public class PlayEnding : MonoBehaviour
                 break;
         }
 
-        _endingObjects[6].SetActive(true);
+        _endingObjects[7].SetActive(true);
 
         yield break;
     }
