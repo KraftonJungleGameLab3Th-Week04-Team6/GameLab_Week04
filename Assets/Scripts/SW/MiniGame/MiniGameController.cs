@@ -32,7 +32,7 @@ public class MiniGameController : MonoBehaviour
     public float MoldPercentage { get{return _moldPercentage;} set{_moldPercentage = value;} }
     
     //주문 받은 메뉴
-    private OrderData _orderData;
+    private MenuData _menuData;
     
     private void Start()
     {
@@ -43,10 +43,10 @@ public class MiniGameController : MonoBehaviour
         _choppingBoard = FindAnyObjectByType<ChoppingBoard>();
         _enddingCavas.SetActive(false);
 
-        _orderData  = OrderDatabase.ObjectData[Manager.Kitchen.OrderKey];
-        for (int i = 0; i < _orderData.orderIngredients.Count; i++)
+        _menuData  = MenuDatabase.ObjectData[Manager.Kitchen.OrderKey];
+        for (int i = 0; i < _menuData.menuIngredients.Count; i++)
         {
-            Foods.Add(IngredientsDatabase.ObjectData[_orderData.orderIngredients[i]].IngredientsPrefab);
+            Foods.Add(IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]].IngredientsPrefab);
         }
         
         Manager.Kitchen.ResultRemainingPercentage = 0;
