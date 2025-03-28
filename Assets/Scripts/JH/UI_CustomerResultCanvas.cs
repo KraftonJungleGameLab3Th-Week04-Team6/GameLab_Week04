@@ -46,7 +46,7 @@ public class UI_CustomerResultCanvas : MonoBehaviour
         _customerImage.sprite = _customerData.customerGoodSprite;
 
         //float score = Manager.Kitchen.ResultRemainingPercentage - Manager.Kitchen.MoldPercentage;
-        float score = Manager.Kitchen.ResultRemainingPercentage/3;
+        float score = Manager.Kitchen.ResultRemainingPercentage;
         print("score" + score);
         if (Manager.Kitchen.MoldPercentage > 0.01)
         {

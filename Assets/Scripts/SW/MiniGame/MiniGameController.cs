@@ -33,6 +33,7 @@ public class MiniGameController : MonoBehaviour
     
     //주문 받은 메뉴
     private MenuData _menuData;
+    private int _totalFoodNum;
     
     private void Start()
     {
@@ -48,7 +49,9 @@ public class MiniGameController : MonoBehaviour
         {
             Foods.Add(IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]].IngredientsPrefab);
         }
-        
+
+        _totalFoodNum = Foods.Count;
+
         Manager.Kitchen.ResultRemainingPercentage = 0;
         Manager.Kitchen.MoldPercentage = 0;
 
@@ -117,8 +120,8 @@ public class MiniGameController : MonoBehaviour
         
         if (Foods.Count == 0)
         {
-            float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / 3.0f;
-            float moldPercentage = Manager.Kitchen.MoldPercentage / 3.0f;
+            float resultRemainingPercentage = Manager.Kitchen.ResultRemainingPercentage / _totalFoodNum;
+            float moldPercentage = Manager.Kitchen.MoldPercentage / _totalFoodNum;
             
             _enddingCavas.SetActive(true);
 
@@ -131,6 +134,9 @@ public class MiniGameController : MonoBehaviour
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Losstext.text =  "남은 재료 비율 : " + resultRemainingPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moldtext.text = "곰팡이 비율 : " + moldPercentage.ToString("F1") + "%";
             _enddingCavas.GetComponent<PlayEnddingCanvas>().Moneytext.text = "수익 : " + (int)resultRemainingPercentage * 100 + "원";
+
+            Manager.Kitchen.ResultRemainingPercentage = resultRemainingPercentage;
+            Manager.Kitchen.MoldPercentage = moldPercentage;
 
             return;
         }
@@ -155,7 +161,6 @@ public class MiniGameController : MonoBehaviour
 
         isStart = true;
         sliceTime = 10;
-
     }
     IEnumerator CalculateScore()
     {
