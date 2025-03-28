@@ -124,6 +124,13 @@ public class MiniGameController : MonoBehaviour
     {
         _choppingBoard.transform.DOLocalMove(new Vector3(2000, 0, 0), 0.5f);
         _checkArea.ResetCheckArea();
+
+        // 알파 값 조절
+        Image img = _previewPanel.transform.GetChild(_totalFoodNum - Foods.Count).GetComponent<Image>();
+        Color c = img.color;
+        c.a = 60f / 255f; // 알파값을 30으로 (0~1 범위로)
+        img.color = c;
+
         Foods.RemoveAt(0);
         Destroy(_nowFood);
         sliceTime = 0;
