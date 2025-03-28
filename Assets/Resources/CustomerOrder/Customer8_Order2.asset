@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31ed42b14a479143acae4e75e83c1e5, type: 3}
+  m_Name: Customer8_Order2
+  m_EditorClassIdentifier: 
+  customerOrderID: 8
+  mood: -1
+  customerOrder: "\uB098 \uC774\uC81C\uB294 \uB300\uD30C\uAC00 \uC9C8\uB838\uAD6C\uB9CC!
+    \uB300\uD30C \uBCF6\uC74C \uB9D0\uACE0 \uB300\uD30C\uAC00 \uC548 \uB4E4\uC5B4\uAC00\uB294
+    \uC694\uB9AC \uC788\uB098!"
+  customerAnswerMenuList: ca000000cc000000cf000000
+  customerAnswerList:
+  - "\uC2E0\uC120\uD55C \uCC44\uC18C \uC0D0\uB7EC\uB4DC\uB294 \uC5B4\uB5A0\uC138\uC694?"
+  - "\uBE0C\uB85C\uCF5C\uB9AC \uC625\uC218\uC218 \uCC1C\uC774 \uC800\uD76C \uAC00\uAC8C\uC758
+    \uD0A5\uC785\uB2C8\uB2E4."
+  - "\uC5B4\uD734 \uB610 \uC774\uB7EC\uC2E0\uB2E4\u2026 \uADF8\uB0E5 \uB300\uD30C
+    \uBCF6\uC74C\uC774\uB098 \uB4DC\uC138\uC694."
+  preferenceList: ffffffffffffffff01000000
