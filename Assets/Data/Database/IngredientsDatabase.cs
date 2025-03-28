@@ -9,16 +9,16 @@ public class IngredientsDatabase : MonoBehaviour
 
     private void Awake()
     {
-        AddCustomerData(1, "Ingredients/Broccoli"); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
-        AddCustomerData(2, "Ingredients/Cabbage"); 
-        AddCustomerData(3, "Ingredients/Corn"); 
-        AddCustomerData(4, "Ingredients/GreenOnion"); 
-        AddCustomerData(5, "Ingredients/Pepper"); 
-        AddCustomerData(6, "Ingredients/Pimento"); 
-        AddCustomerData(7, "Ingredients/Radish"); 
+        AddIngredientsData(1, "Ingredients/Broccoli"); // 1번 -> 찾을때 해당 아이템의 번호 찾아야 됨
+        AddIngredientsData(2, "Ingredients/Cabbage"); 
+        AddIngredientsData(3, "Ingredients/Corn"); 
+        AddIngredientsData(4, "Ingredients/GreenOnion"); 
+        AddIngredientsData(5, "Ingredients/Pepper"); 
+        AddIngredientsData(6, "Ingredients/Pimento"); 
+        AddIngredientsData(7, "Ingredients/Radish"); 
     }
 
-    public static void AddCustomerData(int id, string path)
+    public static void AddIngredientsData(int id, string path)
     {
         if (!_ingredientsData.ContainsKey(id))
         {

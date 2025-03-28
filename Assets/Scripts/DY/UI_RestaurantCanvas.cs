@@ -9,7 +9,11 @@ public class UI_RestaurantCanvas : MonoBehaviour
     public List<UI_Button> _buttons;
     public Image _customerImage;
     
+    //손님 데이터
     private CustomerData _customerData;
+    //대사 데이터
+    private CustomerOrderData[] _customerOrderData;
+    private CustomerOrderData _currentOrderData;
 
     private void Awake()
     {
@@ -20,14 +24,21 @@ public class UI_RestaurantCanvas : MonoBehaviour
     private void OnCustomerOrder(int key)
     {
         _customerData = CustomerDatabase.ObjectData[key];
-        _customerText.GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerName + '\n' +_customerData.customerOrder;
+        //손님 주문 대사 목록 받아오기
+        _customerOrderData = _customerData.customerOrderDataList;
+        
+        //손님 주문 대사 랜덤으로 선택
+        int randomIntOrder = Random.Range(0, _customerOrderData.Length);
+        _currentOrderData = _customerOrderData[randomIntOrder];
+        
+        _customerText.GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerName + '\n' +_currentOrderData.customerOrder;
         for (int i = 0; i < _buttons.Count; i++)
         {
-            _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerAnswerList[i];
-            int menuIndex = _customerData.customerAnswerMenuList[i];
+            _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = _currentOrderData.customerAnswerList[i];
+            int menuIndex = _currentOrderData.customerAnswerMenuList[i];
             _buttons[i].gameObject.GetComponent<Button>().onClick.AddListener(() => ButtonClick(menuIndex));
         }
-        _customerImage.sprite = _customerData.customerSprite;
+        _customerImage.sprite = _customerData.customerGoodSprite;
         
     }
 
