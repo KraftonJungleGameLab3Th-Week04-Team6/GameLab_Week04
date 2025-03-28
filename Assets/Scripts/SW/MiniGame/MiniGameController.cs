@@ -66,7 +66,7 @@ public class MiniGameController : MonoBehaviour
         for (int i = 0; i < Foods.Count; i++)
         {
             _previewPanel.transform.GetChild(i).gameObject.SetActive(true);
-            _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetComponent<SpriteRenderer>().sprite;
         }
 
         OnStartButton();
@@ -116,7 +116,7 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(StartPlay_Coroutine());
 
-        GameObject nowFood = Foods[0].transform.GetChild(0).gameObject;
+        GameObject nowFood = Foods[0].transform.gameObject;
         _nowFood = Instantiate(nowFood);
         _nowFood.transform.position = transform.position;
     }

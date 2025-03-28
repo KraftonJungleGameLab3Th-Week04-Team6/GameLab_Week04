@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: caee56f0be5ab3c4982bd9b27e966372
+guid: ed3d0491234641a4fa000be41d9de4ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2548606558487222155
-    second: upscalemedia-transformed (1)_0
+      213: -4609125287143769952
+    second: Leek_0
+  - first:
+      213: -5962379156054688679
+    second: Leek_1
+  - first:
+      213: 8969711926866285389
+    second: Leek_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +30,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -74,7 +80,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,23 +106,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: upscalemedia-transformed (1)_0
+      name: GreenOnion
       rect:
         serializedVersion: 2
-        x: 72
-        y: 72
-        width: 368
-        height: 368
+        x: 117
+        y: 116
+        width: 581
+        height: 587
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 578632196d781acd0800000000000000
-      internalID: -2548606558487222155
+      spriteID: 0a87686b8f81900c0800000000000000
+      internalID: -4609125287143769952
       vertices: []
       indices: 
       edges: []
@@ -125,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4453126a77c2cf942baed9583647c863
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      upscalemedia-transformed (1)_0: -2548606558487222155
+      GreenOnion: -4609125287143769952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: ee611a7e157d2fb4c90bbdc12e874218
+guid: 80c005dd6968c6243bc90b24f304a2e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3835579247118368046
-    second: upscalemedia-transformed_0
+      213: 5735533114237087093
+    second: Daikon_0
+  - first:
+      213: -6946984286048669819
+    second: Daikon_1
+  - first:
+      213: 901214324115098773
+    second: Daikon_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +30,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -74,7 +80,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,23 +106,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: upscalemedia-transformed_0
+      name: Radish
       rect:
         serializedVersion: 2
-        x: 86
-        y: 80
-        width: 340
-        height: 352
+        x: 147
+        y: 139
+        width: 525
+        height: 539
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d246ab1ff845cac0800000000000000
-      internalID: -3835579247118368046
+      spriteID: 57d679faaf4b89f40800000000000000
+      internalID: 5735533114237087093
       vertices: []
       indices: 
       edges: []
@@ -125,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 29fec3d0389c13b41943ff37df52ea7d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      upscalemedia-transformed_0: -3835579247118368046
+      Radish: 5735533114237087093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

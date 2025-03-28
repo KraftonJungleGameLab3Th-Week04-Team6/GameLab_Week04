@@ -1,13 +1,40 @@
 fileFormatVersion: 2
-guid: bdc275db4d2f23144977fe466f568e76
+guid: 4b94ad91123a1ef48b956a20ddb5c048
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -796155573255488767
-    second: 28_0
+      213: -3714129548747480288
+    second: Chili_0
   - first:
-      213: -8841179508272151079
-    second: 28_1
+      213: 2627657077411472225
+    second: Chili_1
+  - first:
+      213: 1639873031674258890
+    second: Chili_2
+  - first:
+      213: -1458123210251134020
+    second: Chili_3
+  - first:
+      213: 5199711865031606916
+    second: Chili_4
+  - first:
+      213: 402395005229519703
+    second: Chili_5
+  - first:
+      213: -8381771179728631307
+    second: Chili_6
+  - first:
+      213: -5275928105213574715
+    second: Chili_7
+  - first:
+      213: -5024725377232348273
+    second: Chili_8
+  - first:
+      213: -6293079510010811608
+    second: Chili_9
+  - first:
+      213: 3445969109097260567
+    second: Chili_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -27,7 +54,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -77,7 +104,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -103,45 +130,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 28_0
+      name: Pepper
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 425
-        height: 438
+        x: 137
+        y: 144
+        width: 544
+        height: 532
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10bb82e69bc73f4f0800000000000000
-      internalID: -796155573255488767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 28_1
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 0
-        width: 258
-        height: 148
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d5c9fd6412dd4580800000000000000
-      internalID: -8841179508272151079
+      spriteID: 482c7995466192840800000000000000
+      internalID: 5199711865031606916
       vertices: []
       indices: 
       edges: []
@@ -150,7 +155,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f9d822493f144234fabca8dda240a242
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +165,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      28_0: -796155573255488767
-      28_1: -8841179508272151079
+      Pepper: 5199711865031606916
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

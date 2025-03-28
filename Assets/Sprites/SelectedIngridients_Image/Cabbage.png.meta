@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0305395a3664775448f64d4e86698d0b
+guid: 293c319520675324ba10d9174f1b1463
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8578418458684398838
-    second: 1 (1)_0
+      213: 159068718711766808
+    second: Cabbage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1
+      name: Cabbage
       rect:
         serializedVersion: 2
-        x: 68
-        y: 114
-        width: 376
-        height: 284
+        x: 160
+        y: 157
+        width: 499
+        height: 505
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a03667bbcd553f880800000000000000
-      internalID: -8578418458684398838
+      spriteID: 81ff0b92820253200800000000000000
+      internalID: 159068718711766808
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0195008083d9be1459ef3da827a78055
+    spriteID: 84b6046dbdedc3948bced09feae13660
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1: -8578418458684398838
+      Cabbage: 159068718711766808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

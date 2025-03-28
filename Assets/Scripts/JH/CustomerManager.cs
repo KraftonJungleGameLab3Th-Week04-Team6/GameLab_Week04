@@ -41,6 +41,6 @@ public class CustomerManager
     //    }
 
     //    // Manager.UI.SetCustomerUI(customerData.customerID);
-    }
+    //}
 
 }
