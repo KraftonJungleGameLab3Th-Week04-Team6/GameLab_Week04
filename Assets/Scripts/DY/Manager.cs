@@ -13,10 +13,12 @@ public class Manager : MonoBehaviour
     public static GameManager Game { get { return Instance._game; } }
     public static KitchenManager Kitchen { get { return Instance._kitchen; } }
     public static RestaurantManager Restaurant { get { return Instance._restaurant; } }
-    
+    public static PopularityManager Popularity { get { return Instance._popularityManager; } }
+
     private GameManager _game = new GameManager();
     private RestaurantManager _restaurant = new RestaurantManager();
     private KitchenManager _kitchen = new KitchenManager();
+    private PopularityManager _popularityManager = new PopularityManager();
     #endregion
 
     private void Awake()

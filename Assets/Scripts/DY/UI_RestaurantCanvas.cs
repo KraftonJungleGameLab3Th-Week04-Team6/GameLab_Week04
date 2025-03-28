@@ -29,7 +29,6 @@ public class UI_RestaurantCanvas : MonoBehaviour
         //손님 주문 대사 목록 받아오기
         _customerOrderData = _customerData.customerOrderDataList;
 
-        //손님 주문 대사 랜덤으로 선택
         int intOrder = Manager.Game.CurrentDay <= 3 ? 0 : 1;
         _currentOrderData = _customerOrderData[intOrder];
         //매니저에 동기화
