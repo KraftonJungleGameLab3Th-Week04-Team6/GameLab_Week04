@@ -48,20 +48,20 @@ public class UI_StatusResultCanvas : MonoBehaviour
         {
             if (!_isGameOver)
             {
-                _fadeOut.enabled = false;
-                _iconImage.enabled = false;
-                
-                //결과창
-                _fadeOut.enabled = false;
-                _topText.enabled = false;
-                _menuPriceText.enabled = false;
-                _resultRemainingPercentageText.enabled = false;
-                _resultBar.enabled = false;
-                _finalResultPlusText.enabled = false;
-                _finalResultText.enabled = false;
-                
-                _clickUIText.enabled = false;
                 Manager.Game.GameStart();
+                //_fadeOut.enabled = false;
+                //_iconImage.enabled = false;
+                
+                ////결과창
+                //_fadeOut.enabled = false;
+                //_topText.enabled = false;
+                //_menuPriceText.enabled = false;
+                //_resultRemainingPercentageText.enabled = false;
+                //_resultBar.enabled = false;
+                //_finalResultPlusText.enabled = false;
+                //_finalResultText.enabled = false;
+                
+                //_clickUIText.enabled = false;
             }
             else
             {
@@ -145,7 +145,7 @@ public class UI_StatusResultCanvas : MonoBehaviour
         // 결과창 남은 재료 양
         _resultRemainingPercentageText.text = Manager.Kitchen.ResultRemainingPercentage.ToString("F1") + "%";
         // 결과창 최종 가격
-        _finalResultText.text = ((Manager.Kitchen.ResultRemainingPercentage * MenuDatabase.ObjectData[key].menuPrice) / 100).ToString("F1") + "원";
+        _finalResultText.text = ((Manager.Kitchen.ResultRemainingPercentage * MenuDatabase.ObjectData[key].menuPrice) / 100).ToString("F0") + "원";
 
         StartCoroutine(CoShowCustomerResult(scoreIcon));
     }

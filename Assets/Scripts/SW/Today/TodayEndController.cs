@@ -33,8 +33,6 @@ public class TodayEndController : MonoBehaviour
         print("하루 방문자" + Manager.Game.TodayCustomerCount);
         print("가격" + Manager.Game.TodayGetMoney);
         print("하루날짜" + Manager.Game.CurrentDay);
-
-        print("ddd");
     }
 
     public void NextDay()

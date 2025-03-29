@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class JSW_DrawLine : MonoBehaviour
 {
+    public GameObject NowIngredient { set { _nowIngredient = value; } }
     public GameObject sliceEffect;
     public GameObject sliceTrail;
 
     private bool _isDrawing = false;
+    private GameObject _nowIngredient;
 
     [Header("line option")]
     [SerializeField] private float minDistance;
@@ -51,7 +53,7 @@ public class JSW_DrawLine : MonoBehaviour
         LineRenderer lineRenderer = line.AddComponent<LineRenderer>(); // 마우스를 따라 선을 그리기 위한 LineRenderer
         lineRenderer.startWidth = lineWidth;
         lineRenderer.material = MakeMaterial(lineColor);
-        lineRenderer.sortingOrder = 1;
+        lineRenderer.sortingOrder = 10;
 
         EdgeCollider2D edgeCollider2D = line.AddComponent<EdgeCollider2D>(); // 폐곡선 충돌 확인을 위한 edgeCollider2D
 
@@ -227,7 +229,9 @@ public class JSW_DrawLine : MonoBehaviour
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
 
-            Mesh filledMesh = new()
+            _nowIngredient.GetComponent<CutIngridient>().Cut(ref polygonCollider2D);
+
+            /*Mesh filledMesh = new()
             {
                 vertices = pointsList.ConvertAll(elem => (Vector3)elem).ToArray(),
                 triangles = new Triangulator(pointsList.ToArray()).Triangulate()
@@ -237,7 +241,7 @@ public class JSW_DrawLine : MonoBehaviour
             MeshFilter meshFilter = line.AddComponent<MeshFilter>();
 
             meshRenderer.material = MakeMaterial(insideColor);
-            meshFilter.mesh = filledMesh;
+            meshFilter.mesh = filledMesh;*/
 
             _checkArea.cutColliders.Add(polygonCollider2D);
             _kitchenCamera.SliceMoving();
