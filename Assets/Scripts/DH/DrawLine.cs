@@ -127,7 +127,7 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 15 && correctionIndex >= 10) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
+        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 10) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
@@ -206,7 +206,7 @@ public class DrawLine : MonoBehaviour
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
         Destroy(edgeCollider2D);
-        //Destroy(lineRenderer);
+        Destroy(lineRenderer);
 
         if (isShape && pointsList.Count >= 3) // 폐곡선이 완성되었다면 폴리곤 생성하고 자르기
         {
