@@ -29,8 +29,8 @@ public class PlayEnding : MonoBehaviour
 
     private IEnumerator StartEnding()
     {
-        _endingObjects[6].SetActive(true);
-        _endingObjects[6].GetComponent<TextMeshProUGUI>().text = "당신이 번 골드: " + Manager.Game.TotalMoney;
+        _endingObjects[_endingObjects.Length - 2].SetActive(true);
+        _endingObjects[_endingObjects.Length - 2].GetComponent<TextMeshProUGUI>().text = "당신이 번 골드: " + Manager.Game.TotalMoney;
 
         switch (Manager.Game.EndingType)
         {
@@ -39,9 +39,9 @@ public class PlayEnding : MonoBehaviour
 
                 yield return _delay;
 
-                _endingObjects[3].SetActive(true);
+                _endingObjects[7].SetActive(true);
 
-                _typingText = _endingObjects[3].GetComponent<DisplayText>();
+                _typingText = _endingObjects[7].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
@@ -51,9 +51,9 @@ public class PlayEnding : MonoBehaviour
 
                 yield return _delay;
 
-                _endingObjects[4].SetActive(true);
+                _endingObjects[8].SetActive(true);
 
-                _typingText = _endingObjects[4].GetComponent<DisplayText>();
+                _typingText = _endingObjects[8].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
@@ -63,9 +63,57 @@ public class PlayEnding : MonoBehaviour
 
                 yield return _delay;
 
+                _endingObjects[9].SetActive(true);
+
+                _typingText = _endingObjects[9].GetComponent<DisplayText>();
+
+                while (!_typingText.IsDone) yield return null;
+
+                break;
+            case 4: // 돈 많고 평점많은엔딩
+                _endingObjects[3].SetActive(true);
+
+                yield return _delay;
+
+                _endingObjects[10].SetActive(true);
+
+                _typingText = _endingObjects[10].GetComponent<DisplayText>();
+
+                while (!_typingText.IsDone) yield return null;
+
+                break;
+            case 5: // 돈 많고 평점 적은 엔딩
+                _endingObjects[4].SetActive(true);
+
+                yield return _delay;
+
+                _endingObjects[11].SetActive(true);
+
+                _typingText = _endingObjects[11].GetComponent<DisplayText>();
+
+                while (!_typingText.IsDone) yield return null;
+
+                break;
+            case 6: // 돈 적고 평점 많은 엔딩
                 _endingObjects[5].SetActive(true);
 
-                _typingText = _endingObjects[5].GetComponent<DisplayText>();
+                yield return _delay;
+
+                _endingObjects[12].SetActive(true);
+
+                _typingText = _endingObjects[12].GetComponent<DisplayText>();
+
+                while (!_typingText.IsDone) yield return null;
+
+                break;
+            case 7: // 돈 적고 평점 적은 엔딩
+                _endingObjects[6].SetActive(true);
+
+                yield return _delay;
+
+                _endingObjects[13].SetActive(true);
+
+                _typingText = _endingObjects[13].GetComponent<DisplayText>();
 
                 while (!_typingText.IsDone) yield return null;
 
@@ -75,7 +123,7 @@ public class PlayEnding : MonoBehaviour
                 break;
         }
 
-        _endingObjects[7].SetActive(true);
+        _endingObjects[_endingObjects.Length-1].SetActive(true);
 
         yield break;
     }
