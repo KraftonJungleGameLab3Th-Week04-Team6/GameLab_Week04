@@ -20,7 +20,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
     private void Awake()
     {
         Manager.Restaurant.sendCustomer += OnCustomerOrder;
-        transform.GetChild(3).GetComponent<TMP_Text>().text = Manager.Game.CurrentDay + " DAY";
+        transform.GetChild(3).GetComponent<TMP_Text>().text = "DAY " + Manager.Game.CurrentDay;
     }
 
     private void OnCustomerOrder(int key)

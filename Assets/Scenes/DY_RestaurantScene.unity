@@ -1542,6 +1542,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 553397455263624432, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553397455263624432, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553397455263624432, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 553397455263624432, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3260824729731167302, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1622,9 +1638,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4490842623409719056, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4490842623409719056, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4490842623409719056, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4490842623409719056, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5295777246092480230, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
       propertyPath: m_Name
       value: UI_RestaurantCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500169919711954658, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500169919711954658, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500169919711954658, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500169919711954658, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206431951160143826, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206431951160143826, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206431951160143826, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206431951160143826, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
