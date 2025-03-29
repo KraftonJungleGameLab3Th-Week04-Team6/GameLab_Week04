@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class JSW_DrawLine : MonoBehaviour
 {
     public GameObject NowIngredient { set { _nowIngredient = value; } }
-    public GameObject sliceTrail;
+    public GameObject sliceTrailEffect;
 
     private bool _isDrawing = false;
     private GameObject _nowIngredient;
@@ -255,10 +255,7 @@ public class JSW_DrawLine : MonoBehaviour
             meshFilter.mesh = filledMesh;*/
 
             _kitchenCamera.SliceMoving();
-            if (polygonCollider2D != null)
-            {
-                StartCoroutine(SliceTrailMove(pointsList));
-            }
+            StartCoroutine(SliceTrailMove(pointsList));
         }
         else // 폐곡선이 완성되지 않았다면 선 삭제
         {
@@ -292,33 +289,36 @@ public class JSW_DrawLine : MonoBehaviour
         else return 0;
     }
 
-    int _moveSpeed = 50;
-
     IEnumerator SliceTrailMove(List<Vector2> pathPoints)
     {
-        GameObject _sliceTrail = Instantiate(sliceTrail, pathPoints[0], quaternion.identity);
+        GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity);
+
+        float pathDistance = Vector2.Distance(pathPoints[0], pathPoints[pathPoints.Count - 1]);
+        for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
+        float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.2f);
+
         for (int i = 0; i < pathPoints.Count; i++)
         {
-            Vector3 target = pathPoints[i];
-            while (Vector3.Distance(_sliceTrail.transform.position, target) > 0.01f)
+            Vector2 target = pathPoints[i];
+            while (Vector2.Distance(sliceTrail.transform.position, target) > 0.01f)
             {
-                _sliceTrail.transform.position = Vector3.MoveTowards(_sliceTrail.transform.position, target, _moveSpeed * Time.deltaTime);
+                sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, target, moveSpeed * Time.deltaTime);
                 yield return null;
             }
             // 정확히 타겟 포인트에 맞춰주기
-            _sliceTrail.transform.position = target;
+            sliceTrail.transform.position = target;
         }
 
         // 마지막에서 시작점으로 복귀
-        Vector3 first = pathPoints[0];
-        while (Vector3.Distance(_sliceTrail.transform.position, first) > 0.01f)
+        Vector2 first = pathPoints[0];
+        while (Vector2.Distance(sliceTrail.transform.position, first) > 0.01f)
         {
-            _sliceTrail.transform.position = Vector3.MoveTowards(_sliceTrail.transform.position, first, _moveSpeed * Time.deltaTime);
+            sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, first, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        _sliceTrail.transform.position = first;
+        sliceTrail.transform.position = first;
         
-        Destroy(_sliceTrail);
+        Destroy(sliceTrail);
         Debug.Log("한 바퀴 완료!");
     }
 }

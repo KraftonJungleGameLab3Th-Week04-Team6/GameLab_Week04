@@ -1645,8 +1645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a554cf4d3210c3048961182b58ddb205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sliceEffect: {fileID: 2708598583397607911, guid: a9188a70ce0d79c4890df6a9dcf48488, type: 3}
-  sliceTrail: {fileID: 8406112623771217094, guid: 375d8a9c3048fd748840329f427e19dc, type: 3}
+  sliceTrailEffect: {fileID: 8406112623771217094, guid: 375d8a9c3048fd748840329f427e19dc, type: 3}
   minDistance: 0.1
   lineWidth: 0.05
   lineColor: {r: 0.8980392, g: 0.18039216, b: 0.18039216, a: 0.8}
