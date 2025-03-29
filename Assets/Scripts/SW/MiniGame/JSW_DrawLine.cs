@@ -229,6 +229,8 @@ public class JSW_DrawLine : MonoBehaviour
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
 
+            _checkArea.cutColliders.Add(polygonCollider2D);
+
             _nowIngredient.GetComponent<CutIngridient>().Cut(ref polygonCollider2D);
 
             /*Mesh filledMesh = new()
@@ -243,7 +245,6 @@ public class JSW_DrawLine : MonoBehaviour
             meshRenderer.material = MakeMaterial(insideColor);
             meshFilter.mesh = filledMesh;*/
 
-            _checkArea.cutColliders.Add(polygonCollider2D);
             _kitchenCamera.SliceMoving();
             if (polygonCollider2D != null)
             {

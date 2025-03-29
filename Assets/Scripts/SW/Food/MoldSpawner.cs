@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class MoldSpawner : MonoBehaviour
 {
-
     [Header("Spawner option")]
     public GameObject moldPrefab;
+
+    public HashSet<Transform> MoldSet { get { return _moldSet; } }
 
     private int _maxMoldCount = 230;
     private float _spawnIntervalTime = 0.1f;
@@ -17,8 +20,8 @@ public class MoldSpawner : MonoBehaviour
     private int _startPoint;
 
     private PolygonCollider2D _vegCollider;
-    private List<Transform> _moldCenters = new List<Transform>(); // 기존 곰팡이 위치들
-    private int _currentMoldCount = 0;
+    private HashSet<Transform> _moldSet = new(); // 남아있는 곰팡이 관리 해시셋
+    private int _currentMoldCount = 0; // 누적 소환된 곰팡이 수
     private MiniGameController _miniGameController;
 
 
@@ -67,10 +70,8 @@ public class MoldSpawner : MonoBehaviour
         // 1. 시작 위치 하나 생성
         Vector2 startPos = GetRandomPointInside();
         GameObject firstMold = Instantiate(moldPrefab, startPos, Quaternion.identity, transform);
-        _moldCenters.Add(firstMold.transform);
+        _moldSet.Add(firstMold.transform);
         _currentMoldCount++;
-
-        StartCoroutine(CheckingMoldCount());
 
         yield return new WaitForSeconds(_spawnIntervalTime);
 
@@ -79,47 +80,32 @@ public class MoldSpawner : MonoBehaviour
         {
             List<Transform> newMolds = new List<Transform>();
 
-            foreach (var center in _moldCenters)
+            foreach (Transform mold in _moldSet.ToList())
             {
-                if (center == null) continue;
+                if (mold == null) continue;
                 Vector2 randomOffset = Random.insideUnitCircle * _spreadRadius;
-                Vector2 spawnPos = (Vector2)center.position + randomOffset;
+                Vector2 spawnPos = (Vector2)mold.position + randomOffset;
 
                 if (_vegCollider.OverlapPoint(spawnPos) && !IsTooCloseToExistingMold(spawnPos) && !IsOverlappingOtherCollider(spawnPos))
                 {
-                    GameObject mold = Instantiate(moldPrefab, spawnPos, Quaternion.identity, transform);
-                    newMolds.Add(mold.transform);
+                    GameObject newMold = Instantiate(moldPrefab, spawnPos, Quaternion.identity, transform);
+                    _moldSet.Add(newMold.transform);
                     _currentMoldCount++;
 
                     if (_currentMoldCount >= _maxMoldCount)
                         break;
                 }
             }
-            // 새로 생긴 곰팡이들을 중심 리스트에 추가
-            _moldCenters.AddRange(newMolds);
 
             yield return new WaitForSeconds(_spawnIntervalTime);
         }
     }
 
-    IEnumerator CheckingMoldCount()
+    public void CheckMoldSetCount()
     {
-        while (true)
+        if (_moldSet.Count == 0)
         {
-            bool isEndding = true;
-            foreach (var center in _moldCenters)
-            {
-                if (center != null)
-                {
-                    isEndding = false;
-                }
-            }
-            if (isEndding)
-            {
-                _miniGameController.OnEndButton();
-                break;
-            }
-            yield return new WaitForSeconds(0.05f);
+            _miniGameController.OnEndButton();
         }
     }
 
@@ -142,7 +128,7 @@ public class MoldSpawner : MonoBehaviour
 
     bool IsTooCloseToExistingMold(Vector2 pos)
     {
-        foreach (Transform mold in _moldCenters)
+        foreach (Transform mold in _moldSet.ToList())
         {
             if (mold == null) continue;
             if (Vector2.Distance(pos, mold.position) < _minDistanceBetweenMolds)
