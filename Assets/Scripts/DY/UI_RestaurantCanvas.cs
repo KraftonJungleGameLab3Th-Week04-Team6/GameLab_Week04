@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,12 +11,14 @@ public class UI_RestaurantCanvas : MonoBehaviour
     public GameObject _customerText;
     public List<UI_Button> _buttons;
     public Image _customerImage;
+    public GameObject PopularityFX;
     
     //손님 데이터
     private CustomerData _customerData;
     //대사 데이터
     private CustomerOrderData[] _customerOrderData;
     private CustomerOrderData _currentOrderData;
+    private GameObject _popularityFX;
 
     private void Awake()
     {
@@ -64,7 +67,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
         
     }
 
-    void ButtonClick(int menuKey)
+    async Task ButtonClick(int menuKey)
     {
         Debug.Log("ButtonClick" + menuKey);
         Manager.Kitchen.MenuKey = menuKey;
@@ -83,18 +86,31 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
         if (index != -1)
         {
+            //Vector3 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 screenPoint = Input.mousePosition;
+
+
             // 좋아하는 선택지
             if (_currentOrderData.preferenceList[index] == 1)
             {
+                _popularityFX = Instantiate(PopularityFX, screenPoint, Quaternion.identity);
+                _popularityFX.transform.SetParent(transform);
+                _popularityFX.GetComponent<TextEffect>().value = 2;
+                _popularityFX.GetComponent<TextEffect>().Init();
                 Manager.Popularity.PlusPopularity(2);
             }
 
             // 싫어하는 선택지
             if (_currentOrderData.preferenceList[index] == -1)
             {
+                _popularityFX = Instantiate(PopularityFX, screenPoint, Quaternion.identity);
+                _popularityFX.transform.SetParent(transform);
+                _popularityFX.GetComponent<TextEffect>().value = -1; 
+                _popularityFX.GetComponent<TextEffect>().Init();
                 Manager.Popularity.PlusPopularity(-1);
             }
 
+            await Task.Delay(2000);
         }
 
         Manager.Game.GoKitchen();

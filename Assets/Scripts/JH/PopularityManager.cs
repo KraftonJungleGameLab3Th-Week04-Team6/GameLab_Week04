@@ -21,10 +21,7 @@ public class PopularityManager
         _ui_Status.SetUI();
     }
 
-    public void PlusPopularityFX(int value)
-    {
 
-    }
 
 
 

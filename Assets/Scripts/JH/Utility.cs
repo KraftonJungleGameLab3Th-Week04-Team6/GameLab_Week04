@@ -44,10 +44,3 @@ public enum ECustomerIcon
     Bad,
     Vomit,
 }
-
-
-public enum EDirection
-{
-    Up,
-    Down
-}
