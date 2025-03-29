@@ -13,4 +13,6 @@ public class MenuData : ScriptableObject // 주문 정보 데이터
     public List<int> menuIngredients;
     [Tooltip("가격")]
     public int menuPrice;
+    [Tooltip("음식 이미지")]
+    public Sprite menuImage;
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IngredientsID: 2
   IngredientsName: "\uC591\uBC30\uCD94"
-  IngredientsPrefab: {fileID: 3971960377832543987, guid: 6b1fc11df68584545b0cd6dc4360aef5, type: 3}
+  IngredientsPrefab: {fileID: 5372807250862984793, guid: 6b1fc11df68584545b0cd6dc4360aef5, type: 3}

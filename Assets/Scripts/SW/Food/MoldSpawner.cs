@@ -47,22 +47,6 @@ public class MoldSpawner : MonoBehaviour
         _spreadRadius = spreadRadius;
         _minDistanceBetweenMolds = minDistanceBetweenMolds;
         _startPoint = startPoint;
-        StartCoroutine(ScaleUp(scale));
-    }
-
-    IEnumerator ScaleUp(float scale)
-    {
-        Vector3 targetScale = Vector3.one * scale;
-        while (true)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * 30);
-            if (Vector3.Distance(transform.localScale, targetScale)  < 0.01f)
-            {
-                transform.localScale = targetScale;
-                break;
-            }
-            yield return null;
-        }
     }
 
     public void StartMold()

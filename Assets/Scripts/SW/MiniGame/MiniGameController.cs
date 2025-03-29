@@ -66,7 +66,7 @@ public class MiniGameController : MonoBehaviour
         for (int i = 0; i < Foods.Count; i++)
         {
             _previewPanel.transform.GetChild(i).gameObject.SetActive(true);
-            _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+            _previewPanel.transform.GetChild(i).GetComponent<Image>().sprite = Foods[i].transform.GetComponent<SpriteRenderer>().sprite;
         }
 
         OnStartButton();
@@ -116,7 +116,7 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(StartPlay_Coroutine());
 
-        GameObject nowFood = Foods[0].transform.GetChild(0).gameObject;
+        GameObject nowFood = Foods[0].transform.gameObject;
         _nowFood = Instantiate(nowFood);
         _nowFood.transform.position = transform.position;
     }
@@ -165,8 +165,7 @@ public class MiniGameController : MonoBehaviour
 
         _resultFood.transform.DOLocalMove(Vector3.zero, 0.8f);
         // 이미지 주기
-        //_resultFood.sprite = "이미지"
-        // ex) : _resultFood.sprite = _previewPanel.transform.GetChild(0).GetComponent<Image>().sprite;
+        _resultFood.sprite = _menuData.menuImage;
         yield return new WaitForSeconds(1.1f);
 
         _resultFood.transform.DOScale(Vector3.one * 1.2f, 1);

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 8fcb7c2aa46560b48824f175d5a10123
+guid: 39ff9060a18408e44b728252f226c100
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1824004404925082231
-    second: 2 (1)_0
+      213: -7944502702452990849
+    second: Corn_0
+  - first:
+      213: 554072705901678547
+    second: Corn_1
+  - first:
+      213: 5064783790253195744
+    second: Corn_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +30,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -74,7 +80,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,23 +106,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2 (1)_0
+      name: Corn
       rect:
         serializedVersion: 2
-        x: 100
-        y: 98
-        width: 312
-        height: 316
+        x: 138
+        y: 129
+        width: 540
+        height: 558
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77aae40a75a205910800000000000000
-      internalID: 1824004404925082231
+      spriteID: f7c982742e47fb190800000000000000
+      internalID: -7944502702452990849
       vertices: []
       indices: 
       edges: []
@@ -125,7 +131,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 054c0c995c4dce34097a1df3601c9bb4
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      2 (1)_0: 1824004404925082231
+      Corn: -7944502702452990849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
