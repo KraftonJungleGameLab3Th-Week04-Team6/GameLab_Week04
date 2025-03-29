@@ -38,7 +38,7 @@ public class TodayEndController : MonoBehaviour
     public void NextDay()
     {
         print("NextDay");
-        if (Manager.Game.CurrentDay >= 5 && Manager.Game.TotalMoney >= 0)
+        if (Manager.Game.CurrentDay >= 1 && Manager.Game.TotalMoney >= 0)
         {
             // 돈 많은데 높은 인기도
             if (Manager.Game.TotalMoney >= 15000 && Manager.Game.Popularity >= 15)
