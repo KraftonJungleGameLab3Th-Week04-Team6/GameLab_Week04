@@ -36,6 +36,7 @@ public class Manager : MonoBehaviour
     {
         // UI.Init();
         Game.Init();
+        Popularity.Init();
     }
 
     private void OnDestroy()
