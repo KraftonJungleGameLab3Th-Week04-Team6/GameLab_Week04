@@ -224,7 +224,7 @@ public class JSW_DrawLine : MonoBehaviour
         Destroy(edgeCollider2D);
         Destroy(lineRenderer);
 
-        if (isShape) // 폐곡선이 완성되었다면 폴리곤과 매시 생성
+        if (isShape && pointsList.Count >= 3) // 폐곡선이 완성되었다면 폴리곤과 매시 생성
         {
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);

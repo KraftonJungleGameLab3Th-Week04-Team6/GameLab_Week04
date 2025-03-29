@@ -21,11 +21,12 @@ public class CutIngridient : MonoBehaviour
         _nowColors = _sprite.texture.GetPixels((int)_sprite.textureRect.x, (int)_sprite.textureRect.y, (int)_sprite.textureRect.width, (int)_sprite.textureRect.height);
 
         _moldSpawner = FindAnyObjectByType<MoldSpawner>();
-        _filter2D.SetLayerMask(1 << LayerMask.NameToLayer("SlicedArea"));
+        _filter2D.SetLayerMask(1 << LayerMask.NameToLayer("Mold"));
     }
 
     public void Cut(ref PolygonCollider2D polygonCollider2D)
     {
+        return;
         Color[] cutColors = (Color[])_nowColors.Clone(); // 현재 영역 스프라이트를 깊은 복사 한 잘릴 영역 스프라이트
 
         for (int y = 0; y < (int)_sprite.textureRect.height; y++)
@@ -60,7 +61,18 @@ public class CutIngridient : MonoBehaviour
         spriteRenderer.sortingOrder = -2;
         spriteRenderer.sprite = Sprite.Create(cutText, new Rect(0, 0, newText.width, newText.height), new Vector2(0.5f, 0.5f));
 
-        foreach (Transform mold in _moldSpawner.MoldSet.ToList()) // 영역 내 곰팡이는 같이 제거
+        polygonCollider2D.Overlap(_filter2D, _results);
+
+        foreach(Collider2D collider2D in _results)
+        {
+            Transform mold = collider2D.transform;
+
+            mold.SetParent(piece.transform);
+            Destroy(mold.GetComponent<CircleCollider2D>());
+            _moldSpawner.MoldSet.Remove(mold);
+        }
+
+        /*foreach (Transform mold in _moldSpawner.MoldSet.ToList()) // 영역 내 곰팡이는 같이 제거하고 이동
         {
             if(Physics2D.OverlapCollider(mold.GetComponent<CircleCollider2D>(), _filter2D, _results) > 0)
             {
@@ -68,7 +80,7 @@ public class CutIngridient : MonoBehaviour
                 Destroy(mold.GetComponent<CircleCollider2D>());
                 _moldSpawner.MoldSet.Remove(mold);
             }
-        }
+        }*/
 
         piece.AddComponent<CuttedIngridient>();
 

@@ -206,9 +206,9 @@ public class DrawLine : MonoBehaviour
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
         Destroy(edgeCollider2D);
-        Destroy(lineRenderer);
+        //Destroy(lineRenderer);
 
-        if (isShape) // 폐곡선이 완성되었다면 폴리곤 생성하고 자르기
+        if (isShape && pointsList.Count >= 3) // 폐곡선이 완성되었다면 폴리곤 생성하고 자르기
         {
             PolygonCollider2D polygonCollider2D = line.AddComponent<PolygonCollider2D>();
             polygonCollider2D.SetPath(0, pointsList);
