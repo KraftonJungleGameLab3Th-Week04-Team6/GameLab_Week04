@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class JSW_DrawLine : MonoBehaviour
 {
     public GameObject NowIngredient { set { _nowIngredient = value; } }
-    public GameObject sliceEffect;
     public GameObject sliceTrail;
 
     private bool _isDrawing = false;
@@ -259,7 +258,6 @@ public class JSW_DrawLine : MonoBehaviour
             if (polygonCollider2D != null)
             {
                 StartCoroutine(SliceTrailMove(pointsList));
-                Instantiate(sliceEffect, polygonCollider2D.bounds.center, Quaternion.identity);
             }
         }
         else // 폐곡선이 완성되지 않았다면 선 삭제
