@@ -9,6 +9,10 @@ public class PopularityManager
     {
         _ui_Status = GameObject.FindAnyObjectByType<UI_Status>();
     }
+    public void Init()
+    {
+        Manager.Game.Popularity = 0;
+    }
 
     public void PlusPopularity(int value)
     {
@@ -20,7 +24,6 @@ public class PopularityManager
         }
         _ui_Status.SetUI();
     }
-
 
 
 
