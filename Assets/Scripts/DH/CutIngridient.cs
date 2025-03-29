@@ -15,9 +15,9 @@ public class CutIngridient : MonoBehaviour
 
     private void Awake()
     {
-        _bounds = transform.GetComponent<PolygonCollider2D>().bounds;
+        _bounds = GetComponent<PolygonCollider2D>().bounds;
         _origin = new Vector2(_bounds.min.x, _bounds.min.y);
-        _sprite = transform.GetComponent<SpriteRenderer>().sprite;
+        _sprite = GetComponent<SpriteRenderer>().sprite;
         _nowColors = _sprite.texture.GetPixels((int)_sprite.textureRect.x, (int)_sprite.textureRect.y, (int)_sprite.textureRect.width, (int)_sprite.textureRect.height);
 
         _moldSpawner = FindAnyObjectByType<MoldSpawner>();
@@ -54,8 +54,7 @@ public class CutIngridient : MonoBehaviour
 
         transform.GetComponent<SpriteRenderer>().sprite = Sprite.Create(newText, new Rect(0, 0, newText.width, newText.height), new Vector2(0.5f, 0.5f)); // 잘린 영역을 반영한 스프라이트 재설정
 
-        GameObject piece = new GameObject("piece"); // 잘려진 영역 게임오브젝트 생성
-        piece.transform.position = transform.position;
+        GameObject piece = Instantiate(new GameObject("piece"), transform); // 잘려진 영역 게임오브젝트 생성
         SpriteRenderer spriteRenderer = piece.AddComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = -2;
         spriteRenderer.sprite = Sprite.Create(cutText, new Rect(0, 0, newText.width, newText.height), new Vector2(0.5f, 0.5f));
@@ -81,7 +80,7 @@ public class CutIngridient : MonoBehaviour
             }
         }*/
 
-        piece.AddComponent<CuttedIngridient>();
+        CuttedIngridient cuttedIngridient = piece.AddComponent<CuttedIngridient>();
 
         _moldSpawner.CheckMoldSetCount();
     }
