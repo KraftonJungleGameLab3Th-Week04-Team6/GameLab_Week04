@@ -295,7 +295,7 @@ public class JSW_DrawLine : MonoBehaviour
 
         float pathDistance = Vector2.Distance(pathPoints[0], pathPoints[pathPoints.Count - 1]);
         for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
-        float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.2f);
+        float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
 
         for (int i = 0; i < pathPoints.Count; i++)
         {
