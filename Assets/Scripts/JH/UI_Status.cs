@@ -26,7 +26,7 @@ public class UI_Status : MonoBehaviour
         {
             _moneyText = Money.GetComponentInChildren<TextMeshProUGUI>();
         }
-        _moneyText.text = Manager.Game.TotalMoney.ToString();
+
 
         if (_popularityText == null)
         {
