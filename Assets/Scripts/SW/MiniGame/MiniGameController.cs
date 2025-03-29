@@ -161,6 +161,7 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _previewPanel.SetActive(false);
         _enddingCavas.SetActive(true);
+        _playTimeText.gameObject.SetActive(false);
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.8f);
 
         _resultFood.transform.DOLocalMove(Vector3.zero, 0.8f);
