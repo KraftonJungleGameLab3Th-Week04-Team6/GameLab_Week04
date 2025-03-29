@@ -54,9 +54,9 @@ public class DayCanvasController : MonoBehaviour
         {
             Image img = childrensUI[0].GetComponent<Image>();
             Color c = img.color;
-            c.a = Mathf.Lerp(c.a, 0f, Time.deltaTime * 2f);
+            c.a = Mathf.Lerp(c.a, -0.5f, Time.deltaTime * 2f);
             img.color = c;
-            if (c.a < 0.05)
+            if (c.a < 0f)
             {
                 break;
             }
