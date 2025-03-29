@@ -26,7 +26,6 @@ public class CutIngridient : MonoBehaviour
 
     public void Cut(ref PolygonCollider2D polygonCollider2D)
     {
-        return;
         Color[] cutColors = (Color[])_nowColors.Clone(); // 현재 영역 스프라이트를 깊은 복사 한 잘릴 영역 스프라이트
 
         for (int y = 0; y < (int)_sprite.textureRect.height; y++)
