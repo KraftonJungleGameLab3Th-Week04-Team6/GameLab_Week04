@@ -12,6 +12,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
     public List<UI_Button> _buttons;
     public Image _customerImage;
     public GameObject PopularityFX;
+    public TMP_Text totalMoney;
     
     //손님 데이터
     private CustomerData _customerData;
@@ -40,6 +41,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
         Manager.Restaurant.CurrentCustomerOrderData = _currentOrderData;
         
         _customerText.GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerName + '\n' +_currentOrderData.customerOrder;
+
         for (int i = 0; i < _buttons.Count; i++)
         {
             _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = _currentOrderData.customerAnswerList[i];

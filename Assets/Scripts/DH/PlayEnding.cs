@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayEnding : MonoBehaviour
 {
-    private Canvas _canvas;
+    public Canvas _canvas;
     private GameObject[] _endingObjects;
     private DisplayText _typingText;
     private WaitForSecondsRealtime _delay;
 
     private void Awake()
     {
-        _canvas = FindAnyObjectByType<Canvas>();
+
         _endingObjects = new GameObject[_canvas.transform.childCount];
         for (int i = 0; i < _canvas.transform.childCount; i++)
         {
