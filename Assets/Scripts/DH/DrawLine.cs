@@ -127,7 +127,7 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 4 && correctionIndex >= 3) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
+        if (!isShape && lineRenderer.positionCount >= 15 && correctionIndex >= 10) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
