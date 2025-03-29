@@ -90,7 +90,17 @@ public class JSW_DrawLine : MonoBehaviour
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
             edgeCollider2D.SetPoints(pointsList); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
 
-            if (lineRenderer.positionCount > 5 && Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < correctionDistance) // 첫 점과 마지막 점의 거리
+            float dist = Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+
+            if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 2f) // 첫 점과 마지막 점의 거리
+            {
+                correctionIndex = lineRenderer.positionCount - 1;
+            }
+            else if (lineRenderer.positionCount >= 15 && dist < correctionDistance / 1.5f)
+            {
+                correctionIndex = lineRenderer.positionCount - 1;
+            }
+            else if (lineRenderer.positionCount >= 15 && dist < correctionDistance)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
@@ -142,7 +152,7 @@ public class JSW_DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 10) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
+        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 5) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임

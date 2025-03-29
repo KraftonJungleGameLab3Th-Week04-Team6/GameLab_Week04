@@ -75,15 +75,25 @@ public class DrawLine : MonoBehaviour
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 3));
             edgeCollider2D.SetPoints(pointsList); // 마지막에서 3번째 점 까지만 콜라이더 추가 (자신과의 충돌 방지)
 
-            if (lineRenderer.positionCount > 5 && Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1)) < correctionDistance) // 첫 점과 마지막 점의 거리
+            float dist = Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+
+            if (lineRenderer.positionCount >= 20 && dist < correctionDistance) // 첫 점과 마지막 점의 거리
+            {
+                correctionIndex = lineRenderer.positionCount - 1;
+            }
+            else if(lineRenderer.positionCount >= 15 && dist < correctionDistance / 1.5f)
+            {
+                correctionIndex = lineRenderer.positionCount - 1;
+            }
+            else if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 2f)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
 
             RaycastHit2D hit = Physics2D.Raycast(lineRenderer.GetPosition(lineRenderer.positionCount - 2)
-                , lineRenderer.GetPosition(lineRenderer.positionCount - 1) - lineRenderer.GetPosition(lineRenderer.positionCount - 2)
-                , Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), lineRenderer.GetPosition(lineRenderer.positionCount - 2))
-                , 1 << LayerMask.NameToLayer("DrawingLine")); // 마지막으로 생성한 선에서 충돌 판정, 그리는 선하고만 충돌하도록 마스크 설정
+                    , lineRenderer.GetPosition(lineRenderer.positionCount - 1) - lineRenderer.GetPosition(lineRenderer.positionCount - 2)
+                    , Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), lineRenderer.GetPosition(lineRenderer.positionCount - 2))
+                    , 1 << LayerMask.NameToLayer("DrawingLine")); // 마지막으로 생성한 선에서 충돌 판정, 그리는 선하고만 충돌하도록 마스크 설정
 
             if (hit) // 기존 선과 충돌했다면 (폐곡선이 만들어졌다면)
             {
@@ -127,7 +137,7 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 10) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
+        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 5) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
@@ -206,7 +216,7 @@ public class DrawLine : MonoBehaviour
 
         line.layer = LayerMask.NameToLayer("SlicedArea");
         Destroy(edgeCollider2D);
-        Destroy(lineRenderer);
+        //Destroy(lineRenderer);
 
         if (isShape && pointsList.Count >= 3) // 폐곡선이 완성되었다면 폴리곤 생성하고 자르기
         {
