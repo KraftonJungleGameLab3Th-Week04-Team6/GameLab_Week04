@@ -41,10 +41,14 @@ public class DisplayText : MonoBehaviour
 
         _delay = new WaitForSecondsRealtime(0.001f);
 
-        while (a < 1)
+        _textDisplay.color = new(1, 1, 1, 0);
+        while (true)
         {
             _textDisplay.color = new(1, 1, 1, a);
-            a += 0.01f;
+
+            if (a > 1f) break;
+            else a = Mathf.Lerp(a, 1.8f, Time.deltaTime * 2f);
+
             yield return _delay;
         }
         _textDisplay.color = new(1, 1, 1, 1);

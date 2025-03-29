@@ -17,12 +17,4 @@ public class Mold : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = DefaultMold;
        }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("SlicedArea"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }
