@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // UI_Customer _customer;
+    // UI_Status _customer;
     //
     // private void Start()
     // {
-    //     _customer = FindAnyObjectByType<UI_Customer>();
+    //     _customer = FindAnyObjectByType<UI_Status>();
     //
     //
     // }

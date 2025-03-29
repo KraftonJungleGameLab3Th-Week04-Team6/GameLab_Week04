@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4958974887948804923}
   - component: {fileID: 1149165801253704508}
   - component: {fileID: 7012533355465965124}
-  - component: {fileID: 6199720512754710011}
+  - component: {fileID: 3614511229026975773}
   m_Layer: 5
   m_Name: DayCanvas
   m_TagString: Untagged
@@ -339,7 +339,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6199720512754710011
+--- !u!114 &3614511229026975773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
