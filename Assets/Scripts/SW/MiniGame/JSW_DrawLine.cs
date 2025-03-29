@@ -293,7 +293,8 @@ public class JSW_DrawLine : MonoBehaviour
     {
         GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity);
 
-        float pathDistance = Vector2.Distance(pathPoints[0], pathPoints[pathPoints.Count - 1]);
+        pathPoints.Add(pathPoints[0]);
+        float pathDistance = 0;
         for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
         float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
 
@@ -308,15 +309,6 @@ public class JSW_DrawLine : MonoBehaviour
             // 정확히 타겟 포인트에 맞춰주기
             sliceTrail.transform.position = target;
         }
-
-        // 마지막에서 시작점으로 복귀
-        Vector2 first = pathPoints[0];
-        while (Vector2.Distance(sliceTrail.transform.position, first) > 0.01f)
-        {
-            sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, first, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        sliceTrail.transform.position = first;
         
         Destroy(sliceTrail);
         Debug.Log("한 바퀴 완료!");
