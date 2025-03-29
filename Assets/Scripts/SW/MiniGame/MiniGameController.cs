@@ -37,6 +37,7 @@ public class MiniGameController : MonoBehaviour
     //주문 받은 메뉴
     private MenuData _menuData;
     private int _totalFoodNum;
+    private Toggle _safeModeToggle;
 
     private void Start()
     {
@@ -47,9 +48,12 @@ public class MiniGameController : MonoBehaviour
         _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
         _resultFood = FindAnyObjectByType<ResultFood>().GetComponent<Image>();
         _drawLine = FindAnyObjectByType<JSW_DrawLine>();
+        _safeModeToggle = FindAnyObjectByType<Toggle>();
 
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas.SetActive(false);
+        _safeModeToggle.isOn = Manager.Game.SafeMoldMode;
+        _safeModeToggle.onValueChanged.AddListener(OnSafeModeToggleChanged);
 
         _menuData = MenuDatabase.ObjectData[Manager.Kitchen.MenuKey];
         for (int i = 0; i < _menuData.menuIngredients.Count; i++)
@@ -73,6 +77,7 @@ public class MiniGameController : MonoBehaviour
 
         OnStartButton();
     }
+
 
 
     private void Update()
@@ -186,7 +191,7 @@ public class MiniGameController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         _checkArea.ResetCheckArea();
         MoldSpawner moldSpawner = _nowFood.GetComponent<MoldSpawner>();
-        moldSpawner.SettingMoldCount(230, 0.5f - ((Manager.Game.CurrentDay-1) / 2) * 0.05f, 0.35f, 0.25f, 1 + Manager.Game.CurrentDay / 2, 1.6f);
+        moldSpawner.SettingMoldCount(230, 0.5f - ((Manager.Game.CurrentDay - 1) / 2) * 0.05f, 0.35f, 0.25f, 1 + Manager.Game.CurrentDay / 2, 1.6f);
         moldSpawner.StartMold();
         _checkArea.SetFoodCollider(_nowFood.GetComponent<Collider2D>());
 
@@ -198,5 +203,10 @@ public class MiniGameController : MonoBehaviour
         _checkArea.CalculateAreaPercentage();
         yield return new WaitForSeconds(0.5f);
         OnSumitFood();
+    }
+
+    void OnSafeModeToggleChanged(bool value)
+    {
+        Manager.Game.SafeMoldMode = value;
     }
 }
