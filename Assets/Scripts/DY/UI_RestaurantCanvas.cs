@@ -12,6 +12,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
     public List<UI_Button> _buttons;
     public Image _customerImage;
     public GameObject PopularityFX;
+    public TMP_Text totalMoney;
     
     //손님 데이터
     private CustomerData _customerData;
@@ -28,6 +29,12 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
     private void OnCustomerOrder(int key)
     {
+        // 버튼 활성화
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _buttons[i].GetComponent<Button>().interactable = true;
+        }
+
         // 손님 데이터 가져오기
         _customerData = CustomerDatabase.ObjectData[key];
 
@@ -40,6 +47,7 @@ public class UI_RestaurantCanvas : MonoBehaviour
         Manager.Restaurant.CurrentCustomerOrderData = _currentOrderData;
         
         _customerText.GetComponentInChildren<TextMeshProUGUI>().text = _customerData.customerName + '\n' +_currentOrderData.customerOrder;
+
         for (int i = 0; i < _buttons.Count; i++)
         {
             _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = _currentOrderData.customerAnswerList[i];
@@ -69,6 +77,12 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
     async Task ButtonClick(int menuKey)
     {
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _buttons[i].GetComponent<Button>().interactable =  false;
+            Debug.Log("버튼 비활성화");
+        }
+
         Debug.Log("ButtonClick" + menuKey);
         Manager.Kitchen.MenuKey = menuKey;
 
