@@ -30,14 +30,16 @@ public class MiniGameController : MonoBehaviour
     private float _moldPercentage;
     private GameObject _previewPanel;
     private Image _resultFood;
-
-    public float ResultRemainingPercentage { get { return _resultRemainingPercentage; } set { _resultRemainingPercentage = value; } }
+    private TMP_Text _resultFoodText;
+public float ResultRemainingPercentage { get { return _resultRemainingPercentage; } set { _resultRemainingPercentage = value; } }
     public float MoldPercentage { get { return _moldPercentage; } set { _moldPercentage = value; } }
 
     //주문 받은 메뉴
     private MenuData _menuData;
     private int _totalFoodNum;
     private Toggle _safeModeToggle;
+    private String _menuName;
+
 
     private void Start()
     {
@@ -49,6 +51,7 @@ public class MiniGameController : MonoBehaviour
         _resultFood = FindAnyObjectByType<ResultFood>().GetComponent<Image>();
         _drawLine = FindAnyObjectByType<JSW_DrawLine>();
         _safeModeToggle = FindAnyObjectByType<Toggle>();
+        _resultFoodText = FindAnyObjectByType<ResultFoodText>().GetComponent<TMP_Text>();
 
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas.SetActive(false);
@@ -60,6 +63,8 @@ public class MiniGameController : MonoBehaviour
         {
             Foods.Add(IngredientsDatabase.ObjectData[_menuData.menuIngredients[i]].IngredientsPrefab);
         }
+
+        _menuName = _menuData.menuName;
 
         _totalFoodNum = Foods.Count;
 
@@ -158,6 +163,8 @@ public class MiniGameController : MonoBehaviour
 
             Manager.Kitchen.ResultRemainingPercentage = resultRemainingPercentage;
             Manager.Kitchen.MoldPercentage = moldPercentage;
+            
+
             StartCoroutine(EndMiniGame_Co());
             return;
         }
@@ -171,12 +178,14 @@ public class MiniGameController : MonoBehaviour
         _enddingCavas.SetActive(true);
         _playTimeText.gameObject.SetActive(false);
         _choppingBoard.transform.DOLocalMove(Vector3.zero, 0.8f);
-
+  
         _resultFood.transform.DOLocalMove(Vector3.zero, 0.8f);
         // 이미지 주기
         _resultFood.sprite = _menuData.menuImage;
         yield return new WaitForSeconds(1.1f);
 
+        _resultFoodText.text = _menuName;
+        _resultFoodText.DOFade(1f, 1f);
         _resultFood.transform.DOScale(Vector3.one * 1.2f, 1);
     }
 

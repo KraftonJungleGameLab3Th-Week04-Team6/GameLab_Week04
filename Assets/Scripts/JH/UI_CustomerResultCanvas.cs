@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_CustomerResultCanvas : MonoBehaviour
+public class UI_StatusResultCanvas : MonoBehaviour
 {
     public Image _customerImage;
     public Image _iconImage;
@@ -26,13 +26,13 @@ public class UI_CustomerResultCanvas : MonoBehaviour
 
     //현재 고객 선택지
     private CustomerOrderData _customerOrderData;
-    private UI_CustomerReactionCanvas _uICustomerReactionCanvas;
+    private UI_StatusReactionCanvas _uICustomerReactionCanvas;
     private TextMeshProUGUI _customerReactionText; //손님 반응 대사
     private Canvas _uICustromerReactionCanvas;
     private GraphicRaycaster _uICustomerReactionCanvasGraphicRaycaster;
     private void Start()
     {
-        _uICustomerReactionCanvas = FindAnyObjectByType<UI_CustomerReactionCanvas>();
+        _uICustomerReactionCanvas = FindAnyObjectByType<UI_StatusReactionCanvas>();
         _customerReactionText = _uICustomerReactionCanvas.GetComponentInChildren<TextMeshProUGUI>();
         _uICustromerReactionCanvas = _uICustomerReactionCanvas.GetComponent<Canvas>();
         _uICustomerReactionCanvasGraphicRaycaster = _uICustomerReactionCanvas.GetComponent<GraphicRaycaster>();
