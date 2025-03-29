@@ -28,6 +28,12 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
     private void OnCustomerOrder(int key)
     {
+        // 버튼 활성화
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _buttons[i].GetComponent<Button>().interactable = true;
+        }
+
         // 손님 데이터 가져오기
         _customerData = CustomerDatabase.ObjectData[key];
 
@@ -69,6 +75,12 @@ public class UI_RestaurantCanvas : MonoBehaviour
 
     async Task ButtonClick(int menuKey)
     {
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _buttons[i].GetComponent<Button>().interactable =  false;
+            Debug.Log("버튼 비활성화");
+        }
+
         Debug.Log("ButtonClick" + menuKey);
         Manager.Kitchen.MenuKey = menuKey;
 
