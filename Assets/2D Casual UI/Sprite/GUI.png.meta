@@ -444,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_7
+      name: A_CirclePanel
       rect:
         serializedVersion: 2
         x: 958
@@ -1668,6 +1668,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       A_BigPanel: 21300054
+      A_CirclePanel: 21300014
       A_MainTitle: 21300102
       A_Medal: 21300008
       A_Money: 21300042
@@ -1726,7 +1727,6 @@ TextureImporter:
       GUI_66: 21300118
       GUI_67: 21300120
       GUI_68: 21300122
-      GUI_7: 21300014
       GUI_8: 21300016
       GUI_9: 21300018
   mipmapLimitGroupName: 

@@ -1658,6 +1658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_RestaurantCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7923855050497717611, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
+      propertyPath: PopularityFX
+      value: 
+      objectReference: {fileID: 7693091442095783887, guid: f1b4c04acd8310643acf3144a8bef41c, type: 3}
     - target: {fileID: 8500169919711954658, guid: 9c71ed2d1a65fb34988eb45b43d5900f, type: 3}
       propertyPath: m_Type
       value: 1
@@ -1783,9 +1787,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644919645464788314, guid: c69f20a5bfc8df945a934cbc7c5b6c8d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3016477292547917254, guid: c69f20a5bfc8df945a934cbc7c5b6c8d, type: 3}
       propertyPath: m_Name
       value: DayCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016477292547917254, guid: c69f20a5bfc8df945a934cbc7c5b6c8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

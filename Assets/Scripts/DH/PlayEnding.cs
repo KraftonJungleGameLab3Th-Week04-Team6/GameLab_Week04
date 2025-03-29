@@ -23,14 +23,18 @@ public class PlayEnding : MonoBehaviour
     private void Start()
     {
         foreach (GameObject endingObject in _endingObjects) endingObject.SetActive(false);
-
-        StartCoroutine(StartEnding());
     }
 
-    private IEnumerator StartEnding()
+    public void StartEnding()
     {
-        _endingObjects[_endingObjects.Length - 2].SetActive(true);
-        _endingObjects[_endingObjects.Length - 2].GetComponent<TextMeshProUGUI>().text = "당신이 번 골드: " + Manager.Game.TotalMoney;
+        StartCoroutine(Co_StartEnding());
+    } 
+
+    private IEnumerator Co_StartEnding()
+    {
+        //_endingObjects[_endingObjects.Length - 2].SetActive(true);
+        //_endingObjects[_endingObjects.Length - 2].GetComponent<TextMeshProUGUI>().text = "당신이 번 골드: " + Manager.Game.TotalMoney;
+
 
         switch (Manager.Game.EndingType)
         {
