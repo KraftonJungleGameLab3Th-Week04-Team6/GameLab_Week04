@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UI_RestaurantCanvas : MonoBehaviour
@@ -66,6 +68,35 @@ public class UI_RestaurantCanvas : MonoBehaviour
     {
         Debug.Log("ButtonClick" + menuKey);
         Manager.Kitchen.MenuKey = menuKey;
+
+        // 선택한 선택지 인덱스 찾기
+        int index = -1;
+        //_currentOrderData
+        for (int i = 0; i < 3; i++)
+        {
+            if (_currentOrderData.customerAnswerMenuList[i] == menuKey)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if (index != -1)
+        {
+            // 좋아하는 선택지
+            if (_currentOrderData.preferenceList[index] == 1)
+            {
+                Manager.Popularity.PlusPopularity(2);
+            }
+
+            // 싫어하는 선택지
+            if (_currentOrderData.preferenceList[index] == -1)
+            {
+                Manager.Popularity.PlusPopularity(-1);
+            }
+
+        }
+
         Manager.Game.GoKitchen();
     }
 

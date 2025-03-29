@@ -2,6 +2,25 @@ using UnityEngine;
 
 public class PopularityManager
 {
-    //public SetPopularity UI_CustomerResultCanavas 74번째 줄 참고
-   
+    UI_Status _ui_Status;
+    
+
+    private void Awake()
+    {
+        _ui_Status = GameObject.FindAnyObjectByType<UI_Status>();
+    }
+
+    public void PlusPopularity(int value)
+    {
+        Manager.Game.Popularity += value;
+        Debug.Log($"인기도 {value} 증가 \n 총 인기도: {Manager.Game.Popularity}");
+        if (_ui_Status == null)
+        {
+            _ui_Status = GameObject.FindAnyObjectByType<UI_Status>();
+        }
+        _ui_Status.SetUI();
+    }
+
+
+
 }

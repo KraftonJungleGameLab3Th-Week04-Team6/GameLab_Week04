@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class UI_CustomerReactionCanvas : MonoBehaviour
+public class UI_StatusReactionCanvas : MonoBehaviour
 {
 }
