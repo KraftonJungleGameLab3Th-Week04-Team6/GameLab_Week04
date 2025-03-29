@@ -7,6 +7,14 @@ public class CutIngridient : MonoBehaviour
     private Color[] _nowColors;
     private Sprite _sprite;
 
+    private void Awake()
+    {
+        _bounds = transform.GetComponent<PolygonCollider2D>().bounds;
+        _origin = new Vector2(_bounds.min.x, _bounds.min.y);
+        _sprite = transform.GetComponent<SpriteRenderer>().sprite;
+        _nowColors = _sprite.texture.GetPixels((int)_sprite.textureRect.x, (int)_sprite.textureRect.y, (int)_sprite.textureRect.width, (int)_sprite.textureRect.height);
+    }
+
     public void Init()
     {
         _bounds = transform.GetComponent<PolygonCollider2D>().bounds;

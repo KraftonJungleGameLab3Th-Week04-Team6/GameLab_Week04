@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class CuttedIngridient : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         StartCoroutine(Throw());
     }
 
-    // Update is called once per frame
     private IEnumerator Throw()
     {
-        for(int i = 0; i < 500; i++)
+        Vector2 velocity = new Vector2(Random.Range(-7f, 7f), Random.Range(0f, 7f));
+        Vector2 nowPosition = transform.position;
+
+        for (int i = 0; i < 3000; i++)
         {
-            transform.position += Vector3.down * 0.05f;
+            float t = (float)i / 300;
+
+            transform.position = new(nowPosition.x + velocity.x * t, nowPosition.y + velocity.y * t - 9.8f * t * t / 2);
 
             yield return null;
         }

@@ -119,9 +119,8 @@ public class MiniGameController : MonoBehaviour
         StartCoroutine(StartPlay_Coroutine());
 
         GameObject nowFood = Foods[0].transform.gameObject;
+        nowFood.transform.position = transform.position;
         _nowFood = Instantiate(nowFood);
-        _nowFood.transform.position = transform.position;
-        _nowFood.GetComponent<CutIngridient>().Init();
         _drawLine.NowIngredient = _nowFood;
     }
 
