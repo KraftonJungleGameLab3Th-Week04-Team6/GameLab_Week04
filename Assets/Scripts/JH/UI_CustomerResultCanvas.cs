@@ -65,7 +65,8 @@ public class UI_StatusResultCanvas : MonoBehaviour
             }
             else
             {
-                Manager.Game.GoEnding(3);
+                // 곰팡이 엔딩
+                Manager.Game.GoEnding(5);
             }
         }
     }
