@@ -20,9 +20,10 @@ public class TooltipController : MonoBehaviour
         }
     }
 
-    public void ShowTooltip(string message)
+    public void ShowTooltip(string message, Color color)
     {
         tooltipText.text = message;
+        tooltipText.color = color;
         tooltipObject.SetActive(true);
     }
 

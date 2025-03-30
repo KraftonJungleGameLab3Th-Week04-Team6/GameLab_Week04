@@ -19,6 +19,8 @@ public class UI_StartEndingCanvas : MonoBehaviour
             _endingSceneImage[i] = _endingSceneContent.GetChild(i).GetComponent<Image>();
             if (EndingPrefs.IsEndingUnlocked(i))
             {
+                _endingSceneImage[i].GetComponent<TooltipTrigger>().endingNum = i;
+                _endingSceneImage[i].GetComponent<TooltipTrigger>().isClear = true;
                 _endingSceneImage[i].sprite = endingSceneClearImage[i];
             }
         }
