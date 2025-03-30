@@ -541,7 +541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4125347885915838884, guid: 006a37ab2599a494597a59f2e5f7c339, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a746a2ecdcad0884796ff406c0ce1961, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1044,9 +1044,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2DD\uB2F9\uC740 \uB9CE\uC740 \uB3C8\uACFC \uC778\uAE30\uB97C \uC5BB\uC5C8\uC73C\uBA70\n\uC190\uB2D8\uC774
-    \uB04A\uC774\uC9C0 \uC54A\uACE0 \uC788\uC2B5\uB2C8\uB2E4!\n\uB2F9\uC2E0\uC740
-    \uCD5C\uACE0\uC758 \uC694\uB9AC\uC0AC\uC785\uB2C8\uB2E4!"
+  m_text: "\uD654\uB824\uD55C \uACF0\uD321\uC774 \uD30C\uD2F0\uB294 \uBA48\uCD94\uC9C0
+    \uC54A\uC558\uB2E4.\n\uBAA8\uB4E0 \uC0AC\uB78C\uC774 \uC774 \uC704\uD5D8\uD55C
+    \uB9DB\uC5D0 \uCDE8\uD574 \uC788\uC5C8\uACE0,\n\uB2F9\uC2E0\uC740 \uACB0\uAD6D
+    '\uC704\uB300\uD55C \uACF0\uD321\uC774'\uB85C \uBD88\uB9AC\uAC8C \uB418\uC5C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c670be30975f48544ac984ea0809592c, type: 2}
   m_sharedMaterial: {fileID: 9002389293116303493, guid: c670be30975f48544ac984ea0809592c, type: 2}
@@ -1737,8 +1738,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2DD\uB2F9\uC740 \uC9C0\uCF30\uC9C0\uB9CC...\n\uC190\uB2D8\uB3C4 \uBCC4\uB85C
-    \uC5C6\uACE0...\n\uB3C8\uB3C4 \uBCC4\uB85C \uC5C6\uACE0..."
+  m_text: "\uC2DD\uB2F9\uC740 \uB9DD\uD588\uACE0, \uC190\uB2D8\uB3C4 \uC5C6\uC5C8\uB2E4.\n\uD63C\uC790
+    \uB0A8\uC740 \uC8FC\uC778\uC740 \uACF0\uD321\uC774\uC5D0\uAC8C \uCE5C\uAD6C \uC774\uB984\uC744
+    \uBD99\uC774\uACE0 \uB9D0\uC744 \uAC78\uAE30 \uC2DC\uC791\uD588\uB2E4.\n\u201C\uAD1C\uCC2E\uC544
+    \uC70C\uC2A8... \uC544\uB2C8, \uC591\uBC30\uCD94\uC57C. \uC6B0\uB9B0 \uD568\uAED8\uB2C8\uAE4C.\u201D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c670be30975f48544ac984ea0809592c, type: 2}
   m_sharedMaterial: {fileID: 9002389293116303493, guid: c670be30975f48544ac984ea0809592c, type: 2}
@@ -2814,7 +2817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8129482645221878811, guid: 838561f0a27a3d84db635442f2ba1643, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9dcd8b30ab19aa40adb14b730eaab9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
