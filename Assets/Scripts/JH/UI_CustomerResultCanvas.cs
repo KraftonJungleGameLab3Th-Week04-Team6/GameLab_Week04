@@ -30,21 +30,25 @@ public class UI_StatusResultCanvas : MonoBehaviour
     private TextMeshProUGUI _customerReactionText; //손님 반응 대사
     private Canvas _uICustromerReactionCanvas;
     private GraphicRaycaster _uICustomerReactionCanvasGraphicRaycaster;
+    private bool _skipAnimation; // 입력 시 즉시 완료
     private void Start()
     {
         _uICustomerReactionCanvas = FindAnyObjectByType<UI_StatusReactionCanvas>();
         _customerReactionText = _uICustomerReactionCanvas.GetComponentInChildren<TextMeshProUGUI>();
         _uICustromerReactionCanvas = _uICustomerReactionCanvas.GetComponent<Canvas>();
         _uICustomerReactionCanvasGraphicRaycaster = _uICustomerReactionCanvas.GetComponent<GraphicRaycaster>();
+        _skipAnimation = false;
         
         SetCustomerResult(Manager.Restaurant.CurrentCustomNum);
     }
 
     private void Update()
     {
-        if (!_isDone) return;
-
-        if (Input.GetMouseButtonUp(0))
+        if (!_isDone && (Input.GetMouseButtonUp(0) || Keyboard.current.spaceKey.wasPressedThisFrame))
+        {
+            _skipAnimation = true; // 애니메이션 스킵
+        }
+        else if (_isDone && (Input.GetMouseButtonUp(0) || Keyboard.current.spaceKey.wasPressedThisFrame))
         {
             if (!_isGameOver)
             {
@@ -68,6 +72,32 @@ public class UI_StatusResultCanvas : MonoBehaviour
                 Manager.Game.GoEnding(3);
             }
         }
+        // if (!_isDone) return;
+        //
+        // if (Input.GetMouseButtonUp(0))
+        // {
+        //     if (!_isGameOver)
+        //     {
+        //         Manager.Game.GameStart();
+        //         //_fadeOut.enabled = false;
+        //         //_iconImage.enabled = false;
+        //         
+        //         ////결과창
+        //         //_fadeOut.enabled = false;
+        //         //_topText.enabled = false;
+        //         //_menuPriceText.enabled = false;
+        //         //_resultRemainingPercentageText.enabled = false;
+        //         //_resultBar.enabled = false;
+        //         //_finalResultPlusText.enabled = false;
+        //         //_finalResultText.enabled = false;
+        //         
+        //         //_clickUIText.enabled = false;
+        //     }
+        //     else
+        //     {
+        //         Manager.Game.GoEnding(3);
+        //     }
+        // }
     }
     public void SetCustomerResult(int customerKey)
     {
@@ -152,32 +182,53 @@ public class UI_StatusResultCanvas : MonoBehaviour
 
     IEnumerator CoShowCustomerResult(ECustomerIcon icon)
     {
-        //손님 반응 대사 활성화
-        yield return new WaitForSeconds(0.5f);
+        // 손님 반응 대사 활성화
+        yield return WaitOrSkip(0.5f);
         _uICustromerReactionCanvas.enabled = true;
         _uICustomerReactionCanvasGraphicRaycaster.enabled = true;
-        yield return new WaitForSeconds(1.8f);
-        //손님 반응 대사 비활성화
+
+        _skipAnimation = false; // 스킵 초기화
+        
+        yield return WaitOrSkip(1.8f);
+        
+        _skipAnimation = false; // 스킵 초기화
+        // 손님 반응 대사 비활성화
         _uICustromerReactionCanvas.enabled = false;
         _uICustomerReactionCanvasGraphicRaycaster.enabled = false;
-        //결과창 시작
+
+        // 결과창 시작
         _fadeOut.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return WaitOrSkip(0.2f);
         _topText.enabled = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return WaitOrSkip(0.4f);
         _menuPriceText.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return WaitOrSkip(0.2f);
         _resultRemainingPercentageText.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return WaitOrSkip(0.2f);
         _resultBar.enabled = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return WaitOrSkip(0.2f);
         _finalResultPlusText.enabled = true;
         _finalResultText.enabled = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return WaitOrSkip(1.5f);
         _clickUIText.enabled = true;
-        
-        _isDone = true;
 
+        _isDone = true;
+        _skipAnimation = false; // 초기화
+    }
+
+// 기다리거나 스킵하는 공통 메서드
+    private IEnumerator WaitOrSkip(float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            if (_skipAnimation)
+            {
+                yield break;
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 
