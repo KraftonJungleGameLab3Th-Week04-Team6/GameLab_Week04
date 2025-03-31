@@ -186,7 +186,7 @@ public class JSW_DrawLine : MonoBehaviour
                 if (convexCheck != 0) // 볼록 다각형이라면 컨벡스 보정
                 {
 
-                    if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[pointsList.Count - 1]) > 0) // 1이면 처음에서 보정
+                    if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[^1]) > 0) // 1이면 처음에서 보정
                     {
                         correctionIndex = pointsList.Count - 1;
 
@@ -205,7 +205,7 @@ public class JSW_DrawLine : MonoBehaviour
 
                         while (correctionIndex < pointsList.Count - 2)
                         {
-                            if (CCW(pointsList[pointsList.Count - 1], pointsList[correctionIndex], pointsList[correctionIndex + 1]) == convexCheck) break;
+                            if (CCW(pointsList[^1], pointsList[correctionIndex], pointsList[correctionIndex + 1]) == convexCheck) break;
 
                             correctionIndex++;
                         }
@@ -274,8 +274,10 @@ public class JSW_DrawLine : MonoBehaviour
 
     private Material MakeMaterial(Color color)
     {
-        Material newMaterial = new Material(Shader.Find("UI/Default"));
-        newMaterial.color = color;
+        Material newMaterial = new(Shader.Find("UI/Default"))
+        {
+            color = color
+        };
 
         return newMaterial;
     }
