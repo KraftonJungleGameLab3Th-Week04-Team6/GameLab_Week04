@@ -13,13 +13,11 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Color color = new Color(0, 0, 0);
         if (!isClear) { color = new Color(1, 0, 0); }
 
-        print("하이");
         tooltipController.ShowTooltip(message, color);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        print("바이");
         tooltipController.HideTooltip();
     }
 }
