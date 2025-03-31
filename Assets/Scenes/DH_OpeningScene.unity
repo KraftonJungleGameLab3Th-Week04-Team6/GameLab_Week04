@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -30}
+  m_AnchoredPosition: {x: 50, y: -30}
   m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &168328323
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1316,16 +1316,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uC81C \uB2F9\uC2E0\uC758 \uBAA9\uD45C\uB294 \uC81C\uD55C\uB41C
-    \uC2DD\uC7AC\uB8CC\uB97C \uCD5C\uB300\uD55C \uC0B4\uB824 \uC2DD\uB2F9\uC744 \uC6B4\uC601\uD558\uB294
-    \uAC83\uC785\uB2C8\uB2E4.\n\uACF0\uD321\uC774\uAC00 \uD540 \uBD80\uBD84\uC744
+  m_text: "\uC2DD\uC7AC\uB8CC\uB97C \uCD5C\uB300\uD55C \uC0B4\uB824 \uC2DD\uB2F9\uC744
+    \uC6B4\uC601\uD558\uC138\uC694!\n\uACF0\uD321\uC774\uAC00 \uD540 \uBD80\uBD84\uC744
     \uBAA8\uB450 \uC81C\uAC70\uD558\uBA74\uC11C\uB3C4, \uB108\uBB34 \uB9CE\uC774
     \uBC84\uB824 \uC190\uD574\uB97C \uBCF4\uC9C0 \uC54A\uB3C4\uB85D \uD574\uC57C
-    \uD569\uB2C8\uB2E4.\n\uD558\uC9C0\uB9CC \uC870\uC2EC\uD558\uC138\uC694! \uC190\uB2D8\uC774
-    \uC2DD\uC911\uB3C5\uC5D0 \uAC78\uB9AC\uC9C0 \uC54A\uB3C4\uB85D \uC2E0\uC911\uD558\uAC8C
-    \uD310\uB2E8\uD574\uC57C \uD569\uB2C8\uB2E4.\r\n5\uC77C \uB3D9\uC548 \uC2DD\uB2F9\uC744
-    \uBB34\uC0AC\uD788 \uC6B4\uC601\uD560 \uC218 \uC788\uC744\uAE4C\uC694? \uB2F9\uC2E0\uC758
-    \uC704\uAE30 \uAD00\uB9AC \uB2A5\uB825\uC744 \uC2DC\uD5D8\uD574 \uBCF4\uC138\uC694!"
+    \uD569\uB2C8\uB2E4.\r\n5\uC77C \uB3D9\uC548 \uC2DD\uB2F9\uC744 \uBB34\uC0AC\uD788
+    \uC6B4\uC601\uD560 \uC218 \uC788\uC744\uAE4C\uC694?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c670be30975f48544ac984ea0809592c, type: 2}
   m_sharedMaterial: {fileID: 9002389293116303493, guid: c670be30975f48544ac984ea0809592c, type: 2}
@@ -1360,7 +1356,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

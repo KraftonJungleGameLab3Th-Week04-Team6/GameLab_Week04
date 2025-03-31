@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31ed42b14a479143acae4e75e83c1e5, type: 3}
   m_Name: Customer8_Order2
   m_EditorClassIdentifier: 
-  customerOrderID: 8
+  customerOrderID: 18
   mood: -1
   customerOrder: "\uB098 \uC774\uC81C\uB294 \uB300\uD30C\uAC00 \uC9C8\uB838\uAD6C\uB9CC!
     \uB300\uD30C \uBCF6\uC74C \uB9D0\uACE0 \uB300\uD30C\uAC00 \uC548 \uB4E4\uC5B4\uAC00\uB294
