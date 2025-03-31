@@ -37,7 +37,6 @@ public float ResultRemainingPercentage { get { return _resultRemainingPercentage
     //주문 받은 메뉴
     private MenuData _menuData;
     private int _totalFoodNum;
-    private Toggle _safeModeToggle;
     private String _menuName;
 
 
@@ -50,13 +49,10 @@ public float ResultRemainingPercentage { get { return _resultRemainingPercentage
         _previewPanel = FindAnyObjectByType<PreviewPanel>().gameObject;
         _resultFood = FindAnyObjectByType<ResultFood>().GetComponent<Image>();
         _drawLine = FindAnyObjectByType<JSW_DrawLine>();
-        _safeModeToggle = FindAnyObjectByType<Toggle>();
         _resultFoodText = FindAnyObjectByType<ResultFoodText>().GetComponent<TMP_Text>();
 
         _playTimeText = _buttonCanvas.transform.GetComponentInChildren<PlayTimeText>().GetComponent<TMP_Text>();
         _enddingCavas.SetActive(false);
-        _safeModeToggle.isOn = Manager.Game.SafeMoldMode;
-        _safeModeToggle.onValueChanged.AddListener(OnSafeModeToggleChanged);
 
         _menuData = MenuDatabase.ObjectData[Manager.Kitchen.MenuKey];
         for (int i = 0; i < _menuData.menuIngredients.Count; i++)
@@ -214,8 +210,4 @@ public float ResultRemainingPercentage { get { return _resultRemainingPercentage
         OnSumitFood();
     }
 
-    void OnSafeModeToggleChanged(bool value)
-    {
-        Manager.Game.SafeMoldMode = value;
-    }
 }
