@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31ed42b14a479143acae4e75e83c1e5, type: 3}
   m_Name: Customer9_Order2
   m_EditorClassIdentifier: 
-  customerOrderID: 9
+  customerOrderID: 19
   mood: -1
   customerOrder: "\uC544\uC800\uC528 \uC548\uB155\uD558\uC138\uC694? \uC788\uC796\uC544\uC694.
     \uC800 \uC624\uB298 \uCD95\uAD6C\uD558\uB2E4\uAC00 \uB118\uC5B4\uC838\uC11C \uBB34\uB98E
     \uAE4C\uC84C\uC5B4\uC694. \uC544! \uADF8\uB9AC\uACE0 \uB3D9\uD604\uC774 \uD615\uC740
     \uC6B4\uB3D9\uD55C\uB2E4\uACE0 \uC5EC\uAE30\uC11C \uCC44\uC18C \uC0D0\uB7EC\uB4DC\uBC16\uC5D0
-    \uC548 \uBA39\uB294\uB300\uC694. \uCC44\uC18C \uADFC\uB370 \uB9DB \uC5C6\uC796\uC544\uC694.
+    \uC548 \uBA39\uB294\uB300\uC694. \uC0D0\uB7EC\uB4DC \uADFC\uB370 \uB9DB \uC5C6\uC796\uC544\uC694.
     \uC6B0\uC6E9!"
   customerAnswerMenuList: ca000000c9000000ce000000
   customerAnswerList:
