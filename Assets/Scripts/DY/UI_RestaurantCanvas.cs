@@ -117,6 +117,16 @@ public class UI_RestaurantCanvas : MonoBehaviour
                 await Task.Delay(1000);
             }
 
+            // 평범한 선택지
+            if (_currentOrderData.preferenceList[index] == 0)
+            {
+                _popularityFX = Instantiate(PopularityFX, screenPoint + Vector3.up * 50, Quaternion.identity);
+                _popularityFX.transform.SetParent(transform);
+                _popularityFX.GetComponent<TextEffect>().value = 1;
+                _popularityFX.GetComponent<TextEffect>().Init();
+                Manager.Popularity.PlusPopularity(1);
+                await Task.Delay(1000);
+            }
             // 싫어하는 선택지
             if (_currentOrderData.preferenceList[index] == -1)
             {
