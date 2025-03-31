@@ -53,22 +53,22 @@ public class TodayEndController : MonoBehaviour
         if (Manager.Game.CurrentDay >= 5 && Manager.Game.TotalMoney >= 0)
         {
             // 돈 많은데 높은 인기도
-            if (Manager.Game.TotalMoney >= 15000 && Manager.Game.Popularity >= 15)
+            if (Manager.Game.TotalMoney >= 20000 && Manager.Game.Popularity >= 20)
             {
                 Manager.Game.GoEnding(0);
             }
             // 돈 많은데 낮은 인기도
-            else if (Manager.Game.TotalMoney >= 15000 && Manager.Game.Popularity < 15)
+            else if (Manager.Game.TotalMoney >= 20000 && Manager.Game.Popularity < 20)
             {
                 Manager.Game.GoEnding(1);
             }
             // 돈 적은데 높은 인기도
-            else if (Manager.Game.TotalMoney < 15000 && Manager.Game.Popularity >= 15)
+            else if (Manager.Game.TotalMoney < 20000 && Manager.Game.Popularity >= 20)
             {
                 Manager.Game.GoEnding(2);
             }
             // 돈 적은데데 낮은 인기도
-            else if (Manager.Game.TotalMoney < 15000 && Manager.Game.Popularity < 15)
+            else if (Manager.Game.TotalMoney < 20000 && Manager.Game.Popularity < 20)
             {
                 Manager.Game.GoEnding(3);
             }
