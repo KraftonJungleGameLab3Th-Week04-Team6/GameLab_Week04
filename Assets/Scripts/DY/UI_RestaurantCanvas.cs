@@ -53,6 +53,9 @@ public class UI_RestaurantCanvas : MonoBehaviour
             _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = _currentOrderData.customerAnswerList[i];
             int menuIndex = _currentOrderData.customerAnswerMenuList[i];
             _buttons[i].gameObject.GetComponent<Button>().onClick.AddListener(() => ButtonClick(menuIndex));
+
+            // 툴팁 메세지 설정
+            _buttons[i].GetComponent<MenuTooltipTrigger>().Init(menuIndex);
         }
         
         //손님 이미지 설정
