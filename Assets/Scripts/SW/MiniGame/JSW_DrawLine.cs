@@ -16,7 +16,7 @@ public class JSW_DrawLine : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
-    [SerializeField] private float correctionDistance;          // 0.7f 에서 3으로 대폭 수정 -JSW 30일 3시 17분
+    [SerializeField] private float correctionDistance;
     [SerializeField] private Color insideColor;
 
     private MiniGameController _minigameController;
