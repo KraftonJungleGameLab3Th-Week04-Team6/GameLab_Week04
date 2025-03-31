@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayOpening : MonoBehaviour
@@ -23,6 +24,9 @@ public class PlayOpening : MonoBehaviour
     private void Start()
     {
         foreach (GameObject openingObject in _openingObjects) openingObject.SetActive(false);
+
+        _openingObjects[4].SetActive(true);
+        _openingObjects[4].GetComponent<Button>().onClick.AddListener(() => Manager.Game.GameStart());
 
         StartCoroutine(StartOpening());
     }
