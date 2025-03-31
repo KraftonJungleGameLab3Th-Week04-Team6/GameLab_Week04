@@ -293,16 +293,18 @@ public class JSW_DrawLine : MonoBehaviour
 
     IEnumerator SliceTrailMove(List<Vector2> pathPoints)
     {
-        GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity);
+        pathPoints.Add(pathPoints[0]);
 
-        float pathDistance = Vector2.Distance(pathPoints[0], pathPoints[pathPoints.Count - 1]);
-        for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
+        float pathDistance = 0;
+        for (int i = 1; i < pathPoints.Count; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
         float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
+
+        GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity, _nowIngredient.transform);
 
         for (int i = 0; i < pathPoints.Count; i++)
         {
             Vector2 target = pathPoints[i];
-            while (Vector2.Distance(sliceTrail.transform.position, target) > 0.01f)
+            while (sliceTrail && Vector2.Distance(sliceTrail.transform.position, target) > 0.01f)
             {
                 sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, target, moveSpeed * Time.deltaTime);
                 yield return null;
@@ -310,17 +312,7 @@ public class JSW_DrawLine : MonoBehaviour
             // 정확히 타겟 포인트에 맞춰주기
             sliceTrail.transform.position = target;
         }
-
-        // 마지막에서 시작점으로 복귀
-        Vector2 first = pathPoints[0];
-        while (Vector2.Distance(sliceTrail.transform.position, first) > 0.01f)
-        {
-            sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, first, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        sliceTrail.transform.position = first;
         
-        Destroy(sliceTrail);
-        Debug.Log("한 바퀴 완료!");
+        if(sliceTrail) Destroy(sliceTrail);
     }
 }
