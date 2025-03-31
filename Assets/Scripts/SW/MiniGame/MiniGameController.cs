@@ -187,7 +187,14 @@ public float ResultRemainingPercentage { get { return _resultRemainingPercentage
 
     public void GoLobby()
     {
-        SceneManager.LoadScene("JH_CustomerResultScene");
+        if (Manager.Kitchen.MoldPercentage > 0.01)
+        {
+            Manager.Game.GoEnding(4);
+        }
+        else
+        {
+            SceneManager.LoadScene("JH_CustomerResultScene");
+        }
     }
 
     IEnumerator StartPlay_Coroutine()
