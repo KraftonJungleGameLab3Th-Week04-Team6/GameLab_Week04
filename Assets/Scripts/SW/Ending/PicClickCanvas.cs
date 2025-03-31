@@ -16,7 +16,7 @@ public class PicClickCanvas : MonoBehaviour
     public void OnClickPic(int num)
     {
         _background = transform.GetChild(num).gameObject;
-        _dialogue = transform.GetChild(num + 6).gameObject;
+        _dialogue = transform.GetChild(num + 5).gameObject;
         _background.SetActive(true);
         _dialogue.SetActive(true);
         _backButton.gameObject.SetActive(true);

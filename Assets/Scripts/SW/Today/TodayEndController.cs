@@ -62,6 +62,7 @@ public class TodayEndController : MonoBehaviour
             {
                 Manager.Game.GoEnding(2);
             }
+            // 기본엔딩
             else 
             {
                 Manager.Game.GoEnding(1);
@@ -70,7 +71,7 @@ public class TodayEndController : MonoBehaviour
         else if (Manager.Game.TotalMoney <= 0)
         {
             print("GameOver");
-            Manager.Game.GoEnding(4);
+            Manager.Game.GoEnding(3);
         }
         else
         {

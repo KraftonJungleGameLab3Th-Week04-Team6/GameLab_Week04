@@ -70,7 +70,7 @@ public class UI_StatusResultCanvas : MonoBehaviour
             else
             {
                 // 곰팡이 엔딩
-                Manager.Game.GoEnding(5);
+                Manager.Game.GoEnding(4);
             }
         }
         // if (!_isDone) return;
