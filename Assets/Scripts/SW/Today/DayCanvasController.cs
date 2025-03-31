@@ -7,13 +7,10 @@ public class DayCanvasController : MonoBehaviour
 {
 
     public GameObject[] childrensUI;
-    public Toggle _safeModeToggle;
+
 
     void Start()
     {
-        _safeModeToggle.isOn = Manager.Game.SafeMoldMode;
-        _safeModeToggle.onValueChanged.AddListener(OnSafeModeToggleChanged);
-
         StartCoroutine(StartDay());
         print("Start Day");
     }
@@ -59,20 +56,14 @@ public class DayCanvasController : MonoBehaviour
             Color c = img.color;
             c.a = Mathf.Lerp(c.a, -0.5f, Time.deltaTime * 2f);
             img.color = c;
-
             if (c.a < 0f)
             {
                 break;
             }
             yield return null;
         }
-        childrensUI[0].SetActive(false);
-        _safeModeToggle.gameObject.SetActive(true);
-    }
 
-    void OnSafeModeToggleChanged(bool value)
-    {
-        Manager.Game.SafeMoldMode = value;
+        childrensUI[0].SetActive(false);
     }
 
 }
