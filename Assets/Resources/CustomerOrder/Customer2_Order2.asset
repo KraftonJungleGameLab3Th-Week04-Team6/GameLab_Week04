@@ -16,7 +16,7 @@ MonoBehaviour:
   mood: -1
   customerOrder: "\uC18D\uC774 \uC880 \uC548 \uC88B\uC544\uC11C \uD3B8\uC548\uD558\uAC8C
     \uBA39\uC744\uC218 \uC788\uB294 \uC74C\uC2DD\uC73C\uB85C\uC694."
-  customerAnswerMenuList: cb000000cb000000c9000000
+  customerAnswerMenuList: cb000000cc000000c9000000
   customerAnswerList:
   - "\uAD1C\uCC2E\uC73C\uC138\uC694? \uC18D\uC774 \uD3B8\uC548\uD558\uAC8C \uC218\uD504
     \uB4DC\uB9B4\uAC8C\uC694."
