@@ -875,7 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5471f22b9997458d3fb567afeab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\uB3C8 : 15000 \uBBF8\uB9CC\\n\uBA85\uC131 : 15 \uC774\uC0C1"
+  message: "\uB3C8 : 15000 \uBBF8\uB9CC\\n\uC778\uAE30\uB3C4 : 15 \uC774\uC0C1"
   tooltipController: {fileID: 938014079}
   isClear: 0
   endingNum: 0
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5471f22b9997458d3fb567afeab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\uB3C8 : 15000 \uC774\uC0C1\\n\uBA85\uC131 : 15 \uC774\uC0C1"
+  message: "\uB3C8 : 15000 \uC774\uC0C1\\n\uC778\uAE30\uB3C4 : 15 \uC774\uC0C1"
   tooltipController: {fileID: 938014079}
   isClear: 0
   endingNum: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5471f22b9997458d3fb567afeab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\uB3C8 : 15000 \uC774\uC0C1\\n\uBA85\uC131 : 15 \uBBF8\uB9CC"
+  message: "\uB3C8 : 15000 \uC774\uC0C1\\n \uC778\uAE30\uB3C4 : 15 \uBBF8\uB9CC"
   tooltipController: {fileID: 938014079}
   isClear: 0
   endingNum: 0
@@ -5415,7 +5415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5471f22b9997458d3fb567afeab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "\uB3C8 : 15000 \uBBF8\uB9CC\\n\uBA85\uC131 : 15 \uBBF8\uB9CC"
+  message: "\uB3C8 : 15000 \uBBF8\uB9CC\\n\uC778\uAE30\uB3C4 : 15 \uBBF8\uB9CC"
   tooltipController: {fileID: 938014079}
   isClear: 0
   endingNum: 0
