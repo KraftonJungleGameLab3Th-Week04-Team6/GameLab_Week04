@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/DH_EndingScene.unity
     guid: 7593da82eb78c9440b42122f8bae46d4
   - enabled: 1
-    path: Assets/Scenes/SW_EndingElbumScene.unity
-    guid: 3dbde7df133ab074e858ea2b301fec51
-  - enabled: 1
     path: Assets/Scenes/JH_Tutorial.unity
     guid: f565010ec2bcd434caa1084358643215
   m_configObjects:

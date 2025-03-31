@@ -16,7 +16,7 @@ public class JSW_DrawLine : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
-    [SerializeField] private float correctionDistance;          // 0.7f 에서 3으로 대폭 수정 -JSW 30일 3시 17분
+    [SerializeField] private float correctionDistance;
     [SerializeField] private Color insideColor;
 
     private MiniGameController _minigameController;
@@ -91,15 +91,15 @@ public class JSW_DrawLine : MonoBehaviour
 
             float dist = Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
 
-            if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 2f) // 첫 점과 마지막 점의 거리
+            if (lineRenderer.positionCount >= 5 && dist < correctionDistance / 1.5f) // 첫 점과 마지막 점의 거리
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
-            else if (lineRenderer.positionCount >= 15 && dist < correctionDistance / 1.5f)
+            else if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 1.2f)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
-            else if (lineRenderer.positionCount >= 15 && dist < correctionDistance)
+            else if (lineRenderer.positionCount >= 20 && dist < correctionDistance)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
@@ -151,7 +151,7 @@ public class JSW_DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 5) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
+        if (!isShape && lineRenderer.positionCount >= 5 && correctionIndex >= 5) // 선이 이어지지 않아도 완성되도록 보정 (positionCount 4 이상부터 선 2개)
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임
@@ -186,7 +186,7 @@ public class JSW_DrawLine : MonoBehaviour
                 if (convexCheck != 0) // 볼록 다각형이라면 컨벡스 보정
                 {
 
-                    if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[pointsList.Count - 1]) > 0) // 1이면 처음에서 보정
+                    if (convexCheck * CCW(pointsList[0], pointsList[1], pointsList[^1]) > 0) // 1이면 처음에서 보정
                     {
                         correctionIndex = pointsList.Count - 1;
 
@@ -205,7 +205,7 @@ public class JSW_DrawLine : MonoBehaviour
 
                         while (correctionIndex < pointsList.Count - 2)
                         {
-                            if (CCW(pointsList[pointsList.Count - 1], pointsList[correctionIndex], pointsList[correctionIndex + 1]) == convexCheck) break;
+                            if (CCW(pointsList[^1], pointsList[correctionIndex], pointsList[correctionIndex + 1]) == convexCheck) break;
 
                             correctionIndex++;
                         }
@@ -274,8 +274,10 @@ public class JSW_DrawLine : MonoBehaviour
 
     private Material MakeMaterial(Color color)
     {
-        Material newMaterial = new Material(Shader.Find("UI/Default"));
-        newMaterial.color = color;
+        Material newMaterial = new(Shader.Find("UI/Default"))
+        {
+            color = color
+        };
 
         return newMaterial;
     }
@@ -291,33 +293,27 @@ public class JSW_DrawLine : MonoBehaviour
 
     IEnumerator SliceTrailMove(List<Vector2> pathPoints)
     {
-        GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity);
+        pathPoints.Add(pathPoints[0]);
 
-        float pathDistance = Vector2.Distance(pathPoints[0], pathPoints[pathPoints.Count - 1]);
+        float pathDistance = 0;
         for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
+
         float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
+
+        GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity, _nowIngredient.transform);
 
         for (int i = 0; i < pathPoints.Count; i++)
         {
             Vector2 target = pathPoints[i];
-            while (Vector2.Distance(sliceTrail.transform.position, target) > 0.01f)
+            while (sliceTrail && Vector3.Distance((sliceTrail.transform.position), target) > 0.01f)
             {
                 sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, target, moveSpeed * Time.deltaTime);
                 yield return null;
             }
             // 정확히 타겟 포인트에 맞춰주기
-            sliceTrail.transform.position = target;
+            if(sliceTrail) sliceTrail.transform.position = target;
         }
 
-        // 마지막에서 시작점으로 복귀
-        Vector2 first = pathPoints[0];
-        while (Vector2.Distance(sliceTrail.transform.position, first) > 0.01f)
-        {
-            sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, first, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        sliceTrail.transform.position = first;
-        
         Destroy(sliceTrail);
         Debug.Log("한 바퀴 완료!");
     }

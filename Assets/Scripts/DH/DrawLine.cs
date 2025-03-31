@@ -77,15 +77,15 @@ public class DrawLine : MonoBehaviour
 
             float dist = Vector2.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
 
-            if (lineRenderer.positionCount >= 20 && dist < correctionDistance) // 첫 점과 마지막 점의 거리
+            if (lineRenderer.positionCount >= 5 && dist < correctionDistance / 1.5f) // 첫 점과 마지막 점의 거리
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
-            else if(lineRenderer.positionCount >= 15 && dist < correctionDistance / 1.5f)
+            else if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 1.2f)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
-            else if (lineRenderer.positionCount >= 10 && dist < correctionDistance / 2f)
+            else if (lineRenderer.positionCount >= 20 && dist < correctionDistance)
             {
                 correctionIndex = lineRenderer.positionCount - 1;
             }
@@ -137,7 +137,7 @@ public class DrawLine : MonoBehaviour
             yield return null;
         }
 
-        if (!isShape && lineRenderer.positionCount >= 10 && correctionIndex >= 5) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
+        if (!isShape && lineRenderer.positionCount >= 5 && correctionIndex >= 5) // 크기가 적당히 클 때 선이 이어지지 않아도 완성될 수 있도록 보정
         {
             pointsList.Add(lineRenderer.GetPosition(lineRenderer.positionCount - 2));
             edgeCollider2D.SetPoints(pointsList.GetRange(4, correctionIndex - 2)); // pointsList 0, 1, 2, 3는 시작점임(lineRenderer도 시작점이 겹치니까), correctionIndex는 개수-1임

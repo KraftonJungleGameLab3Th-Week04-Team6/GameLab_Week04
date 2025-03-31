@@ -61,7 +61,6 @@ public class GameManager
         _todayCustomerMaxCount = 3;
         TodayGetMoney = 0;
         TotalMoney = 0;
-        Popularity = 0;
     }
 
     public void GameStart()
