@@ -9,7 +9,6 @@ public class PlayOpening : MonoBehaviour
     private GameObject[] _openingObjects;
     private DisplayText _typingText;
     private WaitForSecondsRealtime _delay;
-    private IEnumerator _opening;
 
     private void Awake()
     {
@@ -27,16 +26,14 @@ public class PlayOpening : MonoBehaviour
         foreach (GameObject openingObject in _openingObjects) openingObject.SetActive(false);
 
         _openingObjects[4].SetActive(true);
-        _openingObjects[4].GetComponent<Button>().onClick.AddListener(() => SkipOpening());
+        _openingObjects[4].GetComponent<Button>().onClick.AddListener(() => Manager.Game.GameStart());
 
-        _opening = StartOpening();
-        StartCoroutine(_opening);
+        StartCoroutine(StartOpening());
     }
 
     private IEnumerator StartOpening()
     {
         _openingObjects[0].SetActive(true);
-        _openingObjects[4].SetActive(true);
 
         yield return _delay;
 
@@ -58,12 +55,6 @@ public class PlayOpening : MonoBehaviour
 
         while (!_typingText.IsDone) yield return null;
 
-        Manager.Game.GameStart();
-    }
-
-    private void SkipOpening()
-    {
-        StopCoroutine(_opening);
         Manager.Game.GameStart();
     }
 }

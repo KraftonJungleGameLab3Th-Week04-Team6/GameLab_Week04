@@ -16,7 +16,7 @@ public class JSW_DrawLine : MonoBehaviour
     [SerializeField] private float minDistance;
     [SerializeField] private float lineWidth;
     [SerializeField] private Color lineColor;
-    [SerializeField] private float correctionDistance;
+    [SerializeField] private float correctionDistance;          // 0.7f 에서 3으로 대폭 수정 -JSW 30일 3시 17분
     [SerializeField] private Color insideColor;
 
     private MiniGameController _minigameController;
@@ -296,8 +296,7 @@ public class JSW_DrawLine : MonoBehaviour
         pathPoints.Add(pathPoints[0]);
 
         float pathDistance = 0;
-        for (int i = 1; i < pathPoints.Count - 1; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
-
+        for (int i = 1; i < pathPoints.Count; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
         float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
 
         GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity, _nowIngredient.transform);
@@ -305,16 +304,15 @@ public class JSW_DrawLine : MonoBehaviour
         for (int i = 0; i < pathPoints.Count; i++)
         {
             Vector2 target = pathPoints[i];
-            while (sliceTrail && Vector3.Distance((sliceTrail.transform.position), target) > 0.01f)
+            while (sliceTrail && Vector2.Distance(sliceTrail.transform.position, target) > 0.01f)
             {
                 sliceTrail.transform.position = Vector2.MoveTowards(sliceTrail.transform.position, target, moveSpeed * Time.deltaTime);
                 yield return null;
             }
             // 정확히 타겟 포인트에 맞춰주기
-            if(sliceTrail) sliceTrail.transform.position = target;
+            sliceTrail.transform.position = target;
         }
-
-        Destroy(sliceTrail);
-        Debug.Log("한 바퀴 완료!");
+        
+        if(sliceTrail) Destroy(sliceTrail);
     }
 }
