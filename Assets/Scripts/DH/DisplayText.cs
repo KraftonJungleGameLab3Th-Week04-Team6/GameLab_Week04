@@ -13,6 +13,7 @@ public class DisplayText : MonoBehaviour
     private TextMeshProUGUI _textMesh;
     private string _originalText;
     private bool _isDone = false;
+    private int _spacePressCount = 0;
 
     private void Awake()
     {
@@ -28,6 +29,22 @@ public class DisplayText : MonoBehaviour
     {
         _coroutine = StartText();
         StartCoroutine(_coroutine);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _spacePressCount++;
+
+            if (_spacePressCount == 1 && !_isDone)
+            {
+                SkipText();
+            }
+            else if (_spacePressCount >= 2)
+            {
+                CompleteText();
+            }
+        }
     }
 
     private IEnumerator StartText()
@@ -83,5 +100,15 @@ public class DisplayText : MonoBehaviour
     public void EndText()
     {
         _button.onClick.AddListener(() => { _isDone = true; });
+    }
+    private void CompleteText()
+    {
+        StopCoroutine(_coroutine);
+        CancelInvoke(nameof(EndText));
+
+        _textDisplay.color = new Color(1, 1, 1, 1);
+        _textMesh.text = _originalText;
+
+        _isDone = true;  // 바로 완료 상태로 전환
     }
 }
