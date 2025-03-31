@@ -36,8 +36,8 @@ public class TodayEndController : MonoBehaviour
 
             _yesterdayTotalMoney.text = "어제 합산 : " + (_totalGetMoneyNum).ToString();
             _todayGetMoney.text = "일 수입 : +" + _todayGetMoneyNum.ToString();
-            _todayPayMoney.text = "일 고정비 : " + "-6000";
-            Manager.Game.TotalMoney -= 6000;
+            _todayPayMoney.text = "일 고정비 : " + "-8000";
+            Manager.Game.TotalMoney -= 8000;
             Manager.Game.TotalMoney += _todayGetMoneyNum;
             Manager.Game.TodayGetMoney = 0;
             _totalMoney.text = "합산 : " + Manager.Game.TotalMoney.ToString();
@@ -52,31 +52,26 @@ public class TodayEndController : MonoBehaviour
         print("NextDay");
         if (Manager.Game.CurrentDay >= 5 && Manager.Game.TotalMoney >= 0)
         {
-            // 돈 많은데 높은 인기도
-            if (Manager.Game.TotalMoney >= 20000 && Manager.Game.Popularity >= 20)
+            // 최고 엔딩
+            if (Manager.Game.TotalMoney >= 15000 && Manager.Game.Popularity >= 20)
             {
                 Manager.Game.GoEnding(0);
             }
-            // 돈 많은데 낮은 인기도
-            else if (Manager.Game.TotalMoney >= 20000 && Manager.Game.Popularity < 20)
-            {
-                Manager.Game.GoEnding(1);
-            }
-            // 돈 적은데 높은 인기도
-            else if (Manager.Game.TotalMoney < 20000 && Manager.Game.Popularity >= 20)
+            // 최악 엔딩
+            else if (Manager.Game.Popularity < 0)
             {
                 Manager.Game.GoEnding(2);
             }
-            // 돈 적은데데 낮은 인기도
-            else if (Manager.Game.TotalMoney < 20000 && Manager.Game.Popularity < 20)
+            // 기본엔딩
+            else 
             {
-                Manager.Game.GoEnding(3);
+                Manager.Game.GoEnding(1);
             }
         }
         else if (Manager.Game.TotalMoney <= 0)
         {
             print("GameOver");
-            Manager.Game.GoEnding(4);
+            Manager.Game.GoEnding(3);
         }
         else
         {

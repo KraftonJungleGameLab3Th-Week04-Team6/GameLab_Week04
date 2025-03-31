@@ -22,7 +22,6 @@ public class GameManager
 
     public int Popularity { get { return _popularity; } set { _popularity = value; } }
 
-    public bool SafeMoldMode { get { return _safeMode; } set { _safeMode = value; } }
 
     #region 게임 흐름 관련
     private bool _isGameStart;
@@ -41,7 +40,6 @@ public class GameManager
     #region 주방 관련
     private float _LossRate;
     private float _MoldRate;
-    private bool _safeMode;
     #endregion
 
     #region 돈 관련

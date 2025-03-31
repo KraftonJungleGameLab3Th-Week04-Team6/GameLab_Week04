@@ -43,9 +43,9 @@ public class PlayEnding : MonoBehaviour
 
         yield return _delay;
 
-        _endingObjects[EndingTypeNum + 6].SetActive(true);
+        _endingObjects[EndingTypeNum + 5].SetActive(true);
 
-        _typingText = _endingObjects[EndingTypeNum + 6].GetComponent<DisplayText>();
+        _typingText = _endingObjects[EndingTypeNum + 5].GetComponent<DisplayText>();
 
         while (!_typingText.IsDone) yield return null;
 

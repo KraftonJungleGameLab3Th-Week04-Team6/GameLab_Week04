@@ -2304,7 +2304,8 @@ PrefabInstance:
       value: DayCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8328240684782506116, guid: c69f20a5bfc8df945a934cbc7c5b6c8d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c69f20a5bfc8df945a934cbc7c5b6c8d, type: 3}

@@ -25,8 +25,8 @@ public class PlayOpening : MonoBehaviour
     {
         foreach (GameObject openingObject in _openingObjects) openingObject.SetActive(false);
 
-        _openingObjects[4].SetActive(true);
-        _openingObjects[4].GetComponent<Button>().onClick.AddListener(() => Manager.Game.GameStart());
+        _openingObjects[2].SetActive(true);
+        _openingObjects[2].GetComponent<Button>().onClick.AddListener(() => Manager.Game.GameStart());
 
         StartCoroutine(StartOpening());
     }
@@ -39,19 +39,15 @@ public class PlayOpening : MonoBehaviour
 
         _openingObjects[2].SetActive(true);
 
-        _typingText = _openingObjects[2].GetComponent<DisplayText>();
+        _typingText = _openingObjects[0].GetComponent<DisplayText>();
 
         while (!_typingText.IsDone) yield return null;
 
         _openingObjects[0].SetActive(false);
-        _openingObjects[2].SetActive(false);
         _openingObjects[1].SetActive(true);
 
         yield return _delay;
-
-        _openingObjects[3].SetActive(true);
-
-        _typingText = _openingObjects[3].GetComponent<DisplayText>();
+        _typingText = _openingObjects[1].GetComponent<DisplayText>();
 
         while (!_typingText.IsDone) yield return null;
 
