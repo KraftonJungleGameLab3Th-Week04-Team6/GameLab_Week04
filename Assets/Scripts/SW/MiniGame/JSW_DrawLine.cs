@@ -297,7 +297,7 @@ public class JSW_DrawLine : MonoBehaviour
 
         float pathDistance = 0;
         for (int i = 1; i < pathPoints.Count; i++) pathDistance += Vector2.Distance(pathPoints[i - 1], pathPoints[i]);
-        float moveSpeed = pathDistance * (4 + Mathf.Floor(pathDistance) * 0.4f);
+        float moveSpeed = pathDistance * (10 + Mathf.Floor(pathDistance));
 
         GameObject sliceTrail = Instantiate(sliceTrailEffect, pathPoints[0], quaternion.identity, _nowIngredient.transform);
 
