@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayEnding : MonoBehaviour
 {
@@ -127,7 +128,8 @@ public class PlayEnding : MonoBehaviour
                 break;
         }
 
-        _endingObjects[_endingObjects.Length-1].SetActive(true);
+        _endingObjects[^1].SetActive(true);
+        _endingObjects[^1].GetComponent<Button>().onClick.AddListener(() => Manager.Game.GoMain());
 
         yield break;
     }
